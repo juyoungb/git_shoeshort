@@ -21,8 +21,8 @@ public class StyleCtrl {
 		this.styleSvc = styleSvc;
 	}
 	
-	// 스타일 리스트 영역 시작
-	@GetMapping("/style")
+	// 스타일 리스트 영역 시작 123
+	@GetMapping("/style") 
 	public String style(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		int cpage = 1, spage = 0, psize = 12, bsize = 10, rcnt = 0, pcnt = 0;
