@@ -21,7 +21,7 @@ public class StyleCtrl {
 		this.styleSvc = styleSvc;
 	}
 	
-	// 스타일 리스트 영역 시작 123
+	// 스타일 리스트 영역 시작 test
 	@GetMapping("/style") 
 	public String style(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
