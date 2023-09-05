@@ -1,0 +1,113 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+#header {
+  position: fixed;
+  width:100%;
+  background-color: white;
+  z-index: 9999;
+    top: 0;
+  left: 0;
+  right: 0;
+}
+#top_inner {
+  width:1300px;
+  background-color: #f9f9f9;
+  padding: 10px;
+}
+
+#top_list {
+  float: right;
+  list-style: none;
+}
+
+#top_list li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+#brand {
+  width:1300px;
+  margin-left: -900px;
+}
+
+#center_inner {
+  width:1300px;
+  background-color: #f1f1f1;
+  padding: 0;
+}
+
+#center_list {
+  margin: 0 auto;
+  width: 100%;
+  height:100%;
+  list-style: none;
+  position: relative; /* 중요: #center_list에 상대적 위치 적용 */
+}
+
+.main_tabs {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.main_tabs li {
+  display: inline-block;
+  margin-right: 40px;
+  position: relative; /* 중요: 각 탭에 상대적 위치 적용 */
+}
+
+.main_tabs li a {
+  color: #fff;
+  padding: 0 40px;
+  width:180px;
+}
+
+.main_tabs li a:hover {
+  font-weight:bold;
+}
+
+/* 추가된 이벤트 서브메뉴 */
+.small_tab{
+  display: none;
+  position: absolute;
+  top:28px; /* 중요: 탭 아래에 서브메뉴 위치 조정 */
+  left: -100;
+  background-color:#333333;
+}
+.main_tabs li:hover #event_submenu {
+  display: block;
+}
+
+.main_tabs li:hover #sub_tabs {
+  display: block;
+}
+
+.sub_tabs a {/*글자 짤리는 이유 위에서 a태그에 padding 20px를 줘서 아래도 같이 적용됨*/
+  color: #fff;
+  padding: 0 auto;
+  width: 100%;
+  text-align:left;
+  font-size:12px;	
+}
+.sub_tabs{
+	float:left; 
+} 
+.sub_tabs li { display:inline-block; text-align:center; }
+ 
+#indexall{
+  	padding-top:173px;
+  	z-index: 1;
+}
+#center_wrap{
+	width:100%;
+	background-color:#333333;
+}

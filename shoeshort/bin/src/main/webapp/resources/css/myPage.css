@@ -1,0 +1,37 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Èò»ö ¹è°æ ¼³Á¤ */
+    color: #000000; /* °ËÀº»ö ±Û¾¾ ¼³Á¤ */
+    margin: 0;
+    padding: 0;
+  }
+
+  #mypage_container {
+    display: flex;
+  }
+
+  #mypage_tabs {
+    width: 200px;
+    background-color: #007bff; /* ÅÇ ¹è°æ»ö ¼³Á¤ */
+    color: white; /* ÅÇ ±Û¾¾»ö ¼³Á¤ */
+    padding: 20px;
+  }
+
+  .mypage_tab {
+    padding: 10px;
+    border-bottom: 2px solid transparent;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .mypage_tab.active {
+    border-color: #007bff;
+  }
+
+  #mypage_content {
+    flex: 1;
+    padding: 20px;
+  }
+
+</style>

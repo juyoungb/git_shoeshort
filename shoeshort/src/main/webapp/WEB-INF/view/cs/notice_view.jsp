@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../_inc/inc_head_fr.jsp" %>
+<%
+request.setCharacterEncoding("utf-8");
+NoticeList noticeInfo = (NoticeList)request.getAttribute("noticeInfo");
+%>
+<html>
+<script>
+function link(idx){
+	location.href="noticeList?cpage=1";
+}
+</script>
+<style>
+tr, th {border:1px solid black; border-left:0; border-right:0; border-color: gray;}
+th { background-color: #E2DECE;  opacity: 0.8; font-weight: bold; }
+</style>
+<body>
+<br />
+<div style="width:70%; height:600px; margin-left:8%" align="center" >
+<h2 style="margin-right: 60%;">공지사항 보기화면</h2>
+<table width="80%" height="90%" cellpadding="5" align="right">
+<tr style="vertical-align : top;" height="5%">
+<th width="7%">조회수</th><td width="70%"><%=noticeInfo.getNl_read() %></td></tr>
+<tr style="vertical-align : top;" height="5%">
+<th>작성일</th><td><%=noticeInfo.getNl_date() %></td></tr>
+<tr style="vertical-align : top;" height="5%">
+<th>제목</th><td><%=noticeInfo.getNl_title() %><td>
+</tr>
+<tr>
+<tr style="vertical-align : top; "><td colspan="5" ><%=noticeInfo.getNl_content().replace("/r/n", "<br />") %></td></tr>
+</tr>
+</table>
+</div>
+<div style="width: 20%; margin-left:40%;" align="center">
+<p><input type="button" class="btn btn-dark" value="목록" onclick="link();"/></p>
+</div>
+</body>
+</html>
