@@ -17,7 +17,7 @@ public class CsCtrl {
 	}
 	@GetMapping("noticeList")
 	public String noticeList (HttpServletRequest request) throws Exception {
-		// 공지사항 관련 처리 영역
+		// 공지사항 관련 처리 영역 dd
 		request.setCharacterEncoding("utf-8");
 		int cpage = 1, psize = 10, bsize = 10, rcnt = 0, pcnt = 0;
 		// 페이지 번호, 페이지 크기, 블록 크기, 레코드(게시글) 개수, 페이지 개수 등을 저장할 변수
