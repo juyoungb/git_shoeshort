@@ -113,6 +113,7 @@ if(loginInfo != null){
          <div align="left"style="width:180px;" onmouseover="showEventSubmenu(4)"  onmouseout="hideEventSubmenu(4)">
           <a style="font-size:14px;" href="wcup">스타일 월드컵</a><br>
           <a style="font-size:14px;" href="luckyMain">행운 번호 찾기</a>
+          <a style="font-size:14px;" href="testWeather">날씨 test</a>
         </div>
       </div>
     </li>

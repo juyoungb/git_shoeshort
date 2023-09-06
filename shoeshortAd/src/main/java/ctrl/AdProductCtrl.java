@@ -226,7 +226,7 @@ public class AdProductCtrl {
 	}
 	
 	
-	@GetMapping("/adProducIsview")
+	@GetMapping("/adProducIsview") // 게시/미시게 변경
 	public String adProducIsview (Model model, HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String piid = request.getParameter("piid");

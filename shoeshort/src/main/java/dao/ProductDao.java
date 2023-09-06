@@ -149,7 +149,8 @@ public class ProductDao {
 				});	
 		return stockList;
 	}
-// add main product list
+	
+	// add main product list
 	public List<ProductInfo> getMainList(String orderby) {
 		String sql = "select * from t_product_info where pi_isview='y' order by "+orderby+" desc limit 0, 12";
 		List<ProductInfo> productList = jdbc.query(sql,  new RowMapper<ProductInfo>(){
@@ -171,6 +172,23 @@ public class ProductDao {
 		});
 	
 		return productList; 
-	}	
+	}
+
+	public List<ProductInfo> getShoesList(String pcb_id) {
+		String sql ="select a.pi_id, a.pi_name from t_product_info a, t_product_stock b where a.pi_id=b.pi_id and a.pcb_id='"+pcb_id+"' and a.pi_isview='y' "
+				+ "and b.ps_stock != 0 order by a.pi_sale desc limit 0,3";
+		List<ProductInfo> productList = jdbc.query(sql,  new RowMapper<ProductInfo>(){
+			public ProductInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ProductInfo pi = new ProductInfo();
+				pi.setPi_id(rs.getString("pi_id"));
+				pi.setPi_name(rs.getString("pi_name"));
+				return pi;
+			}
+		});
+	
+		return productList;
+	}
+
+
 }
 
