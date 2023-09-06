@@ -61,7 +61,6 @@ String aiid = loginInfo.getAi_id();
           <li><a class="link_name" href="#">상품 관리</a></li>
           <li><a href="adProductList">상품 조회</a></li>
           <li><a href="adProductProc">상품 등록</a></li>
-          <li><a href="#">상품 수정</a></li>
         </ul>
       </li>
       <li>

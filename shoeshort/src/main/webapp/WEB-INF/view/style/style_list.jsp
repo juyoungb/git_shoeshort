@@ -159,7 +159,7 @@ if (rcnt > 0) {
 			<li class="page-item"><a class="page-link" href="<%=link + (cpage - 1)%>">이전</a></li>
 <% 
 	}
-	int spage = (cpage -1) / bsize * bsize + 1; //현재 블록에서의 시작 페이지 번호
+	int spage = (cpage - 1) / bsize * bsize + 1; //현재 블록에서의 시작 페이지 번호
 	int j = 0;
 	for (i = 1, j = spage ; i<= bsize && j <= pcnt ; i++, j++){
 		// i : 블록에서 보여줄 페이지의 개수만큼 루프를 돌릴 조건으로 사용되는 변수
@@ -179,14 +179,10 @@ if (rcnt > 0) {
 	} else{ 
 %>
 			<li class="page-item"><a class="page-link" href="<%=link +(cpage + 1) %>">다음</a></li>
-<%
-	}
-%>
+<% } %>
 		</ul>
 	</nav>
-<%
-}
-%>
+<% } %>
 </td>
 </tr>
 </table>

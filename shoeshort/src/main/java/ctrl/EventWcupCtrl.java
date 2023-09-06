@@ -54,9 +54,9 @@ public class EventWcupCtrl {
 	@PostMapping("/wcupVol")
 	public void wcupVol(HttpServletRequest request,HttpServletResponse response, Model model) throws Exception  {
 		request.setCharacterEncoding("utf-8");
+		
 		int siidx =Integer.parseInt(request.getParameter("chk"));
 		int ewidx =Integer.parseInt(request.getParameter("ewidx"));
-
 		HttpSession session = request.getSession();
 		MemberInfo mi = (MemberInfo)session.getAttribute("loginInfo");
 		isLogin(response,mi);
@@ -178,7 +178,7 @@ public class EventWcupCtrl {
 		if(result ==4) {
 			out.println("<script>");
 			out.println("alert('[이벤트 참여완료]500포인트가 적립되었습니다.');");
-			out.println("location.href='wcupMain?gi="+ewidx+"&rule="+rule+"'");
+			out.println("window.close(); opener.location.reload();");
 			out.println("</script>");
 			out.close();
 		}

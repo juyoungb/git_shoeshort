@@ -55,6 +55,7 @@ if(loginInfo != null){
 <div id="header" align="center">
 <div id="top_inner" align="right">
   <ul id="top_list">
+    <li><a href="walkingList">산책로 정보</a></li>
     <li><a href="storeInfo">매장찾기</a></li>
     <li><a href="noticeList">고객센터</a></li>
     <li><a href="<%=mypagesrc %>">마이페이지</a></li>
@@ -113,6 +114,7 @@ if(loginInfo != null){
          <div align="left"style="width:180px;" onmouseover="showEventSubmenu(4)"  onmouseout="hideEventSubmenu(4)">
           <a style="font-size:14px;" href="wcup">스타일 월드컵</a><br>
           <a style="font-size:14px;" href="luckyMain">행운 번호 찾기</a>
+          <a style="font-size:14px;" href="testWeather">날씨 test</a>
         </div>
       </div>
     </li>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="_inc/inc_head_ad.jsp" %>
+<%IndexData td = (IndexData)request.getAttribute("td"); %>
 <br>
 <style>
 body{
@@ -57,7 +58,10 @@ font-weight:600;
 	margin:20px 20px;
 	
 }
-
+.google-visualization-legend {
+    font-size: 20px; /* 원하는 폰트 크기로 조절하세요. */
+    /* 다른 스타일 속성을 여기에 추가할 수 있습니다. */
+  }
 </style>
 <table id="tb1">
 <tr>
@@ -124,7 +128,7 @@ font-weight:600;
 				<tr><th>지원자</th><td>3명</td></tr>
 				</table>
 				<br>
-				<span id="itemtitle2">행운의 비밀번호 찾기</span>
+				<span id="itemtitle2">행운의 숫자 찾기</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
 				<tr><th>마감일</th><td>D-DAY</td></tr>
 				<tr><th>참여자</th><td>20명</td></tr>
@@ -152,7 +156,7 @@ font-weight:600;
 				  </li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
-				  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+				  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" align="center">
 				  <div id="chart_div2"></div>
 				  </div>
 				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -166,12 +170,12 @@ font-weight:600;
 	        <div class="flex-item2">
 	        	<div>
 				<span id="itemtitle">공지사항</span>
-				<a href="" style="padding-left: 450px;"><img src="resources/img/icon/more.png"></a>
+				<a href="adNoticeList" style="padding-left: 450px;"><img src="resources/img/icon/more.png"></a>
 <!-- 				<img style="position:absolute; left: 1250px; top: 640px;" src="resources/img/icon/more.png"> -->
 				</div>
 				<table>
 				<c:forEach var="nl" items="${td.getNoticeInfo()}"><!-- ${nl.getNl_idx()}  -->
-				<tr><td><a href="" style="text-decoration-line:none; color:black;">[${nl.getNl_ctgr()}] ${nl.getNl_title()}	</a></td></tr>
+				<tr><td><a href="adNoticeView?nlidx=${nl.getNl_idx() }" style="text-decoration-line:none; color:black;">[${nl.getNl_ctgr()}] ${nl.getNl_title()}	</a></td></tr>
 				</c:forEach>
 				</table>
 
@@ -182,13 +186,8 @@ font-weight:600;
 
 // Load the Visualization API and the corechart package.
 google.charts.load('current', {'packages':['corechart']});
-
-// Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(drawChart);
 
-// Callback that creates and populates a data table,
-// instantiates the pie chart, passes in the data and
-// draws it.
 function drawChart() {
   // Create the data table.
   var data = new google.visualization.DataTable();
@@ -201,114 +200,94 @@ function drawChart() {
 
   // Set chart options
   var options = {
-                 'width':280,
-                 'height':280,
-                 is3D: true,
-                 legend:'none'};
-
+    'width': 350,
+    'height': 350,
+    is3D: true,
+    legend: 'top',
+    backgroundColor: 'transparent' // 배경을 투명하게 설정
+  };
+  var legendStyles = document.createElement('style');
+  legendStyles.innerHTML = '.google-visualization-legend { font-size: 20px; }';
+  document.head.appendChild(legendStyles);
+  
   // Instantiate and draw our chart, passing in some options.
   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
   chart.draw(data, options);
+  
 }
 google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBackgroundColor);
+google.charts.setOnLoadCallback(drawChart1);
 
-function drawBackgroundColor() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'X');
-      data.addColumn('number', 'Dogs');
+function drawChart1() {
+	  var data = new google.visualization.DataTable();
+	  data.addColumn('string', 'Day'); // 요일을 문자열로 추가
+	  data.addColumn('number', 'count');
 
-      data.addRows([
-    	  /*[i, ]  */
-        [0, 0],   [1, 40],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
-        [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
-        [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
-        [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
-        [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
-        [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
-        [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
-        [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
-        [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
-        [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
-        [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
-        [66, 70], [67, 72], [68, 75], [69, 80]
-      ]);
+	  data.addRows([
+		  <%for(ChartData sale: td.getSalesData()) {%>
+		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".") %>', <%=sale.getVal() %>],
+	    <%}%>
+	    // 나머지 요일에 대한 데이터를 추가하세요.
+	  ]);
 
-      var options = {
-    		  'width':600,
-              'height':200,
-              legend:'none',
-        backgroundColor: 'white'
-      };
+	  var options = {
+	    'width': 600,
+	    'height': 200,
+	    legend: 'none',
+	    backgroundColor: 'white'
+	  };
 
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
-      chart.draw(data, options);
-    }
+	  var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+	  chart.draw(data, options);
+	}
 google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBackgroundColor1);
-function drawBackgroundColor1() {
-    var data = new google.visualization.DataTable();
-    data.addColumn('number', 'X');
-    data.addColumn('number', 'Dogs');
+google.charts.setOnLoadCallback(drawChart2);
+function drawChart2() {
+	  var data = new google.visualization.DataTable();
+	  data.addColumn('string', 'Day'); // 요일을 문자열로 추가
+	  data.addColumn('number', 'count');
 
-    data.addRows([
-  	  
-      [0, 0],   [1, 40],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
-      [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
-      [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
-      [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
-      [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
-      [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
-      [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
-      [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
-      [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
-      [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
-      [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
-      [66, 70], [67, 72], [68, 75], [69, 80]
-    ]);
+	  data.addRows([
+		  <%for(ChartData sale: td.getMemCntData()) {%>
+		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".") %>', <%=sale.getVal() %>],
+	    <%}%>
+	    // 나머지 요일에 대한 데이터를 추가하세요.
+	  ]);
+	  var options = {
+	    'width': 600,
+	    'height': 200,
+	    legend: 'none',
+	    backgroundColor: 'white'
+	  };
 
-    var options = {
-  		  'width':600,
-            'height':200,
-            legend:'none',
-      backgroundColor: 'white'
-    };
-
-    var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
-    chart.draw(data, options);
-  }
+	  var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+	  chart.draw(data, options);
+	}
+  
 google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBackgroundColor2);
-function drawBackgroundColor2() {
-    var data = new google.visualization.DataTable();
-    data.addColumn('number', 'X');
-    data.addColumn('number', 'Dogs');
+google.charts.setOnLoadCallback(drawChart3);
+function drawChart3() {
+	  var data = new google.visualization.DataTable();
+	  data.addColumn('string', 'Day'); // 요일을 문자열로 추가
+	  data.addColumn('number', 'count');
 
-    data.addRows([
-  	  
-      [0, 0],   [1, 40],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
-      [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
-      [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
-      [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
-      [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
-      [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
-      [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
-      [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
-      [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
-      [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
-      [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
-      [66, 70], [67, 72], [68, 75], [69, 80]
-    ]);
+	  data.addRows([
+		  <%for(ChartData sale: td.getOrdCntData()) {%>
+		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".") %>', <%=sale.getVal() %>],
+	    <%}%>
+	    // 나머지 요일에 대한 데이터를 추가하세요.
+	  ]);
 
-    var options = {
-  		  'width':600,
-            'height':200,
-            legend:'none',
-      backgroundColor: 'white'
-    };
+	  var options = {
+	    'width': 600,
+	    'height': 200,
+	    legend: 'none',
+	    backgroundColor: 'white'
+	  };
 
-    var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
-    chart.draw(data, options);
-  }
+	  var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+	  chart.draw(data, options);
+	}
+
 </script>
 <%@ include file="_inc/inc_foot_ad.jsp" %>

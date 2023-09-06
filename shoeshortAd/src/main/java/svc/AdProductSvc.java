@@ -53,6 +53,11 @@ public class AdProductSvc {
 		int result = adProductDao.insertProduct(pi, arr);
 		return result;
 	}
+
+	public int UpdateStock(ProductInfo pi, String[] arr) {
+		int result = adProductDao.UpdateStock(pi, arr);
+		return result;
+	}
 	
 
 }

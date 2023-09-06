@@ -26,13 +26,14 @@ function checkOnlyOne(element) {
 </script>
 <h2>지원하기</h2>
 <form name="frm" action="wcupVol" method="POST" >
-<input type="hidden" name="ewidx" value="${ewidx }" />
+<input type="hidden" name="ewidx" value="${ewidx}" />
 <hr>
 <table width="100%">
 <c:forEach items="${styleList }" var="si" varStatus="i">
 <tr><td style="width:400px;">
-<div style="vertical-align:top; height:20px;"><input id="pic${i.count}" type="checkbox" /></div>
-
+<div style="vertical-align:top; height:20px;">
+<input type="checkbox" id="pic${i.count}"  name="chk" value="${si.getSi_idx() }" onclick='checkOnlyOne(this)' />
+</div>
 <label for="pic${i.count}" onclick="if(navigator.appVersion.indexOf('MSIE') != -1){pic${i.count}".click()}">
 <img src="resources/img/style_img/${si.getSi_img()}"  style="width:300px; height:400px;"/>
 </label> 

@@ -8,6 +8,7 @@ public class IndexData {
 	private int maleCnt, ordCntTotal, ordCnt1, ordCnt2, ordCnt3;
 	private int ps, psOn, psOff, psSold;
 	private List<NoticeInfo> noticeInfo; 
+	private List<ChartData> chartData; 
 	public int getTdOrderCnt() {
 		return tdOrderCnt;
 	}
@@ -104,4 +105,23 @@ public class IndexData {
 	public void setNoticeInfo(List<NoticeInfo> noticeInfo) {
 		this.noticeInfo = noticeInfo;
 	}
+	public List<ChartData> getSalesData() {
+		return chartData;
+	}
+	public void setSalesData(List<ChartData> chartData) {
+		this.chartData = chartData;
+	}
+	public List<ChartData> getMemCntData() {
+		return chartData;
+	}
+	public void setMemCntData(List<ChartData> chartData) {
+		this.chartData = chartData;
+	}
+	public List<ChartData> getOrdCntData() {
+		return chartData;
+	}
+	public void setOrdCntData(List<ChartData> chartData) {
+		this.chartData = chartData;
+	}
+	
 }

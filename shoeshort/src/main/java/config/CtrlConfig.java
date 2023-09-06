@@ -33,6 +33,8 @@ public class CtrlConfig {
    private StoreSvc storeSvc;
    @Autowired
    private EvtLuckySvc evtLuckySvc;
+   @Autowired
+   private WalkingSvc walkingSvc;
 
    @Bean
    public LoginCtrl loginCtrl() {
@@ -127,5 +129,12 @@ public class CtrlConfig {
 		EvtLuckyCtrl evtLuckyCtrl = new EvtLuckyCtrl();      
 	   evtLuckyCtrl.setEvtLuckySvc(evtLuckySvc);
 	   return evtLuckyCtrl;
+    }
+
+	@Bean
+	public WalkingCtrl walkingCtrl() {
+		WalkingCtrl walkingCtrl = new WalkingCtrl();      
+		walkingCtrl.setWalkingSvc(walkingSvc);
+	   return walkingCtrl;
     }
 }

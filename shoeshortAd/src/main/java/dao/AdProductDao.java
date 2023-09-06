@@ -107,16 +107,28 @@ public class AdProductDao {
 		return result;
 	}
 	
+	public int UpdateStock(ProductInfo pi, String[] arr) {
+		for(int j = 0 ; j < arr.length; j++) {
+			pi.setStock(Integer.parseInt(arr[j].substring(4)));
+			pi.setPs_size(Integer.parseInt(arr[j].substring(0,3)));
+			String sql = "update  t_product_stock set ps_stock = "+pi.getStock()+",ps_size=" + pi.getPs_size()+""
+					+ " where = '" + pi.getPi_id() + "' ";
+			System.out.println(sql);
+			jdbc.update(sql);
+		}
+		return 0;
+	}
+	
 	public int insertProduct(ProductInfo pi, String[] arr) {
-		String sql = "insert into t_product_info (pi_id, pi_name, pcb_id,pb_id,pi_gubun,pi_com, pi_desc,ai_idx,pi_img1,pi_img2,pi_img3, pi_price, pi_cost) "
+		String sql = "insert into t_product_info (pi_id, pi_name, pcb_id,pb_id,pi_gubun,pi_com, pi_desc,ai_idx,pi_img1,pi_img2,pi_img3, pi_price, pi_cost, pi_isview) "
 		+ "values ('"+ pi.getPi_id() +"','"+ pi.getPi_name() +"','"+ pi.getPcb_id() +"', '"+ pi.getPb_id()+"',"
-				+ " '"+pi.getPi_gubun()+"','"+pi.getPi_com()+"', '"+pi.getPi_desc()+"', 1, '"+pi.getPi_img1()+"','"+pi.getPi_img2()+"' ,'"+pi.getPi_img3()+"',"+pi.getPi_price()+","+pi.getPi_cost()+")";
+				+ " '"+pi.getPi_gubun()+"','"+pi.getPi_com()+"', '"+pi.getPi_desc()+"', 1, '"+pi.getPi_img1()+"','"+pi.getPi_img2()+"' ,'"+pi.getPi_img3()+"',"+pi.getPi_price()+","+pi.getPi_cost()+", '"+pi.getPi_isview()+"')";
 		System.out.println(sql);
 		int result = jdbc.update(sql);
 		
 		insertStock(pi, arr); // 사이즈와 갯수 insert
 		
-		return  result;	
+		return result;	
 	}
 	
 	public void insertStock(ProductInfo pi, String[] arr)  {		
@@ -125,11 +137,11 @@ public class AdProductDao {
 			pi.setPs_size(Integer.parseInt(arr[j].substring(0,3)));
 			String sql = "insert into t_product_stock (pi_id, ps_size, ps_stock, ps_isview) "
 					+ " values('" + pi.getPi_id() + "', " + pi.getPs_size()+ ", "+pi.getStock() +", 'y')";
-			System.out.println(sql);
-			 jdbc.update(sql);
+			//System.out.println(sql);
+			jdbc.update(sql);
 		}
 		
 	}
-
+	
 }
 
