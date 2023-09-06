@@ -184,7 +184,7 @@ public class AdProductCtrl {
 		return "productAdmin/adProductList";
 	}
 	
-	@GetMapping("/adProductStockList")
+	@GetMapping("/adProductStockList")  
 	public String adProductStockList(Model model,HttpServletRequest request)throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String piid = request.getParameter("piid");
@@ -195,16 +195,36 @@ public class AdProductCtrl {
 		return "productAdmin/adProductStockList";
 	}
 	
-	@GetMapping("/adProductUp")
-	public String adProductUp(Model model,HttpServletRequest request)throws Exception {
+	@PostMapping("/stockUpdate")  
+	public String stockUpdate(Model model,HttpServletRequest request)throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String piid = request.getParameter("piid");
-		List<ProductStock> stockList = adProductSvc.getStockList(piid);
-		model.addAttribute("stockList", stockList);
-		model.addAttribute("piid", piid);
+		String pi_id = request.getParameter("piid");
+
+		String sch = request.getParameter("sch");	
+		if (sch == null)	sch = "";
+	
 		
-		return "productAdmin/adProductUp";
+		String arr[] = null;
+		if (sch != null && !sch.equals("")) {			
+			String[] arrSch = sch.split(",");
+			for (int i = 0 ; i < arrSch.length ; i++) {
+				char c = arrSch[i].charAt(0);
+				if  (c == 's') { //size 사이즈	
+					// s225 120:230 12:240 100:260 100
+					arrSch[i].substring(0);
+					arr = arrSch[i].substring(1).split(":"); 
+				} 
+			}
+		}	
+		
+		ProductInfo pi = new ProductInfo();
+		
+		pi.setPi_id(pi_id);		
+		int result = adProductSvc.UpdateStock(pi, arr);
+		
+		return "redirect:/adProductStockList";
 	}
+	
 	
 	@GetMapping("/adProducIsview")
 	public String adProducIsview (Model model, HttpServletRequest request) throws Exception {
@@ -217,17 +237,26 @@ public class AdProductCtrl {
 	}
 	
 	@GetMapping("/adProductProc")
-	public String adProductProc() {//상품 등록
+	public String adProductProc() {
 		
 		return "productAdmin/adProductProc";
 	}
 	
-	@PostMapping("/adProductFile")
+	@PostMapping("/dupId")
+	@ResponseBody
+	public String dupId(HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String piid = request.getParameter("piid").trim();
+		int result = adProductSvc.chkPiid(piid);
+		return result + "";
+	}
+	
+	@PostMapping("/adProductFile") // 상품등록 form으로 보낼때
 	public String adProductFile( HttpServletRequest request, @RequestPart("uploadFile1") Part file1,
 			@RequestPart("uploadFile2") Part file2, @RequestPart("uploadFile3") Part file3, @RequestPart("uploadFile4") Part file4)   throws Exception  {
 		String uploadFiles ="E:/_project/shoeshortAd/src/main/webapp/resources/img/product";
 		System.out.println("adProductFile");
-		//String path = "E:/_project/shoeshortAd/src/main/webapp/resources/img/lucky_img";
+		//String path = "D:/_bjk/shoeshortAd/src/main/webapp/resources/img/lucky_img";
 		String pi_id = request.getParameter("piid").trim().toUpperCase(); //상품명
 		String ctgr = request.getParameter("ctgr");//상품명
 		String pb_id = pi_id.substring(0,2);//
@@ -251,12 +280,11 @@ public class AdProductCtrl {
 		
 	
 		String files = "";
-		// 확인해봐야함
 		for (Part part : request.getParts()) {
 			if (part.getName().startsWith("el_img")) {
 			String cd =  part.getHeader("content-disposition");
 				String uploadName = getUploadFileName(cd);
-				if (!uploadName.equals("")) {//오전 9:53 2023-08-24
+				if (!uploadName.equals("")) {
 				// 업로드할 파일이 있으면
 					uploadFiles += ", " + uploadName;
 					part.write(uploadName);
@@ -295,28 +323,13 @@ public class AdProductCtrl {
 					// s225 120:230 12:240 100:260 100
 					arrSch[i].substring(0);
 					arr = arrSch[i].substring(1).split(":"); 
-				
-	
 				} 
 			}
 		}	
-		
-
-	
 				
 		int result = adProductSvc.insertProduct(pi, arr);
 		
 		return "redirect:/adProductProc"; 
-	}
-	
-	
-	@PostMapping("/dupId")
-	@ResponseBody
-	public String dupId(HttpServletRequest request) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		String piid = request.getParameter("piid").trim();
-		int result = adProductSvc.chkPiid(piid);
-		return result + "";
 	}
 	
 	private String getUploadFileName(String cd) {
@@ -329,4 +342,6 @@ public class AdProductCtrl {
 		uploadName = arrContent[2].substring(fIdx + 1, sIdx);
 		return uploadName;
 	}
+	
+
 }
