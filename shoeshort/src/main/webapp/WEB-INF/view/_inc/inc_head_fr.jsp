@@ -55,6 +55,7 @@ if(loginInfo != null){
 <div id="header" align="center">
 <div id="top_inner" align="right">
   <ul id="top_list">
+    <li><a href="walkingList">산책로 정보</a></li>
     <li><a href="storeInfo">매장찾기</a></li>
     <li><a href="noticeList">고객센터</a></li>
     <li><a href="<%=mypagesrc %>">마이페이지</a></li>
