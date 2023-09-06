@@ -93,7 +93,7 @@
   <div class="carousel-inner">
    <c:forEach var="il" items="${imgList}" varStatus="i">
 		<div class="carousel-item active">
-			<a href="${il.getMm_link() }"><img style="width:700px; height:600px;"src="resources/img/slide/${il.getMm_media() }"  class="d-block w-100" alt="" >
+			<a href="${il.getMm_link() }"><img style="width:700px; height:600px;"src="resources/img/slide/${il.getMm_media() }"  class="d-block w-100" alt="" ></a>
 		</div>
 	 </c:forEach>
   </div>
@@ -112,7 +112,6 @@
 <span style="font-size:18px; font-weight:bold;">Top Style</span>
 </div>
 <br>
-
 <table cellpadding="2">
 <c:forEach var="si" items="${styleList}" varStatus="idx">
 	<td align="center">
