@@ -30,7 +30,7 @@ span{cursor:pointer}
 	</div>
 	<div id="btn" style="float:right;">
 		<input type="button" v-if="isview" value="지도 축소" class="btn btn-outline-secondary" onclick="zoom('+1')" />
-		<input type="button" v-if="isview" value="지도 확대" class="btn btn-outline-secondary" onclick="zoom('-1');" />
+		<input type="button" v-if="isview" value="지도 확대" class="btn btn-outline-secondary" onclick="zoom('-1')" />
 		<br />
 	</div>
 	<div id="map"></div>

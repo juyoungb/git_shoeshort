@@ -22,6 +22,23 @@ function showMap(){
 function zoom (val){
 	var level = mapObj.getLevel();	// getLevel(), setLevel()은 Kakao 지도 API에 내장된 함수
 		mapObj.setLevel(eval(level + val));
+	
+	var linePath = [
+	    new kakao.maps.LatLng(1.4186453592181152E7,4173524.9195949174),
+	    new kakao.maps.LatLng(1.4227023309903907E7,4226462.296340855)
+	    // new kakao.maps.LatLng(33.45178067090639, 126.5726886938753) 
+	];
+
+	// 지도에 표시할 선을 생성합니다
+	var polyline = new kakao.maps.Polyline({
+	    path: linePath, // 선을 구성하는 좌표배열 입니다
+	    strokeWeight: 5, // 선의 두께 입니다
+	    strokeColor: '#FFAE00', // 선의 색깔입니다
+	    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'solid' // 선의 스타일입니다
+	});
+		// 지도에 선을 표시합니다 
+		polyline.setMap(mapObj);
 }
 function setDraggable(chk){
 	mapObj.setDraggable(chk);
