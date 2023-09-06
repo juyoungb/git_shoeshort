@@ -281,7 +281,7 @@ if (pi.getPi_dc() > 0) {  //할인율이 있으면
 	<div class="col-2" style="margin : 50px;">
 	  <div class="card shadow-sm">
 	  	<a href="productView?piid=<%=pi.getPi_id()%>">
-	    <img src="resources/img/product_img/<%=pi.getPi_img1() %>" width="100%" style="height: 11rem; object-fit:cover;" /></a>
+	    <img src="resources/img/product/<%=pi.getPi_img1() %>" width="100%" style="height: 11rem; object-fit:cover;" /></a>
 	    <div class="card-body">
 	      <p class="card-text" style="font-size:80%;"><%=pi.getPi_name() %></p>
 	      <div class="d-flex justify-content-between align-items-center">
