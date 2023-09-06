@@ -60,10 +60,15 @@ public class ProductSvc {
 		List<ProductStock> sizeList =  productDao.getSizeList();
 		return sizeList;
 	}
-	// add main product list
+	
 	public List<ProductInfo> getMainList(String orderby) {
 		List<ProductInfo> mainList = productDao.getMainList(orderby);
 		return mainList;
+	}
+
+	public List<ProductInfo> getShoesList(String pcb_id) {
+		List<ProductInfo> productList = productDao.getShoesList(pcb_id);
+		return productList;
 	}
 
 }
