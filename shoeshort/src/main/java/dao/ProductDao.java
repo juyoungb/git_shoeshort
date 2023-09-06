@@ -28,7 +28,6 @@ public class ProductDao {
 				pi.setPi_img2(rs.getString("pi_img2"));
 				pi.setPi_img3(rs.getString("pi_img3"));
 				pi.setPi_desc(rs.getString("pi_desc"));
-				pi.setPi_com(rs.getString("pi_com"));
 				return pi;
 			}
 		});
