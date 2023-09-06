@@ -55,7 +55,7 @@
             </div>      
             <div class="col-3 mb-5 mt-5">
                  <div class="card shadow">
-                        <img  src="resources/img/evt_lucky/${el.getPi_img1() }" class="bd-placeholder-img card-img-top" width="100px" height="350px" ></img>
+                        <img  src="resources/img/product/${el.getPi_img1() }" class="bd-placeholder-img card-img-top" width="100px" height="350px" ></img>
                     <div class="card-body">
                         <p class="card-text">${el.getPi_name() }</p>
                     <div class="d-flex justify-content-between align-items-center" width="100%" height="100%">
