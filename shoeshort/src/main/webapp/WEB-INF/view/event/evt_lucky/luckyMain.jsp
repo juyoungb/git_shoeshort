@@ -36,7 +36,7 @@
 
 <form name="frm">
     <div class="mb-5">
-        <img src="resources/img/evt_lucky/header.png" width="100%" height="850px">
+        <img src="resources/img/product/header.png" width="100%" height="850px">
     </div> 
     <div class="row row-cols-6">
         <div class="col-12 mb-5">
