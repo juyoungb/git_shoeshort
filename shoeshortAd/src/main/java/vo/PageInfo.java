@@ -4,7 +4,7 @@ package vo;
 
 public class PageInfo {
 // �Խ��Ǹ��, ��ǰ��� ��� ����¡�� �ʿ��� �������� ������ Ŭ����
-	private int cpage,  spage, psize, bsize, rcnt , pcnt, count;
+	private int cpage,  spage, psize, bsize, rcnt , pcnt;
 	private String schtype, keyword, args, schargs, pcb, pcs, obargs, vargs, sch, ob, v, ctgr;
 	
 	public int getCpage() {
@@ -42,12 +42,6 @@ public class PageInfo {
 	}
 	public void setPcnt(int pcnt) {
 		this.pcnt = pcnt;
-	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
 	}
 	public String getSchtype() {
 		return schtype;

@@ -88,7 +88,7 @@ function chkDupId(piid) { //상품아이디가 이미 있는지 확인
 </head>
 <body>
 <div style="margin:20px;" width="80%" align="center">
-<h2>상품 등록</h2>
+<h2>상품 수정</h2>
 <form name="frm">
 <input type="hidden" name="sch" value="">
 </form>
@@ -114,7 +114,7 @@ function chkDupId(piid) { //상품아이디가 이미 있는지 확인
 <%
 for(String st : arrGender){
 %>	
-	<input type="radio" name="gender" id="<%=st %>"  value="<%=st.charAt(0) %>" <%if(st.equals("men")) {%> checked="checked"<%} %>onclick="chkBox('gender', this)" class="bnt">
+	<input type="radio" name="gender" id="<%=st %>"  value="<%=st.charAt(0) %>" <%if(st.equals("men")){ %>checked="checked"<%} %> onclick="chkBox('gender', this)" class="bnt">
 	<label for="<%=st %>"><%=st %></label>
 <%} %>	
  </td>	
@@ -156,7 +156,7 @@ for(String st : arrGender){
 </tr>
 </table>
 <div style="margin:20px;">
-<table width="50%" style="float:left;">
+<table width="25%" style="float:left;">
 <tr>
 <th width="50%">사이즈</th>
 <th width="50%">재고량</th>
@@ -189,7 +189,7 @@ for(String st : arrGender){
   </div>
   
 <div style="margin:20px;">
-<table width="50%" style="float:left;" >
+<table width="25%" style="float:left;" >
 
 <tr>
 <th width="50%">사이즈</th>
