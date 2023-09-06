@@ -26,8 +26,8 @@ public class ApiSvc {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
-			sb.append("&client_id=456f5080f677824581cb16867e1a0280");//JavaScript 키는 포트번호 8001일때만 사용가능
-			sb.append("&redirect_uri=http://localhost:8001/shoeshort/kakaoLoginProc");
+			sb.append("&client_id=456f5080f677824581cb16867e1a0280");//JavaScript 키는 포트번호 8087일때만 사용가능
+			sb.append("&redirect_uri=http://localhost:8087/shoeshort/kakaoLoginProc");
 			sb.append("&code=" + code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -44,8 +44,6 @@ public class ApiSvc {
 				result+=line;
 			}
 			System.out.println("result : " + result);
-			//result : {"access_token":"fGnisA5g88VDAIusz17piGqZ7S3XN9s88goIUV63CinI2QAAAYn8WUfv","token_type":"bearer","refresh_token":"NRScARa1p6mgu1QAKJARj1xJzKvcTf4wEw_My2rrCinI2QAAAYn8WUft","expires_in":7199,"scope":"age_range birthday gender","refresh_token_expires_in":5183999}
-			
 			//JSON파싱 및 JSONObject객체 생성
 			JSONParser p = new JSONParser();
 			JSONObject jo = (JSONObject)p.parse(result);
@@ -95,10 +93,8 @@ public class ApiSvc {
 			String nickname = properties.get("nickname").toString();
 			String gender = kakao_account.get("gender").toString();
 			String birthday = kakao_account.get("birthday").toString();
-			/*System.out.println("nickname : "+nickname);
-			System.out.println("gender : "+gender);			
-			System.out.println("birthday : "+birthday);*/
-			if(kakao_account.containsKey("email")) {//이메일은 없을 수도 있으므로 가져올 수 없음
+
+			if(kakao_account.containsKey("email")) {//이메일은 없을 수도 있으므로 있을때만 가져옴
 				String email  = kakao_account.get("email").toString();
 				loginInfo.put("email", email);				
 			}

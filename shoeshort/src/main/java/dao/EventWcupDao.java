@@ -124,14 +124,14 @@ public class EventWcupDao {
 		// 1.t_evt_wcup_join insert -> t_evt_wcup_list update -> t_member_point insert
 		String sql ="select ewl_idx from t_evt_wcup_list where ew_idx = "+ewidx+" and mi_id = '"+winner+"'";
 		int ewlidx = jdbc.queryForObject(sql, Integer.class);//우승자 번호 추출
-		sql = "insert into t_evt_wcup_join(ew_idx, mi_id, ewj_vidx, ewj_status) values (?, ?, ?, 'b')";	
+		sql = "insert into t_evt_wcup_join(ew_idx, mi_id, ewj_vid) values (?, ?, ?)";	
 		int result = jdbc.update(sql,ewidx,miid,ewlidx); //result: 1
 		sql = "update t_evt_wcup_list set ewl_win = ewl_win +1 where ewl_idx = ?";
         result += jdbc.update(sql,ewlidx); 	//result: 2
         sql = "update t_member_info set mi_point = mi_point + 500 where mi_id ='"+miid+"' ";
 		result+= jdbc.update(sql);	//result: 3
-		sql = "insert into t_member_point (mi_id, mp_point, mp_desc, mp_detail,mp_edate) values('"+miid+"'"
-				+ ",500,'이벤트 참여', '스타일 월드컵' , date_add(now(), interval 1 year))";
+		sql = "insert into t_member_point (mi_id, mp_point, mp_desc, mp_detail,mp_edate, ai_idx) values('"+miid+"'"
+				+ ",500,'이벤트 참여', '스타일 월드컵' , date_add(now(), interval 1 year), 1)";
 		result += jdbc.update(sql);	//result: 4
 		
 		return result;

@@ -67,9 +67,9 @@ a {
     <a href="memberJoin">회원가입</a>  |  
     <a href="memberSch">아이디/비밀번호 찾기</a>  
     </div>
-	<a href="https://kauth.kakao.com/oauth/authorize?client_id=456f5080f677824581cb16867e1a0280&redirect_uri=http://localhost:8001/shoeshort/kakaoLoginProc
+	<a href="https://kauth.kakao.com/oauth/authorize?client_id=456f5080f677824581cb16867e1a0280&redirect_uri=http://localhost:8087/shoeshort/kakaoLoginProc
 &response_type=code"><img src="/shoeshort/resources/img/btn/kakaoBtn.png" id="apiBtn" onclick="" /></a>
-<a href="https://kauth.kakao.com/oauth/logout?client_id=456f5080f677824581cb16867e1a0280&logout_redirect_uri=http://localhost:8001/shoeshort/kakaoLogoutProc">카카오 로그아웃</a>
+<a href="https://kauth.kakao.com/oauth/logout?client_id=456f5080f677824581cb16867e1a0280&logout_redirect_uri=http://localhost:8087/shoeshort/kakaoLogoutProc">카카오 로그아웃</a>
     <br>
 </div>
 </body>

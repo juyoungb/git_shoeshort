@@ -299,7 +299,7 @@ private JdbcTemplate jdbc;
 					" where mi_id ='"+oi.getMi_id()+"' ";
 			target++;		rcount += jdbc.update(sql);
 			
-			sql = "insert into t_member_point (mi_id, mp_point, mp_desc, mp_detail,mp_edate) values('"+oi.getMi_id()+
+			sql = "insert into t_member_point (ai_idx, mi_id, mp_point, mp_desc, mp_detail,mp_edate) values(1,'"+oi.getMi_id()+
 					"','"+oi.getOi_spoint()+"','상품구매','"+oi_id+"', date_add(now(), interval 1 year))";//date_add(now(), interval 1 year) 현재 시간에서 1년 더하기
 			target++;		rcount += jdbc.update(sql);
 			System.out.println(target+" : "+sql+" : "+ rcount);

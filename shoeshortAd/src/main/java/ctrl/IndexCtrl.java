@@ -24,6 +24,7 @@ public class IndexCtrl {
 		AdminInfo adminInfo = (AdminInfo)session.getAttribute("loginInfo");
 		if(adminInfo != null) {
 		IndexData totalData = indexSvc.getTotalData();//1.
+		request.setAttribute("td", totalData);
 		model.addAttribute("td", totalData);
 		return "index";
 		}
