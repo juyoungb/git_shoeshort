@@ -6,6 +6,8 @@
 
 request.setCharacterEncoding("utf-8");
 PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+int rcnt = pageInfo.getRcnt(), cpage = pageInfo.getCpage(), bsize = pageInfo.getBsize(), pcnt = pageInfo.getPcnt(), count = pageInfo.getCount();
+
 List<ProductInfo> productList = (List<ProductInfo>)request.getAttribute("productList");
 List<ProductStock> stockList = (List<ProductStock>)request.getAttribute("stockList");
 List<ProductBrand> brandList = (List<ProductBrand>)request.getAttribute("brandList");
@@ -331,13 +333,14 @@ if (pageInfo.getRcnt() > 0) {
 <tr>
 <td align="center" colspan="7" >
 <%
-if (pageInfo.getRcnt() > 0) {
+if (rcnt > 0) {
 	String link = "productList?1=1&cpage=";
 %>
 	<nav aria-label="Page navigation example" style="text-align:center; width:200px;">
-		<ul class="pagination  justify-content-center"" >
+	<ul class="pagination  justify-content-center"" >
 <%
-	if (pageInfo.getCpage() == 1) {
+
+	if (cpage == 1) {
 %>
 			<li class="page-item-black"><a class="page-link" href="#">이전</a></li>
 <%
@@ -348,10 +351,11 @@ if (pageInfo.getRcnt() > 0) {
 	}
 	int spage = (pageInfo.getCpage() -1) / pageInfo.getBsize() * pageInfo.getBsize() + 1; //현재 블록에서의 시작 페이지 번호
 	int j = 0;
-	for (i = 1, j = spage ; i<= pageInfo.getBsize() && j <= pageInfo.getPcnt() ; i++, j++){
+	
+	for (count = 1, j = spage ; count<= bsize && j <= pcnt ; count++, j++) {
 		// i : 블록에서 보여줄 페이지의 개수만큼 루프를 돌릴 조건으로 사용되는 변수
 		// j :실제 출력할 페이지 번호로 전체 페이지 개수(마지막 페이지 번호)를 넘지 않게 사용해야 함
-		if (pageInfo.getCpage() == j){
+		if (cpage == j){
 %>
 			<li class="page-item"><a class="page-link" href="#"><%=j %></a></li>
 <%
@@ -359,13 +363,13 @@ if (pageInfo.getRcnt() > 0) {
 %>			<li class="page-item"><a class="page-link" href="<%=link + j%>"><%=j %></a></li> <%
 		}
 	}
-	if (pageInfo.getCpage() == pageInfo.getPcnt()){
+	if (cpage == pcnt){
 %>
 			<li class="page-item"><a class="page-link" href="#">다음</a></li>
 <%
 	} else{ 
 %>
-			<li class="page-item"><a class="page-link" href="<%=link +(pageInfo.getCpage()  + 1) %>">다음</a></li>
+			<li class="page-item"><a class="page-link" href="<%=link +(cpage  + 1) %>">다음</a></li>
 <%
 	}
 %>

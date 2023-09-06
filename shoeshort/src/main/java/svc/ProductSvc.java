@@ -38,9 +38,7 @@ public class ProductSvc {
 	}
 
 	public int getProductCount(String where) {
-		int rcnt = 0;
-		
-		rcnt = productDao.getProductCount(where);
+		 int rcnt = productDao.getProductCount(where);
 	
 		return rcnt;
 	}

@@ -4,7 +4,7 @@ package vo;
 
 public class PageInfo {
 // �Խ��Ǹ��, ��ǰ��� ��� ����¡�� �ʿ��� �������� ������ Ŭ����
-	private int cpage,  spage, psize, bsize, rcnt , pcnt, num;
+	private int cpage,  spage, psize, bsize, rcnt , pcnt, num, count;
 	private String schtype, keyword, args, schargs, pcb, pcs, obargs, vargs, sch, ob, v, schG, schA,schS, schK;	
 	private String gender;
 	// schG = �˻����� ����, schS = �˻����� ����, schA = �˻����� ���ɺ�, schK = �˻����� Ű����
@@ -49,6 +49,13 @@ public class PageInfo {
 	}
 	public int getPcnt() {
 		return pcnt;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	public void setPcnt(int pcnt) {
 		this.pcnt = pcnt;

@@ -120,9 +120,9 @@ public class AdProductDao {
 	}
 	
 	public int insertProduct(ProductInfo pi, String[] arr) {
-		String sql = "insert into t_product_info (pi_id, pi_name, pcb_id,pb_id,pi_gubun,pi_com, pi_desc,ai_idx,pi_img1,pi_img2,pi_img3, pi_price, pi_cost) "
+		String sql = "insert into t_product_info (pi_id, pi_name, pcb_id,pb_id,pi_gubun,pi_com, pi_desc,ai_idx,pi_img1,pi_img2,pi_img3, pi_price, pi_cost, pi_isview) "
 		+ "values ('"+ pi.getPi_id() +"','"+ pi.getPi_name() +"','"+ pi.getPcb_id() +"', '"+ pi.getPb_id()+"',"
-				+ " '"+pi.getPi_gubun()+"','"+pi.getPi_com()+"', '"+pi.getPi_desc()+"', 1, '"+pi.getPi_img1()+"','"+pi.getPi_img2()+"' ,'"+pi.getPi_img3()+"',"+pi.getPi_price()+","+pi.getPi_cost()+")";
+				+ " '"+pi.getPi_gubun()+"','"+pi.getPi_com()+"', '"+pi.getPi_desc()+"', 1, '"+pi.getPi_img1()+"','"+pi.getPi_img2()+"' ,'"+pi.getPi_img3()+"',"+pi.getPi_price()+","+pi.getPi_cost()+", '"+pi.getPi_isview()+"')";
 		System.out.println(sql);
 		int result = jdbc.update(sql);
 		

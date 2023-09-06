@@ -56,6 +56,7 @@ public class ProductCtrl {
 		return "product/productView";
 	}
 	
+	
 	// ��з�(����,����,Ű��) Ŭ���� List�� �̵��ϴ� @GetMapping
 	@GetMapping("/productList")
 	public String productList(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception {
@@ -128,6 +129,7 @@ public class ProductCtrl {
 		String orderBy = " order by "; // ��� ���� ���� 
 		String  ob = request.getParameter("ob"); // ���� ����
 		//System.out.println(ob);
+		
 		if(ob == null || ob.equals(""))  ob = "a";
 		String obargs = "&ob=" + ob; // ���� ������ ���� ������Ʈ��
 		switch (ob) {	
@@ -141,6 +143,7 @@ public class ProductCtrl {
 			orderBy += " a.pi_price desc ";  break;	
 		}
 		
+		System.out.println(where);
 		List<ProductInfo> productList = productSvc.getProductList(cpage, psize, where, orderBy,s);//�˻��� ��ǰ�� �� ���� ���������� ������ ��ǰ ����� �޾ƿ�
 
 		rcnt = productSvc.getProductCount(where); // �˻��� ��ǰ�� �� ������ ��ü ���������� ���� �� ����
