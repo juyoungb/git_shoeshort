@@ -262,7 +262,9 @@ public class AdProductCtrl {
 		String pb_id = pi_id.substring(0,2);//
 		String piname = request.getParameter("piname"); // 상품이름
 		String isview = request.getParameter("isview"); // 게시여부
+		
 		String gender = request.getParameter("gender"); // 성별
+		System.out.print("gender :" +gender);
 		int price = Integer.parseInt(request.getParameter("price")); // 판매가격
 		int cost = Integer.parseInt(request.getParameter("cost")); // 원가
 		String com = request.getParameter("com"); // 원산지

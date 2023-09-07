@@ -10,4 +10,10 @@ public class WalkingSvc {
 	public void setWalkingDao(WalkingDao walkingDao) {
 		this.walkingDao = walkingDao;
 	}
+
+	public List<ProductInfo> getProductInfo() {
+		List<ProductInfo> product = walkingDao.getProductInfo();
+		
+		return product;
+	}
 }

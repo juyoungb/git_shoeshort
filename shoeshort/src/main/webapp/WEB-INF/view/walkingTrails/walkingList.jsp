@@ -7,9 +7,9 @@
 request.setCharacterEncoding("utf-8");
 PageInfo pi = (PageInfo)request.getAttribute("pi");
 JSONArray features = (JSONArray)request.getAttribute("features");
-int rcnt = pi.getRcnt(), cpage = pi.getCpage(), bsize = pi.getBsize(), pcnt = pi.getPcnt(), spage = pi.getSpage(), psize = pi.getPsize(), num = pi.getNum();
+List<ProductInfo> product = (List<ProductInfo>)request.getAttribute("product");
 
-System.out.println("rcnt : " + rcnt + " cpage : "+ cpage + " bsize : "+bsize + " pcnt : "+ pcnt);
+int rcnt = pi.getRcnt(), cpage = pi.getCpage(), bsize = pi.getBsize(), pcnt = pi.getPcnt(), spage = pi.getSpage(), psize = pi.getPsize(), num = pi.getNum();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,7 +21,7 @@ System.out.println("rcnt : " + rcnt + " cpage : "+ cpage + " bsize : "+bsize + "
 #list tr, #list td { padding:8px 3px;}
 #list th { border-bottom:double black 3px;}
 #list td { border-bottom:dotted black 1px;}
-#walkingList { position: absolute; width:80%; left:10%; top: 250px;}
+#walkingList { position: absolute; width:50%; left:2%; top: 250px; height:900px;}
 .page-link {color:black;}
 th {text-align:center;}
 a {text-decoration: none; color:black;}
@@ -30,7 +30,7 @@ a {text-decoration: none; color:black;}
 </head>
 <body>
 <div id="walkingList">
-<h2>산책로 리스트</h2>
+<h2>전국 유명 산책로 리스트</h2>
 <br />
 <table width="100%"  cellpadding="0" cellspacing="0" id="list">
 <tr>
@@ -59,6 +59,7 @@ if (features.size() > 0) {
 	System.out.print(properties.get("ag_geom"));
 	} %>
 </table>
+<br />
 <!-- 페이징 영역 시작 -->
 <table width="100%" align="center" cellpadding="6">
 <tr>
@@ -120,5 +121,19 @@ if (rcnt > 0) {
 %>
 </table>
 <!-- 페이징 영역 종료 -->
+</div>
+<div style="float:right; width:45%; height:700px; margin-top:80px;">
+<h2>산책을 위한 신발 추천</h2>
+<br /><br />
+<% for (ProductInfo p : product) {%>
+	<div class="card" style="width: 18rem; margin-left:70px; float: left;">
+	  <a href="productView?piid=<%=p.getPi_id() %>"><img src="resources/img/product/<%=p.getPi_img1() %>" class="card-img-top" style="width:100%; height:100%;" ></a>
+	  <div class="card-body">
+	    <p class="card-text">상품명 <%=p.getPi_name() %></p>
+	    <p class="card-text">가격 <%=p.getPi_price() %></p>
+	  </div>
+	</div>
+<% } %>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <%@ include file="../_inc/inc_foot_fr.jsp" %>

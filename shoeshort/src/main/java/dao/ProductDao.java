@@ -28,7 +28,6 @@ public class ProductDao {
 				pi.setPi_img2(rs.getString("pi_img2"));
 				pi.setPi_img3(rs.getString("pi_img3"));
 				pi.setPi_desc(rs.getString("pi_desc"));
-				pi.setPi_com(rs.getString("pi_com"));
 				return pi;
 			}
 		});
@@ -83,7 +82,7 @@ public class ProductDao {
 		String sql = "select a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_sale, sum(b.ps_stock) stock " + 
 				" from t_product_info a, t_product_stock b where a.pi_id = b.pi_id  and "
 				+ "a.pi_isview = 'y' "+  where +" group by a.pi_id " + orderBy +" limit " + ((cpage - 1) * psize) + "," + psize ;
-			//System.out.println(sql);
+			System.out.println(sql);
 		
 			 List<ProductInfo> productList = jdbc.query(sql,
 						(ResultSet rs,int rowNum)->{
@@ -97,15 +96,14 @@ public class ProductDao {
 						if(s == null || s.equals(""))	pi.setStock(rs.getInt("stock"));						
 						return pi;
 				});	
-			 //System.out.println("------------------");
+			 
 				
 			return productList;
 	}
 
-	public int getProductCount(String where) {
-		
+	public int getProductCount(String where) {		
 		String sql = "select count(*) from t_product_info a, t_product_stock b where a.pi_id=b.pi_id " + where;
-		//System.out.println(sql);
+		System.out.println(sql);
 		int rcnt = jdbc.queryForObject(sql, Integer.class);
 		
 		return rcnt;

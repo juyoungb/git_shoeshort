@@ -90,9 +90,14 @@ public class WalkingCtrl {
 		pi.setRcnt(rcnt);			pi.setSpage(spage);		
 		pi.setNum(num);
         // 페이징을 위한 정보를 PageInfo형 인스턴스 pi에 저장
+		
+		// 산책로 추천 신발 정보들 받아오기 (남자1개, 여자1개, 키즈1개)
+		List<ProductInfo> product = walkingSvc.getProductInfo();
 
         request.setAttribute("pi", pi);
         request.setAttribute("features", features);
+        request.setAttribute("product", product);
+        
         
         return "walkingTrails/walkingList";
     }
