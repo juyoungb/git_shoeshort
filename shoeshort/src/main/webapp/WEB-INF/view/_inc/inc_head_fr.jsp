@@ -76,33 +76,33 @@ if(loginInfo != null){
 <div id="center_inner"   >
   <ul id="center_list" class="main_tabs">
     <li onmouseover="hideAllSubmenu()"><a href="newProduct">NEW</a></li>
-    <li >
-      <a href="productList?g=m" onmouseover="showEventSubmenu(1)" >MEN</a>
-      <div class="small_tab"  id="event_submenu_1">
-        <div align="left"style="width:150px;" onmouseover="showEventSubmenu(1)"  onmouseout="hideEventSubmenu(1)">
-          <a href="">스니커즈</a><br>
-          <a href="">구두</a><br>
-          <a href="">슬리퍼</a>
+    <li align="center">
+      <a href="productList?sch=gm" onmouseover="showEventSubmenu(1)" >MEN</a>
+      <div align="left" class="small_tab"  id="event_submenu_1">
+        <div style="width:170px;" onmouseover="showEventSubmenu(1)"  onmouseout="hideEventSubmenu(1)">
+          <a href="productList?sch=g:m,c:a">스니커즈</a><br>
+          <a href="productList?sch=gm,cb">구두</a><br>
+          <a href="productList?sch=gm,cc">샌들/슬리퍼</a>
         </div>
       </div>      
     </li>  
     <li>
-      <a href="productList?g=w" onmouseover="showEventSubmenu(2)">WOMEN</a>
+      <a href="productList?sch=gw" onmouseover="showEventSubmenu(2)">WOMEN</a>
       <div class="small_tab" id="event_submenu_2">
-        <div align="left"style="width:150px;"  onmouseover="showEventSubmenu(2) "  onmouseout="hideEventSubmenu(2)">
-          <a href="">스니커즈</a>
-          <a href="">구두</a>
-          <a href="">슬리퍼</a>
+        <div align="left" style="width:170px;"  onmouseover="showEventSubmenu(2) "  onmouseout="hideEventSubmenu(2)">
+          <a href="productList?sch=gw,ca">스니커즈</a>
+          <a href="productList?sch=gw,cb">구두</a>
+          <a href="productList?sch=gm,cc">샌들/슬리퍼</a>
         </div>
       </div>      
     </li>
     <li>
-       <a href="productList?g=k" onmouseover="showEventSubmenu(3)" >KIDS</a>
+       <a href="productList?sch=gk" onmouseover="showEventSubmenu(3)" >KIDS</a>
       <div class="small_tab"  id="event_submenu_3">
-        <div align="left"style="width:150px;"  onmouseover="showEventSubmenu(3)"  onmouseout="hideEventSubmenu(3)">
-          <a href="">스니커즈</a>
-          <a href="">구두</a>
-          <a href="">슬리퍼</a>
+        <div align="left" style="width:170px;"  onmouseover="showEventSubmenu(3)"  onmouseout="hideEventSubmenu(3)">
+          <a href="productList?sch=gk,ca">스니커즈</a>
+          <a href="productList?sch=gk,ca">구두</a>
+          <a href="productList?sch=gk,ca">샌들/슬리퍼</a>
         </div>
       </div>
     </li>

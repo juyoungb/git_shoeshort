@@ -29,17 +29,18 @@ del { font-size:0.7em; color:#a0a0a0;}
 		price = "<del>" + pi.getPi_price() + "</del>&nbsp;&nbsp;&nbsp;" + price;
 	}
 %>
-<td width="25%" align="center" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
-	<a href="productView?piid=<%=pi.getPi_id()%>">
-		<img src="resources/img/product/<%=pi.getPi_img1() %>" width="150" height="150" border="0"><br>
-	<%=pi.getPi_name() %><br>
-	</a>
-	<br><%=price %><br>
+<td>
+	<div class="card" style="width: 18rem;">
+	  	<a href="productView?piid=<%=pi.getPi_id()%>">
+	    <img src="resources/img/product/<%=pi.getPi_img1() %>" width="100%" style="height: 11rem; object-fit:cover;" /></a>
+	    <div class="card-body">
+	     	<p class="card-text" style="font-size:80%;"><%=pi.getPi_name() %></p>
+	      	<div class="d-flex justify-content-between align-items-center">
+	       		<div width="50%" style="font-family: inherit;"><%=price %></div>
+	         </div>
+	    </div>
+	</div>
 </td>
-<%
-if (i % 4 == 3) out.println("</tr>");
-%>
 <%} %>
 </table>
-
 <%@ include file="../_inc/inc_foot_fr.jsp" %>

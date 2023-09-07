@@ -78,12 +78,12 @@ public class ProductDao {
 			
 		}
 
-	public List<ProductInfo> getProductList(int cpage, int psize, String where, String orderBy, String s) {
+	public List<ProductInfo> getProductList(int cpage, int psize, String where, String orderBy) {
 		String sql = "select a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_sale, sum(b.ps_stock) stock " + 
 				" from t_product_info a, t_product_stock b where a.pi_id = b.pi_id  and "
 				+ "a.pi_isview = 'y' "+  where +" group by a.pi_id " + orderBy +" limit " + ((cpage - 1) * psize) + "," + psize ;
-			System.out.println(sql);
-		
+			//System.out.println(sql);
+			//System.out.println("s :" +s);
 			 List<ProductInfo> productList = jdbc.query(sql,
 						(ResultSet rs,int rowNum)->{
 						ProductInfo pi = new ProductInfo();
@@ -93,7 +93,7 @@ public class ProductDao {
 						pi.setPi_price(rs.getInt("pi_price"));
 						pi.setPi_dc(rs.getDouble("pi_dc"));
 						pi.setPi_sale(rs.getInt("pi_sale"));
-						if(s == null || s.equals(""))	pi.setStock(rs.getInt("stock"));						
+						pi.setStock(rs.getInt("stock"));						
 						return pi;
 				});	
 			 
@@ -102,8 +102,14 @@ public class ProductDao {
 	}
 
 	public int getProductCount(String where) {		
-		String sql = "select count(*) from t_product_info a, t_product_stock b where a.pi_id=b.pi_id " + where;
-		System.out.println(sql);
+		String sql = "select count(stock) cnt " + 
+				"from("  
+					+ "select sum(b.ps_stock) stock "
+					+ "from t_product_info a, t_product_stock b " 
+					+ "where a.pi_id = b.pi_id  and a.pi_isview = 'y' " + where + " group by a.pi_id "
+					+ ") tmp";
+	
+		//System.out.println("getProductCountsql :"+sql);
 		int rcnt = jdbc.queryForObject(sql, Integer.class);
 		
 		return rcnt;

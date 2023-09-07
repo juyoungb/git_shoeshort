@@ -5,9 +5,11 @@
 <%
 
 request.setCharacterEncoding("utf-8");
+String g = request.getParameter("g");
+String ct = request.getParameter("ct");
+System.out.println("g :" +g);
+System.out.println("ct :" +ct);
 PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-int rcnt = pageInfo.getRcnt(), cpage = pageInfo.getCpage(), bsize = pageInfo.getBsize(), pcnt = pageInfo.getPcnt(), count = pageInfo.getCount();
-
 List<ProductInfo> productList = (List<ProductInfo>)request.getAttribute("productList");
 List<ProductStock> stockList = (List<ProductStock>)request.getAttribute("stockList");
 List<ProductBrand> brandList = (List<ProductBrand>)request.getAttribute("brandList");
@@ -16,9 +18,6 @@ List<ProductCtgrBig> ctgrList = (List<ProductCtgrBig>)request.getAttribute("ctgr
 
 
 String name = "", ctgr = "", chkBrd = "",  sp = "", ep = "", sch = pageInfo.getSch() , gender="", size="";
-if(pageInfo.getGender() != null){
-   gender = pageInfo.getGender();
-}
 
 if (sch != null && !sch.equals("")) {
 // 검색조건 : &sch=ntest,bB1:B2:B3,p100000~20000
@@ -167,7 +166,7 @@ function makeSch() {   // 검색폼의 조건들을 쿼리스트링sch의 값으
 }
 
 function initSch() { // 검색조건 (상품명, 브랜드, 가격대)들을 모두 없애주는 함수
-   
+	
    var frm = document.frm2;
    frm.pdt.value="";   frm.sp.value="";   frm.ep.value="";
 
@@ -217,130 +216,128 @@ function display(ct){
 }
 
 </script>
-<h2>상품 목록</h2>
-    <div class="mb-5">
-<table width="800">
-<tr>
-<td width="150" valign="top">
-   <!-- 검색조건 입력 폼  -->
-   <form name="frm1">
-   <!-- 검색조건으로 링크를 걸기 위한 쿼리스트링용 컨트롤들의 집합 전부 hidden -->
-   <input type="hidden" name="pcb" value="<%=pageInfo.getPcb() %>">
-   <input type="hidden" name="sch" value="">
-   </form>
-      <form name="frm2"> 
-   <div style="border: 1px solid black;">   
-      <input type="text" name="pdt" id="pdt" placeholder="상품명  검색" value="" width="100"><br>   
-      카테고리<img src="resources/img/product/plus.png" onclick="display('A');" width="25px" height="25px" id="A"><br>
-      <div id="myDIVA" style="display:none" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
-<% for (ProductCtgrBig pbc : ctgrList) { %>
-   <input type="checkbox" name="ctgr" id="<%=pbc.getPcb_id() %>" value="<%=pbc.getPcb_id() %>" 
-   <% if (ctgr.indexOf(pbc.getPcb_id()) >= 0) { %>checked="checked"<% } %>><label for="<%=pbc.getPcb_id() %>"><%=pbc.getPcb_name() %></label><br>
-<% } %>      
-      </div>   
+</head>
+<body>
+<div align="center" class="m-5"><h2 style="font-weight:bold; align:center">상품 목록</h2>
+	<table width="90%">
+		<tr>
+		<div class="m-5">
+			<td width="150" valign="top">
+<!-- 검색조건 입력 폼  -->
+   			<form name="frm1">
+<!-- 검색조건으로 링크를 걸기 위한 쿼리스트링용 컨트롤들의 집합 전부 hidden -->
+	   			<input type="hidden" name="pcb" value="<%=pageInfo.getPcb() %>">
+  			 	<input type="hidden" name="sch" value="">
+   			</form>
+      		<form name="frm2"> 
+				<div class="p-2" style="border: 1px solid black;">   
+      				<input type="text" class="form-control" name="pdt" id="pdt" placeholder="상품명  검색" value="" width="100" height="20px"><br>   
+     				카테고리<img src="resources/img/product/plus.png" onclick="display('A');" width="25px" height="25px" id="A"><br>
+      				<div class="form-check" id="myDIVA" style="display:none" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
+						<% for (ProductCtgrBig pbc : ctgrList) { %>
+								<input type="checkbox" name="ctgr" id="<%=pbc.getPcb_id() %>" value="<%=pbc.getPcb_id() %>" 
+						<%
+   								if (ctgr.indexOf(pbc.getPcb_id()) >= 0) { %>checked="checked"<% } %>><label class="form-check-label" for="<%=pbc.getPcb_id() %>"><%=pbc.getPcb_name() %></label><br>
+						<% } %>      
+      				</div>   
       
    
-      브랜드명<img src="resources/img/product/plus.png" onclick="display('B');" width="25px" height="25px"  id="B"><br>
-      <div id="myDIVB" style="display:none" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
-<% for (ProductBrand brand : brandList) {%>
-   <input type="checkbox" name="brand" id="<%=brand.getPb_id() %>" value="<%=brand.getPb_id() %>" 
-   <%
-   if (chkBrd.indexOf(brand.getPb_id()) >= 0) { %>checked="checked"<% } %>><label for="<%=brand.getPb_id() %>"><%=brand.getPb_name() %></label><br>
-<% } %>   
-      </div>
-      성별<img src="resources/img/product/plus.png" onclick="display('C');" width="25px" height="25px" id="C"><br>
-      <div id="myDIVC" style="display:none" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
-      <input type="checkbox" name="gender" id="m" value="m" <% if (gender.indexOf("m") >= 0)  { %>checked="checked"<% } %>><label for="m">남자</label><br>
-      <input type="checkbox" name="gender" id="w" value="w" <% if (gender.indexOf("w") >= 0) { %>checked="checked"<% } %>><label for="w">여자</label><br>
-      <input type="checkbox" name="gender" id="k" value="k" <% if (gender.indexOf("k") >= 0) { %>checked="checked"<% } %>><label for="k">키즈</label><br>
-      </div>
-      
-      사이즈<img src="resources/img/product/plus.png" onclick="display('D');" width="25px" height="25px" id="D"><br>
-      <div id="myDIVD" style="display:none" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
-<% for (ProductStock st : stockList) {%>
-   <input type="checkbox" name="size" id="<%=st.getPs_size() %>" value="<%=st.getPs_size() %>" 
-   <%
-   if (size.indexOf(st.getPs_size()) >= 0) { %>checked="checked"<% } %>><label for="<%=st.getPs_size() %>"><%=st.getPs_size() %></label><br>
-<% } %>      
-      
-   
-      </div>
-         
-      <input type="text" name="sp" class="price" value="" placeholder="최저가" onkeyup="onlyNum(this);">~
-      <input type="text" name="ep" class="price" value="" placeholder="최고가" onkeyup="onlyNum(this);">
-      <input type="button" value="상품 검색" class="btn" onclick="makeSch();">
-      <input type="button" value="조건 초기화" class="btn" onclick="initSch();">
-   
-   </div>
-   
-   </form>
-</td>
-<td width="*" valign="top">
-   <!-- 상품 목록 및 페이징 영역 -->
-<%
-if (pageInfo.getRcnt() > 0) {
-   
+      				브랜드명<img src="resources/img/product/plus.png" onclick="display('B');" width="25px" height="25px"  id="B"><br>
+      				<div class="form-check" id="myDIVB" style="display:none" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
+						<% for (ProductBrand brand : brandList) {%>
+							<input type="checkbox" name="brand" id="<%=brand.getPb_id() %>" value="<%=brand.getPb_id() %>"
+   						<%
+  							 if (chkBrd.indexOf(brand.getPb_id()) >= 0) { %>checked="checked"<% } %>><label class="form-check-label" for="<%=brand.getPb_id() %>"><%=brand.getPb_name() %></label><br>
+						<% } %>   
+      				</div>
+      				
+      				성별<img src="resources/img/product/plus.png" onclick="display('C');" width="25px" height="25px" id="C"><br>
+      				<div class="form-check" id="myDIVC" style="display:none" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
+				      	<input type="checkbox" name="gender" id="m" value="m" <% if (gender.indexOf("m") >= 0)  { %>checked="checked"<% } %>>
+				      	<label class="form-check-label" for="m">남자</label><br>
+				      	
+				      	<input type="checkbox" name="gender" id="w" value="w" <% if (gender.indexOf("w") >= 0) { %>checked="checked"<% } %>>
+				      	<label class="form-check-label" for="w">여자</label><br>
+				      	
+				      	<input type="checkbox" name="gender" id="k" value="k" <% if (gender.indexOf("k") >= 0) { %>checked="checked"<% } %>>
+				      	<label class="form-check-label" for="k">키즈</label>
+      				</div>
 
-   String lnk = "productView?cpage=1" + pageInfo.getSchargs();  // 정렬 및 보기 방식용 공통 링크
-%>
-   <p align="right">
-      <select name="ob" onchange="location.href='<%=lnk  %>&ob=' + this.value;">
-         <option value="a" <% if(pageInfo.getOb().equals("a")) { %>selected="selected"<% } %>>최신 순</option>
-         <option value="b" <% if(pageInfo.getOb().equals("b")) { %>selected="selected"<% } %>>판매 순</option>
-         <option value="c" <% if(pageInfo.getOb().equals("c")) { %>selected="selected"<% } %>>낮은 가격순</option>
-         <option value="d" <% if(pageInfo.getOb().equals("d")) { %>selected="selected"<% } %>>높은 가격순</option>
-      </select>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-   </p>   
-   <hr>
+     				 사이즈<img src="resources/img/product/plus.png" onclick="display('D');" width="25px" height="25px" id="D"><br>
+      				<div class="form-check" id="myDIVD" style="display:none" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
+						<% for (ProductStock st : stockList) {%>
+							<input type="checkbox" name="size" id="<%=st.getPs_size() %>" value="<%=st.getPs_size() %>" 
+   						<%
+   							if (size.indexOf(st.getPs_size()) >= 0) { %>checked="checked"<% } %>><label class="form-check-label" for="<%=st.getPs_size() %>"><%=st.getPs_size() %></label><br>
+						<% } %>      
+					</div>      
+				    <input type="text" name="sp" class="price" value="" placeholder="최저가" onkeyup="onlyNum(this);" width="100" height="20px">~
+				    <input type="text" name="ep" class="price" value="" placeholder="최고가" onkeyup="onlyNum(this);" width="100" height="20px">
+   					<div class="mx-auto p-2">	
+					    <input type="button" value="상품 검색" class="btn btn-dark btn-sm" onclick="makeSch();">
+						<input type="button" value="조건 초기화" class="btn btn-outline-secondary btn-sm"  onclick="location.href=productList?sch=<%=pageInfo.getInit()%>">
+					</div>		   
+
+				</div>  
+   			</form>
+		</td>
+	</div>
+<td width="*" valign="top">
+<!-- 상품 목록 및 페이징 영역 -->
+	<%
+	if (pageInfo.getRcnt() > 0) {
+   		String lnk = "productList?cpage=1" + pageInfo.getSchargs();  // 정렬 및 보기 방식용 공통 링크 정렬이 바뀌면 다시 1페이지로돌아옴
+	%>
+   		<p align="right">
+     	 <select name="ob" onchange="location.href='<%=lnk  %>&ob=' + this.value;">
+         	<option value="a" <% if(pageInfo.getOb().equals("a")) { %>selected="selected"<% } %>>최신 순</option>
+         	<option value="b" <% if(pageInfo.getOb().equals("b")) { %>selected="selected"<% } %>>판매 순</option>
+         	<option value="c" <% if(pageInfo.getOb().equals("c")) { %>selected="selected"<% } %>>낮은 가격순</option>
+         	<option value="d" <% if(pageInfo.getOb().equals("d")) { %>selected="selected"<% } %>>높은 가격순</option>
+      	</select>&nbsp;&nbsp;&nbsp;&nbsp;
+   		</p>   
    <table width="100%" cellpadding="15" cellspacing="0">
-<%
-   	int i = 0;
-    for (i = 0 ; i < productList.size() ; i++) {
-    	ProductInfo pi = productList.get(i);
-        String price = pi.getPi_price() + "원";      
-        if (pi.getPi_dc() > 0) {  //할인율이 있으면
-            price = Math.round(pi.getPi_price() * (1 - pi.getPi_dc()) )+ "원"; //실제 판매가
-            price = "<del>" + pi.getPi_price() + "</del>&nbsp;&nbsp;&nbsp;" + price;
-        }
-        if (i % 4 == 0) out.println("<tr>");
-%>
-   <td width="25%" align="center" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
-      <a href="<%=lnk %>&piid=<%=pi.getPi_id()%>">
-         <img src="resources/img/product/<%=pi.getPi_img1() %>" width="150" height="150" border="0">
-         <br><%=pi.getPi_name() %>
-      </a>
-      <br><%=price %><br>
-   
-   </td>
-<%         
-         if (i % 4 == 3) out.println("</tr>");
-      //   if (i % 4 > 0) {
-      //      for (int j = 0; j < (4-(i % 4)); j++){
-      //         out.println("<td width='25%'></td>");
-      //      }      
-      //       out.println("</tr>");
-      //   }
-   }
-      
-      
-   
+	<%
+   		int i = 0;
+   	 	for (i = 0 ; i < productList.size() ; i++) {
+    		ProductInfo pi = productList.get(i);
+        	String price = pi.getPi_price() + "원";      
+        	if (pi.getPi_dc() > 0) {  //할인율이 있으면
+            	price = Math.round(pi.getPi_price() * (1 - pi.getPi_dc()) )+ "원"; //실제 판매가
+            	price = "<del>" + pi.getPi_price() + "</del>&nbsp;&nbsp;&nbsp;" + price;
+        	}
+        	if (i % 4 == 0) out.println("<tr>");
+			%>
+			<div class="col">
+			<td align="center" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
+				<div class="card shadow-sm">
+		   			<a href="productView?&piid=<%=pi.getPi_id()%>" >
+		   			<img src="resources/img/product/<%=pi.getPi_img1() %>" class="card-img" width="200px" height="200"></a>
+		        <div class="card-body">
+		        	<p class="card-text" style="font-size: 10px"><%=pi.getPi_name() %></p>
+		        	 <p class="card-text"><%=price %></p>
+		        </div>
+		        
+		      </div>
+			</td>
+		
+			<%         
+         	if (i % 4 == 3) out.println("</tr>");
+   		}
    out.println("</table>");
   
-%>
+	%>
 <!-- 상품 페이징 -->
 <table width="100%" align="center" cellpadding="6" border="0" >
-<tr>
-<td align="center" colspan="7" >
+<tr><td align="center" colspan="7">
 <%
-if (rcnt > 0) {
-	String link = "productList?1=1&cpage=";
+if (pageInfo.getRcnt() > 0) {
+	String link = "productList?1=1"+pageInfo.getSchargs()+"&cpage=";
 %>
 	<nav aria-label="Page navigation example" style="text-align:center; width:200px;">
-	<ul class="pagination  justify-content-center"" >
+		<ul class="pagination  justify-content-center"" >
 <%
-
-	if (cpage == 1) {
+	if (pageInfo.getCpage() == 1) {
 %>
 			<li class="page-item-black"><a class="page-link" href="#">이전</a></li>
 <%
@@ -351,11 +348,10 @@ if (rcnt > 0) {
 	}
 	int spage = (pageInfo.getCpage() -1) / pageInfo.getBsize() * pageInfo.getBsize() + 1; //현재 블록에서의 시작 페이지 번호
 	int j = 0;
-	
-	for (count = 1, j = spage ; count<= bsize && j <= pcnt ; count++, j++) {
+	for (i = 1, j = spage ; i<= pageInfo.getBsize() && j <= pageInfo.getPcnt() ; i++, j++){
 		// i : 블록에서 보여줄 페이지의 개수만큼 루프를 돌릴 조건으로 사용되는 변수
 		// j :실제 출력할 페이지 번호로 전체 페이지 개수(마지막 페이지 번호)를 넘지 않게 사용해야 함
-		if (cpage == j){
+		if (pageInfo.getCpage() == j){
 %>
 			<li class="page-item"><a class="page-link" href="#"><%=j %></a></li>
 <%
@@ -363,13 +359,13 @@ if (rcnt > 0) {
 %>			<li class="page-item"><a class="page-link" href="<%=link + j%>"><%=j %></a></li> <%
 		}
 	}
-	if (cpage == pcnt){
+	if (pageInfo.getCpage() == pageInfo.getPcnt()){
 %>
 			<li class="page-item"><a class="page-link" href="#">다음</a></li>
 <%
 	} else{ 
 %>
-			<li class="page-item"><a class="page-link" href="<%=link +(cpage  + 1) %>">다음</a></li>
+			<li class="page-item"><a class="page-link" href="<%=link +(pageInfo.getCpage()  + 1) %>">다음</a></li>
 <%
 	}
 %>
@@ -383,5 +379,5 @@ if (rcnt > 0) {
 </td>
 </tr>
 </table>
-</div>
+
 <%@ include file="../_inc/inc_foot_fr.jsp" %>

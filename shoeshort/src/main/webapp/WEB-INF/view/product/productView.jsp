@@ -24,10 +24,32 @@ if (productList.get(0).getPi_dc() > 0) { //할인율이 있으면
 
 option {border: 1px solid black;}
 .input {
-  outline: none; display: inline-block; border: 1px solid black; width:30px; height:15px; cursor:pointer; text-align:center; 
+  outline: none; display: inline-block; border: 1px solid black; width:45px; height:15px; cursor:pointer; text-align:center; 
+}
+.block {
+display: inline-block;  width:45px; height:15px; border: 1px solid black; text-align:center; color:#efefef;
 }
 
 .hand { cursor:pointer; }
+#main {   
+	 margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    overflow: hidden;
+    padding: 30px 40px 120px
+    }
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }    
+  
+  #countdown {
+
+    padding: 20px;
+    display: inline-block;
+  }  
 </style>
 
 <script src="resources/js/jquery-3.6.4.js"></script>
@@ -142,92 +164,69 @@ function showTap(chk) {
 
 
 </script>
-<h2>상품 상세화면</h2>
- 
-<table width="1200" cellpadding="5">
-<tr align="center">
-<td width="50%" align="center">
-<!-- 이미지 관련 영역 -->
-   <table width="100%" cellpadding="5">
-   <tr><td colspan="3" align="center">
-   <% 
+<body>
+<div id="main" class="grid gap-2">
+<% 
    for(ProductInfo pl: productList){%>
-      <img src="resources/img/product/<%=pl.getPi_img1()%>" width="400" height="400" id="bigImg">
-      </td></tr>      
-      <tr align="center">
-      <td width="33.33%">
-         <img src="resources/img/product/<%=pl.getPi_img1()%>" width="100" height="100" onclick="swapIng('<%=pl.getPi_img1()%>')" class="hand">
-      </td>
-      <td width="33.33%">
-      <img src="resources/img/product/<%=pl.getPi_img2()%>" width="100" height="100" onclick="swapIng('<%=pl.getPi_img2()%>')" class="hand">   
-   
-      </td>
-      <td width="33.33%">
-   <img src="resources/img/product/<%=pl.getPi_img3()%>" width="100" height="100" onclick="swapIng('<%=pl.getPi_img3()%>')" class="hand">   
-            
-      </td>
-      </tr>   
-      </table>
-      <form name="frm2" method="post" action="orderForm">
+   <form name="frm2" method="post" action="orderForm">
    <input type="hidden" name="piid" value="<%=pl.getPi_id()%>">
    <input type="hidden" name="kind" value="d">
    <input type="hidden" name="size" value="">
    <input type="hidden" name="cnt" value="">
-</form>  
-<td width="35%" valign="top">
-<!-- 상품 정보 관련 영역 -->
-   <form name="frm" method="post">
-   <input type="hidden" name="kind" value="d">
-   <input type="hidden" name="piid" value="<%=pl.getPi_id()%>">
-   <table width="100%" cellpadding="5" border="1" id="info">   
-   <tr>
-      <td colspan="2">&nbsp;&nbsp;&nbsp;<%=pl.getPb_name()%></td>
-   </tr>
-   <tr>
-      <td width="20%" align="right">상품명</td><td width="*"><%=pl.getPi_name()%></td></tr>
-      <tr><td align="right">브랜드</td><td><%=pl.getPb_name()%></td></tr>
-      <tr><td align="right">제조사</td><td><%=pl.getPi_com() %></td></tr>
-      <tr><td align="right">가격</td><td><%=realPrice %></td></tr>   
-   <tr>
-   <td align="right">옵션</td>
-   <td>   
-      <c:forEach items="${stockList }" var="sl" >   
-         <input type="text" name="size" id="${sl.getPs_size() }"  value="${sl.getPs_size() }"  onclick="chgColor('${sl.getPs_size() }');" 
-         class="input" style="width:30px; height:15px;" readonly="readonly">      
-      </c:forEach>
-   </td>
-   </tr>
-   <tr>
-   <td align="right">수량</td>
-   <td>
-   <input type="button" value="-" onclick="setCnt(this.value);">
-   <input type="text" name="cnt" id="cnt"  value="1" readonly="readonly" >
-   <input type="button" value="+" onclick="setCnt(this.value);">
-   </td>
-   </tr>
-   <tr><td colspan="2" align="right">
-      구매 가격 : <span id="total"></span>원
-   </td></tr>
-   <tr><td colspan="2" align="center">
-   <input type="button" value="장바구니 담기" class="smt" onclick="buy('c');">
-   <input type="button" value="바로 구매하기" class="smt" onclick="buy('d');">
-   </table>
-   </form>
-</td>
-</tr>
-<tr>
-</table>
-<hr>
-<input type="button" value="상품설명" onclick="showTap('desc');">
-<input type="button" value="구매후기" onclick="showTap('review');"><br>
-<div id="desc" >
-   <img src="resources/img/product/<%= pl.getPi_desc() %>" width="1200" height="1000">
-   <img src="resources/img/product/<%=pl.getPi_desc()  %>" width="1200" height="1000">
+	</form>  
+
+	<div class="p-2 g-col-6" >
+    	<img src="resources/img/product/<%=pl.getPi_img1()%>" height="500px">
+  	</div>
+  	
+  	<div class="g-col-5">
+   		<strong class="product-title">EVENT</strong>
+    	<div>
+     		<p class="product-description"></p>
+			<div id="countdown" style="text-align:center">
+				<div>
+					<form name="frm" method="post">
+  					<input type="hidden" name="kind" value="d">
+   					<input type="hidden" name="piid" value="<%=pl.getPi_id()%>">
+			  	</div>
+				<div>
+					상품명<%=pl.getPi_name()%><br>
+					브랜드<%=pl.getPb_name()%><br>
+					제조사<%=pl.getPi_com() %><br>
+					가격<%=realPrice %>    
+				</div> 
+				<div>
+  					<c:forEach items="${stockList }" var="sl" >
+      					<c:if test="${sl.getPs_stock() == 0 }">
+							<input type="text" name="size" id="${sl.getPs_size() }"  value="${sl.getPs_size() }"  class="block" style="width:30px; height:15px;" > 
+						</c:if>
+						<c:if test="${sl.getPs_stock() != 0 }">
+         					<input type="text" name="size" id="${sl.getPs_size() }"  value="${sl.getPs_size() }"  onclick="chgColor('${sl.getPs_size() }');" 
+        			 		class="input" style="width:30px; height:15px;" readonly="readonly">  
+        				</c:if>
+					</c:forEach>
+				</div> 			
+				<div>
+					  <input type="button" value="-" onclick="setCnt(this.value);">
+					  <input type="text" name="cnt" id="cnt"  value="1" readonly="readonly" >
+					  <input type="button" value="+" onclick="setCnt(this.value);">									 
+					     구매 가격 : <span id="total"></span>원					 
+					   <input type="button" value="바로 구매하기" class="btn btn-white" style="background-color: #FF4646;" onclick="buy('d');">
+					  <input type="button" value="장바구니 담기" class="btn btn-success" onclick="buy('c');">
+					  </form>				
+				</div> 
+				
+			</div>
+    	</div>
+  	</div>
+
+  	<div class="p-2 g-col-12">
+  		<hr>
+   		<div class="p-3 m-1" >
+  			<strong>유의 사항</strong>
+	  		
+		</div>
+	</div> 
 </div>
-   
-   <%} %>
-   
-<div id="review" >
-   구매후기
-</div>
+<%} %>
 <%@ include file="../_inc/inc_foot_fr.jsp" %>
