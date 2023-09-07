@@ -25,7 +25,6 @@ System.out.println("rcnt : " + rcnt + " cpage : "+ cpage + " bsize : "+bsize + "
 .page-link {color:black;}
 th {text-align:center;}
 a {text-decoration: none; color:black;}
-tr, th, td {border:1px solid black;}
 </style>
 <script src="resources/js/popUpJs.js"></script>
 </head>

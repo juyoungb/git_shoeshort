@@ -64,7 +64,7 @@ try {
 	    imageUrl:'http://localhost:8085/shoeshort/resources/img/style_img/style_img_CC01.png',
 	    link: {
 	      mobileWebUrl: 'https://developers.kakao.com',
-	      webUrl: 'http://localhost:8085/shoeshort/styleView?siidx=<%=styleView.getSi_idx() %>&piid=<%=styleView.getPi_id()%>',
+	      webUrl: 'http://localhost:8088/shoeshort/styleView?siidx=<%=styleView.getSi_idx() %>&piid=<%=styleView.getPi_id()%>',
 	    },
 	  },
 	  social: {
@@ -75,7 +75,7 @@ try {
 	      title: '웹으로 보기',
 	      link: {
 	        mobileWebUrl: 'https://developers.kakao.com',
-	        webUrl: 'http://localhost:8085/shoeshort/styleView?siidx=<%=styleView.getSi_idx() %>&piid=<%=styleView.getPi_id()%>',
+	        webUrl: 'http://localhost:8088/shoeshort/styleView?siidx=<%=styleView.getSi_idx() %>&piid=<%=styleView.getPi_id()%>',
 	      },
 	    },
 	  ],

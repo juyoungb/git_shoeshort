@@ -69,7 +69,7 @@ public class WalkingCtrl {
 
         JSONParser p = new JSONParser();
         JSONObject jo = (JSONObject)p.parse(sb.toString());
-        System.out.println("jo : " + jo);
+        // System.out.println("jo : " + jo);
         JSONObject response = (JSONObject)jo.get("response");
         JSONObject record = (JSONObject)response.get("record");
         
