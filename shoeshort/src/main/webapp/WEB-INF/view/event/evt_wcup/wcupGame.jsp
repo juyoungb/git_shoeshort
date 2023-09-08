@@ -23,22 +23,13 @@ ${getWcup.getEwj_ing() }
 ${el.getEw_title() }
 <!--  [시작하기]- 참여한 여부를 리턴해줌 1.이미참여하였씁니다. 2. 시작하겠습니다. --> 
 <br>
-<input type="button" onclick="location.href='wcupEnjoy?uid=<%=loginInfo.getMi_id() %>&ewrule=${el.getEw_rule()}&ewidx=${ewidx}&title=${el.getEw_title() }&rand=0&seq=1&sys=${el.getEw_rule()==4 ? "1111":"11111111" }'" value="시작하기" />
+<c:forEach begin="1" end="${el.getEw_rule()}" var="i">
+<c:set var="sys" value="${sys}${1}"/>
+</c:forEach>
+<input type="button" onclick="location.href='wcupEnjoy?uid=<%=loginInfo.getMi_id() %>&ewrule=${el.getEw_rule()}&rand=${el.getRand()}&ewidx=${ewidx}&title=${el.getEw_title() }&stage=1&sys=${sys}'" value="시작하기" />
 <input type="button" onclick="window.close();opener.location.reload(); " value="나가기" />
 <input type="button" onclick="" value="전체 순위 보기" />
 
-<!--
-db pk 변경  wcup
- 1. [월드컵 참여하기]- 새 창 
-2.스타일 이미지 
- [시작하기]- 참여한 여부를 리턴해줌 1.이미참여하였씁니다. 2. 시작하겠습니다. 
-2-1. 랜덤으로 생성
-8강 1/4 2/4 3/4 4/4 1/2 2/2  결승전 height:100% width50%
-스타일 월드컵 4강 1/2  2/2  - 결승전 - 
-11 11                             01 10
-제목 
-[현재 순위 보기]
-전체 아이디 우승비율  -->
 </body>
 </body>
 </html>

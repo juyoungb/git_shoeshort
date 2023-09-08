@@ -111,3 +111,8 @@ a {
 	width:100%;
 	background-color:#333333;
 }
+#productImg{
+	width:200px;
+	height:200px;
+	border:0; 
+}

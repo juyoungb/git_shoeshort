@@ -63,6 +63,7 @@ font-weight:600;
     /* 다른 스타일 속성을 여기에 추가할 수 있습니다. */
   }
 </style>
+<div style="margin-left:50px;">
 <table id="tb1">
 <tr>
 <td width="10%" style="text-align:center"> 
@@ -102,41 +103,41 @@ font-weight:600;
 	        <div id="chart_div"></div></div>
 	        <div class="flex-item" align="center">
 	        	<br>
-	        	<span id="itemtitle2">주문처리(100일 기준)</span>
+	        	<span id="itemtitle">주문처리(100일 기준)</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
-				<tr><th>주문접수</th><td>${td.getOrdCntTotal() }개</td></tr>
-				<tr><th>상품준비</th><td>${td.getOrdCnt1() }개</td></tr>
-				<tr><th>배송중</th><td>${td.getOrdCnt2() }개</td></tr>
-				<tr><th>배송완료</th><td>${td.getOrdCnt3() }개</td></tr>
+				<tr><th>주문 접수</th><td>${td.getOrdCntTotal() }개</td></tr>
+				<tr><th>상품 준비</th><td>${td.getOrdCnt1() }개</td></tr>
+				<tr><th>배송 중</th><td>${td.getOrdCnt2() }개</td></tr>
+				<tr><th>배송 완료</th><td>${td.getOrdCnt3() }개</td></tr>
 				</table>
-				<br>
-				<span id="itemtitle2">상품현황</span>
+				<span id="itemtitle">상품현황</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
-				<tr><th>전체 상품 수 </th><td>${td.getPs()}개</td></tr>
-				<tr><th>판매중</th><td>${td.getPsOn()}개</td></tr>
-				<tr><th>판매중지</th><td>${td.getPsOff()}개</td></tr>
-				<tr><th>품절</th><td>${td.getPsSold()}개</td></tr>
+				<tr><th>전체 재고량</th><td>${td.getPs()}개</td></tr>
+				<tr><th>전체 상품 수 </th><td>${td.getPcnt()}개</td></tr>
+				<tr><th>판매 중</th><td>${td.getSale()}개</td></tr>
+				<tr><th>판매 중지</th><td>${td.getUnsale()}개</td></tr>
 				</table>
 				</div>
 	        <div class="flex-item" align="center">
 	        	<br>
-	        	<span id="itemtitle2">스타일 월드컵</span>
+	        	<span id="itemtitle">스타일 월드컵</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
-				<tr><th>투표기간</th><td>D-10</td></tr>
-				<tr><th>참여자</th><td>40명</td></tr>
-				<tr><th>모집기간</th><td>D-7</td></tr>
-				<tr><th>지원자</th><td>3명</td></tr>
+				<tr><th>투표 기간</th><td style="font-weight:bold">D-${(td.getVe() > 0 ? td.getVe():"End") }</td></tr>
+				<tr><th>참여자</th><td>${td.getPrt() }명</td></tr>
+				<tr><th>모집 기간</th><td style="font-weight:bold">D-${(td.getCe() > 0 ? td.getCe():"End") }</td></tr>
+				<tr><th>지원자</th><td>${td.getVol() }명</td></tr>
 				</table>
 				<br>
-				<span id="itemtitle2">행운의 숫자 찾기</span>
+				<span id="itemtitle">행운의 숫자 찾기</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
-				<tr><th>마감일</th><td>D-DAY</td></tr>
+				<tr><th>마감일</th><td>D-10</td></tr>
 				<tr><th>참여자</th><td>20명</td></tr>
-				<tr><th>당첨자</th><td>X</td></tr>
 				</table>
 	        </div>
-	        <div class="flex-item">
-	        	<span id="itemtitle">이 주의 추천 신발</span><a href="" style="padding-left: 50px;"><img src="resources/img/icon/more.png"></a>
+	        <div class="flex-item" align="center">
+	        <br>
+	        	<span id="itemtitle">이 주의 날씨 추천 신발</span>
+	        	<!-- <a href="" style="padding-left: 50px;"><img src="resources/img/icon/more.png"></a> -->
 	        	<img src="resources/img/product/NN10003_pd.png" width="290px" style="margin:10px">
 			</div>
 	</div>
@@ -152,12 +153,12 @@ font-weight:600;
 				    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">가입 수</button>
 				  </li>
 				  <li class="nav-item" role="presentation">
-				    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">방문 수</button>
+				    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">주문 수</button>
 				  </li>
 				</ul>
-				<div class="tab-content" id="myTabContent">
+				<div class="tab-content" id="myTabContent" style="margin-top:30px;">
 				  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" align="center">
-				  <div id="chart_div2"></div>
+				    <div id="chart_div2"></div>
 				  </div>
 				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div id="chart_div3"></div>
@@ -180,6 +181,7 @@ font-weight:600;
 				</table>
 
 			</div>
+		</div>
 	</div>
 </div>
 <script type="text/javascript">
@@ -221,11 +223,11 @@ google.charts.setOnLoadCallback(drawChart1);
 function drawChart1() {
 	  var data = new google.visualization.DataTable();
 	  data.addColumn('string', 'Day'); // 요일을 문자열로 추가
-	  data.addColumn('number', 'count');
+	  data.addColumn('number', '매출액');
 
 	  data.addRows([
-		  <%for(ChartData sale: td.getSalesData()) {%>
-		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".") %>', <%=sale.getVal() %>],
+		  <%for(ChartData sale: td.getSalesChart()) {%>
+		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".")%>', <%=sale.getVal()%>],
 	    <%}%>
 	    // 나머지 요일에 대한 데이터를 추가하세요.
 	  ]);
@@ -242,17 +244,19 @@ function drawChart1() {
 	}
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawChart2);
+
 function drawChart2() {
 	  var data = new google.visualization.DataTable();
 	  data.addColumn('string', 'Day'); // 요일을 문자열로 추가
-	  data.addColumn('number', 'count');
+	  data.addColumn('number', '개수');
 
 	  data.addRows([
-		  <%for(ChartData sale: td.getMemCntData()) {%>
-		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".") %>', <%=sale.getVal() %>],
+		  <%for(ChartData sale: td.getOrdChart()) {%>
+		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".")%>', <%=sale.getVal()%>],
 	    <%}%>
 	    // 나머지 요일에 대한 데이터를 추가하세요.
 	  ]);
+
 	  var options = {
 	    'width': 600,
 	    'height': 200,
@@ -263,16 +267,15 @@ function drawChart2() {
 	  var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
 	  chart.draw(data, options);
 	}
-  
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawChart3);
 function drawChart3() {
 	  var data = new google.visualization.DataTable();
 	  data.addColumn('string', 'Day'); // 요일을 문자열로 추가
-	  data.addColumn('number', 'count');
+	  data.addColumn('number', '개수');
 
 	  data.addRows([
-		  <%for(ChartData sale: td.getOrdCntData()) {%>
+		  <%for(ChartData sale: td.getMemChart()) {%>
 		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".") %>', <%=sale.getVal() %>],
 	    <%}%>
 	    // 나머지 요일에 대한 데이터를 추가하세요.

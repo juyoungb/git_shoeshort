@@ -2,7 +2,7 @@ package vo;
 
 
 public class EventWcupInfo {
-	private int ai_idx,ew_idx, ew_rule, ew_rank, ew_people, seq;
+	private int ai_idx,ew_idx, ew_rule, ew_rank, ew_people, stage;
 	private String ew_title, ew_csdate, ew_cedate,  ew_vsdate, ew_vedate, ew_status,ew_vid;
 	private String mi_id, sys, img1, img2, rand, round,winner;
 	public int getAi_idx() {
@@ -35,11 +35,12 @@ public class EventWcupInfo {
 	public void setEw_people(int ew_people) {
 		this.ew_people = ew_people;
 	}
-	public int getSeq() {
-		return seq;
+	
+	public int getStage() {
+		return stage;
 	}
-	public void setSeq(int seq) {
-		this.seq = seq;
+	public void setStage(int stage) {
+		this.stage = stage;
 	}
 	public String getEw_title() {
 		return ew_title;

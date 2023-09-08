@@ -5,10 +5,13 @@ import java.util.List;
 public class IndexData {
 	/*상단: 오늘 주문 접수, 오늘 가입 가입수, 이번달 매출, 총 회원, 누적 포인트 */
 	private int tdOrderCnt,  allMem, todayMem, salesMonth, total,acmltPoint; 
+	private int ve, prt, ce, vol;
 	private int maleCnt, ordCntTotal, ordCnt1, ordCnt2, ordCnt3;
-	private int ps, psOn, psOff, psSold;
+	private int pcnt, sale, unsale, ps;
 	private List<NoticeInfo> noticeInfo; 
-	private List<ChartData> chartData; 
+	private List<ChartData> salesChart; 
+	private List<ChartData> ordChart; 
+	private List<ChartData> memChart;
 	public int getTdOrderCnt() {
 		return tdOrderCnt;
 	}
@@ -45,6 +48,30 @@ public class IndexData {
 	public void setAcmltPoint(int acmltPoint) {
 		this.acmltPoint = acmltPoint;
 	}
+	public int getVe() {
+		return ve;
+	}
+	public void setVe(int ve) {
+		this.ve = ve;
+	}
+	public int getPrt() {
+		return prt;
+	}
+	public void setPrt(int prt) {
+		this.prt = prt;
+	}
+	public int getCe() {
+		return ce;
+	}
+	public void setCe(int ce) {
+		this.ce = ce;
+	}
+	public int getVol() {
+		return vol;
+	}
+	public void setVol(int vol) {
+		this.vol = vol;
+	}
 	public int getMaleCnt() {
 		return maleCnt;
 	}
@@ -75,29 +102,29 @@ public class IndexData {
 	public void setOrdCnt3(int ordCnt3) {
 		this.ordCnt3 = ordCnt3;
 	}
+	public int getPcnt() {
+		return pcnt;
+	}
+	public void setPcnt(int pcnt) {
+		this.pcnt = pcnt;
+	}
+	public int getSale() {
+		return sale;
+	}
+	public void setSale(int sale) {
+		this.sale = sale;
+	}
+	public int getUnsale() {
+		return unsale;
+	}
+	public void setUnsale(int unsale) {
+		this.unsale = unsale;
+	}
 	public int getPs() {
 		return ps;
 	}
 	public void setPs(int ps) {
 		this.ps = ps;
-	}
-	public int getPsOn() {
-		return psOn;
-	}
-	public void setPsOn(int psOn) {
-		this.psOn = psOn;
-	}
-	public int getPsOff() {
-		return psOff;
-	}
-	public void setPsOff(int psOff) {
-		this.psOff = psOff;
-	}
-	public int getPsSold() {
-		return psSold;
-	}
-	public void setPsSold(int psSold) {
-		this.psSold = psSold;
 	}
 	public List<NoticeInfo> getNoticeInfo() {
 		return noticeInfo;
@@ -105,23 +132,22 @@ public class IndexData {
 	public void setNoticeInfo(List<NoticeInfo> noticeInfo) {
 		this.noticeInfo = noticeInfo;
 	}
-	public List<ChartData> getSalesData() {
-		return chartData;
+	public List<ChartData> getSalesChart() {
+		return salesChart;
 	}
-	public void setSalesData(List<ChartData> chartData) {
-		this.chartData = chartData;
+	public void setSalesChart(List<ChartData> salesChart) {
+		this.salesChart = salesChart;
 	}
-	public List<ChartData> getMemCntData() {
-		return chartData;
+	public List<ChartData> getOrdChart() {
+		return ordChart;
 	}
-	public void setMemCntData(List<ChartData> chartData) {
-		this.chartData = chartData;
+	public void setOrdChart(List<ChartData> ordChart) {
+		this.ordChart = ordChart;
 	}
-	public List<ChartData> getOrdCntData() {
-		return chartData;
+	public List<ChartData> getMemChart() {
+		return memChart;
 	}
-	public void setOrdCntData(List<ChartData> chartData) {
-		this.chartData = chartData;
+	public void setMemChart(List<ChartData> memChart) {
+		this.memChart = memChart;
 	}
-	
 }

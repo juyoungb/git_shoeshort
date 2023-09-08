@@ -107,19 +107,19 @@ h4 { margin-left:400px;}
 </table>
 <br />
 <table style="width:35%;" align="center" >
+<tr><td align="left" rowspan="2" width="2%">
+	<a href="product/product_view" /><img src="resources/img/product/<%=styleProduct.getPi_img1() %>" width="100" height="100" />
+</td><td rowspan="2" width="20%"><%=styleProduct.getPi_name() %><br /><%=styleProduct.getPi_price() %>원</td>
+</tr>
 <tr>
-<td align="left" rowspan="2">
-	<a href="product/product_view" />
-	<img src="resources/img/product_img/<%=styleProduct.getPi_img1() %>" width="100" height="100" /><br /><%=styleProduct.getPi_name() %><br /><%=styleProduct.getPi_price() %>원
-</td>
-<td width="60%"  rowspan="3" style="vertical-align: top;" ><%=styleView.getSi_content() %></td>
-<td width="15%" align="right">
+<td width="15%" align="right" colspan="3" style="vertical-align: top;">
 	<img src="resources/img/style_img/style_good02.png" onclick="<%=lnkG %>" style="cursor:pointer;"/>&nbsp;<%=styleView.getSi_good() %>
 </td>
 </tr>
 <tr>
+<td colspan="2" width="30%"><%=styleView.getSi_content() %></td>
 <td colspan="4" align="right" style=" vertical-align: bottom;">
-    <input type="button" class="btn btn-outline-dark" onclick="sendLinkDefault();" value="좋아요 추천"/>
+    <input type="button" class="btn btn-outline-dark" onclick="sendLinkDefault();" value="공유하기"/>
 	<input type="button" class="btn btn-outline-dark" width="20" value="수정"  onclick="<%=upLink %>"/>
 	<input type="button" class="btn btn-outline-dark" width="20" value="삭제"  onclick="<%=delLink %>" />
 </td>

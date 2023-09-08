@@ -54,7 +54,7 @@ a {
 	<input type="hidden" name="url" value="<%=url%>" />
 		<div class="mb-3">
 			<label class="form-label" for="uid">아이디</label> 
-			<input class="form-control" type="text" name="uid" id="uid" value="test1" placeholder="아이디 입력" />
+			<input class="form-control" type="text" name="uid" id="uid" value="test6" placeholder="아이디 입력" />
 		</div>
 		<div class="mb-3">
 			<label class="form-label" for="pwd">비밀번호</label> 
