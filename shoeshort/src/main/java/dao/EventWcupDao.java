@@ -16,7 +16,7 @@ public class EventWcupDao {
 	
 	public EventWcupInfo getEventWcupList(String ewstatus){
 		String sql ="select * from t_evt_wcup where ew_isview='y' and ew_status=?";
-		System.out.println(sql);
+		////System.out.println(sql);
 		List <EventWcupInfo> results = jdbc.query(sql, new RowMapper<EventWcupInfo>(){
 			public EventWcupInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 				EventWcupInfo ewi = new EventWcupInfo();						
@@ -29,11 +29,11 @@ public class EventWcupDao {
 				ewi.setEw_rule(rs.getInt("ew_rule"));
 				if(ewstatus.equals("b")) {
 				String sql1 ="select count(*) from t_evt_wcup_join where ew_idx="+rs.getInt("ew_idx");
-				System.out.println(ewstatus+":getEventWcupList:"+sql1);
+				//System.out.println(ewstatus+":getEventWcupList:"+sql1);
 				ewi.setEw_people(jdbc.queryForObject(sql1, Integer.class));
 				}else if(ewstatus.equals("a")) {
 					String sql1 ="select count(*) from t_evt_wcup_list where ew_idx="+rs.getInt("ew_idx");
-					System.out.println(ewstatus+":getEventWcupList:"+sql1);
+					//System.out.println(ewstatus+":getEventWcupList:"+sql1);
 					ewi.setEw_people(jdbc.queryForObject(sql1, Integer.class));
 				}
 				return ewi;
@@ -45,7 +45,7 @@ public class EventWcupDao {
 	
 	public List<WcupDetail> getEventWcupDList(int ewidx){
 		String sql ="select  a.mi_id,ewl_win, b.si_img, b.pi_id,b.si_idx from  t_evt_wcup_list a, t_style_info b where a.si_idx = b.si_idx  and ew_idx='"+ewidx+"' order by ewl_win desc";
-		System.out.println("getEvetnWcupDList :"+sql);
+		//System.out.println("getEvetnWcupDList :"+sql);
 		List <WcupDetail> detailList = jdbc.query(sql, new RowMapper<WcupDetail>(){
 			public WcupDetail mapRow(ResultSet rs, int rowNum) throws SQLException {
 				WcupDetail wd = new WcupDetail();						
@@ -95,14 +95,14 @@ public class EventWcupDao {
 			if(result == 0) return 3;//  등록된 스타일이 없는 경우
 		}
 		sql = "select count(*) from t_evt_wcup_"+keyword+" where mi_id ='"+miid+"' and ew_idx ="+ewidx;
-		System.out.println("wcupValid :"+sql);
+		//System.out.println("wcupValid :"+sql);
 		result = jdbc.queryForObject(sql, Integer.class);
 		
 		return result;		
 	}
 	public EvtWcupRule getWcup(String uid, int ewidx) {
 		String sql = "select * from t_evt_wcup_join where mi_id=? and ew_idx =?";
-		// System.out.println(sql);
+		// //System.out.println(sql);
 		List<EvtWcupRule> results = jdbc.query(sql, new RowMapper<EvtWcupRule>(){
 			public EvtWcupRule mapRow(ResultSet rs, int rowNum) throws SQLException {
 				EvtWcupRule ewr = new EvtWcupRule();
@@ -123,7 +123,9 @@ public class EventWcupDao {
 		//트랜잭션 추가해야함
 		// 1.t_evt_wcup_join insert -> t_evt_wcup_list update -> t_member_point insert
 		String sql ="select ewl_idx from t_evt_wcup_list where ew_idx = "+ewidx+" and mi_id = '"+winner+"'";
+		System.out.println(sql);
 		int ewlidx = jdbc.queryForObject(sql, Integer.class);//우승자 번호 추출
+		
 		sql = "insert into t_evt_wcup_join(ew_idx, mi_id, ewj_vid) values (?, ?, ?)";	
 		int result = jdbc.update(sql,ewidx,miid,ewlidx); //result: 1
 		sql = "update t_evt_wcup_list set ewl_win = ewl_win +1 where ewl_idx = ?";
