@@ -105,8 +105,8 @@ int rcnt = pageInfo.getRcnt(), cpage = pageInfo.getCpage(), bsize = pageInfo.get
 	a {color:black; text-decoration: none;}
     </style>
 
-  </head>
-  <body>
+</head>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0 bd-example-row">
 <div id="tmp">
 <div><h2 align="center">STYLE</h2></div>
 <div align="right" style="margin-right: 100px;"><a href="style?cpage=1&ob=a">인기순</a> | <a href="style?cpage=1&ob=b">최신순</a></div>
@@ -159,7 +159,7 @@ if (rcnt > 0) {
 			<li class="page-item"><a class="page-link" href="<%=link + (cpage - 1)%>">이전</a></li>
 <% 
 	}
-	int spage = (cpage -1) / bsize * bsize + 1; //현재 블록에서의 시작 페이지 번호
+	int spage = (cpage - 1) / bsize * bsize + 1; //현재 블록에서의 시작 페이지 번호
 	int j = 0;
 	for (i = 1, j = spage ; i<= bsize && j <= pcnt ; i++, j++){
 		// i : 블록에서 보여줄 페이지의 개수만큼 루프를 돌릴 조건으로 사용되는 변수
@@ -179,14 +179,10 @@ if (rcnt > 0) {
 	} else{ 
 %>
 			<li class="page-item"><a class="page-link" href="<%=link +(cpage + 1) %>">다음</a></li>
-<%
-	}
-%>
+<% } %>
 		</ul>
 	</nav>
-<%
-}
-%>
+<% } %>
 </td>
 </tr>
 </table>

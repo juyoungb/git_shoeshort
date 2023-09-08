@@ -27,5 +27,14 @@ span {color:blue}
 </c:forEach>
 
 </table>
+<<<<<<< HEAD
+=======
+<table width="450px" cellpadding="0" cellspacing="0" align="center" style="border:none">
+<tr align="center">
+	<td><input type="button" class="btn btn-dark" value="수정" onclick="makeSch()"><input type="button" value="닫기"  onClick='window.close()'></td>
+</tr>
+</table>
+</form>
+>>>>>>> origin/main
 </body>
 </html>

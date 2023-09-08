@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="_inc/inc_head_fr.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="org.json.simple.*"%>
+<%@ page import="org.json.simple.parser.*"%>
+<%
+request.setCharacterEncoding("utf-8");
+JSONArray itemList = (JSONArray)request.getAttribute("itemList");
+%>
 <link rel="stylesheet" href="resources/css/indexStyle.css">
 <div id="video" align="center" style="background-color:black;">
     <video
@@ -14,8 +20,46 @@
 <div style="width:1300px"><hr></div>
 <div>
 	<div style="width:1300px;height:300px;">
-		<div style="width:45%;height:100%;border: 1px solid black; display:inline-block;"></div>
-		<div style="width:45%;height:100%; border: 1px solid black;display:inline-block;"></div>
+		<div style="width:45%;height:100%; display:inline-block;">
+		<%
+if(itemList.size() > 0){
+	for(int i = 0; i<itemList.size(); i++){
+		JSONObject jo = (JSONObject)itemList.get(i);
+		out.println(jo.get("wf3Am"));// 
+	
+		out.println(jo.get("wf4Am"));
+		
+		out.println(jo.get("wf5Am"));
+		
+		out.println(jo.get("wf6Am"));
+	
+		out.println(jo.get("wf7Am"));
+	
+		out.println(jo.get("wf8"));
+	
+		out.println(jo.get("wf9"));
+	
+		out.println(jo.get("wf10"));
+	
+		out.println(jo.get("wf7Pm"));
+	
+		out.println(jo.get("wf8"));
+		
+		out.println(jo.get("wf9"));
+		
+		out.println(jo.get("wf10"));
+		
+	}
+} else{
+	out.println("데이터가 없습니다.");
+}
+%>
+		</div>
+		<div style="width:45%;height:100%; display:inline-block;">
+			<div>
+			 <img src="resources/img/product/CC10003.png" width="200" height="200">
+			</div>
+		</div>
 	</div>
 </div>
 <div style="width:1300px"><hr></div>
@@ -93,7 +137,7 @@
   <div class="carousel-inner">
    <c:forEach var="il" items="${imgList}" varStatus="i">
 		<div class="carousel-item active">
-			<a href="${il.getMm_link() }"><img style="width:700px; height:600px;"src="resources/img/slide/${il.getMm_media() }"  class="d-block w-100" alt="" >
+			<a href="${il.getMm_link() }"><img style="width:700px; height:600px;"src="resources/img/slide/${il.getMm_media() }"  class="d-block w-100" alt="" ></a>
 		</div>
 	 </c:forEach>
   </div>
@@ -112,7 +156,6 @@
 <span style="font-size:18px; font-weight:bold;">Top Style</span>
 </div>
 <br>
-
 <table cellpadding="2">
 <c:forEach var="si" items="${styleList}" varStatus="idx">
 	<td align="center">

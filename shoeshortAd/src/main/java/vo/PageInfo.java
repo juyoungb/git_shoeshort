@@ -3,9 +3,15 @@ package vo;
 
 
 public class PageInfo {
+<<<<<<< HEAD
 // �Խ��Ǹ��, ��ǰ��� ��� ����¡�� �ʿ��� �������� ������ Ŭ����
 	private int cpage,  spage, psize, bsize, rcnt , pcnt;
+=======
+	private int cpage,  spage, psize, bsize, rcnt , pcnt, count;
+>>>>>>> origin/main
 	private String schtype, keyword, args, schargs, pcb, pcs, obargs, vargs, sch, ob, v, ctgr;
+	private String sdate, edate,periods,status2;
+	
 	
 	public int getCpage() {
 		return cpage;
@@ -116,5 +122,28 @@ public class PageInfo {
 	public void setCtgr(String ctgr) {
 		this.ctgr = ctgr;
 	}
-
+	public String getSdate() {
+		return sdate;
+	}
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
+	}
+	public String getEdate() {
+		return edate;
+	}
+	public void setEdate(String edate) {
+		this.edate = edate;
+	}
+	public String getPeriods() {
+		return periods;
+	}
+	public void setPeriods(String periods) {
+		this.periods = periods;
+	}
+	public String getStatus2() {
+		return status2;
+	}
+	public void setStatus2(String status2) {
+		this.status2 = status2;
+	}
 }

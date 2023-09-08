@@ -75,6 +75,7 @@ private JdbcTemplate jdbc;
 		//System.out.println(getOrderId());
 		String sql="select a.*, b.pi_img1, b.pi_name, if(b.pi_dc >0, round(b.pi_price*(1-b.pi_dc)), b.pi_price) price "+
 				" from t_order_cart a, t_product_info b where a.pi_id =b.pi_id and b.pi_isview = 'y' and a.mi_id ='"+miid+"' order by a.pi_id, a.ps_idx";
+		System.out.println("sql : " + sql);
 		List<OrderCart> cartList = jdbc.query(sql, new RowMapper<OrderCart>() {
 			public OrderCart mapRow(ResultSet rs, int rowNum) throws SQLException{
 				OrderCart oc =new OrderCart();
@@ -299,7 +300,7 @@ private JdbcTemplate jdbc;
 					" where mi_id ='"+oi.getMi_id()+"' ";
 			target++;		rcount += jdbc.update(sql);
 			
-			sql = "insert into t_member_point (mi_id, mp_point, mp_desc, mp_detail,mp_edate) values('"+oi.getMi_id()+
+			sql = "insert into t_member_point (ai_idx, mi_id, mp_point, mp_desc, mp_detail,mp_edate) values(1,'"+oi.getMi_id()+
 					"','"+oi.getOi_spoint()+"','상품구매','"+oi_id+"', date_add(now(), interval 1 year))";//date_add(now(), interval 1 year) 현재 시간에서 1년 더하기
 			target++;		rcount += jdbc.update(sql);
 			System.out.println(target+" : "+sql+" : "+ rcount);

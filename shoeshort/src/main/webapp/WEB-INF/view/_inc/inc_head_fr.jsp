@@ -55,6 +55,7 @@ if(loginInfo != null){
 <div id="header" align="center">
 <div id="top_inner" align="right">
   <ul id="top_list">
+    <li><a href="walkingList">산책로 정보</a></li>
     <li><a href="storeInfo">매장찾기</a></li>
     <li><a href="noticeList">고객센터</a></li>
     <li><a href="<%=mypagesrc %>">마이페이지</a></li>
@@ -75,33 +76,33 @@ if(loginInfo != null){
 <div id="center_inner"   >
   <ul id="center_list" class="main_tabs">
     <li onmouseover="hideAllSubmenu()"><a href="newProduct">NEW</a></li>
-    <li >
-      <a href="productList?g=m" onmouseover="showEventSubmenu(1)" >MEN</a>
-      <div class="small_tab"  id="event_submenu_1">
-        <div align="left"style="width:150px;" onmouseover="showEventSubmenu(1)"  onmouseout="hideEventSubmenu(1)">
-          <a href="">스니커즈</a><br>
-          <a href="">구두</a><br>
-          <a href="">슬리퍼</a>
+    <li align="center">
+      <a href="productList?sch=gm" onmouseover="showEventSubmenu(1)" >MEN</a>
+      <div align="left" class="small_tab"  id="event_submenu_1">
+        <div style="width:170px;" onmouseover="showEventSubmenu(1)"  onmouseout="hideEventSubmenu(1)">
+          <a href="productList?sch=g:m,c:a">스니커즈</a><br>
+          <a href="productList?sch=gm,cb">구두</a><br>
+          <a href="productList?sch=gm,cc">샌들/슬리퍼</a>
         </div>
       </div>      
     </li>  
     <li>
-      <a href="productList?g=w" onmouseover="showEventSubmenu(2)">WOMEN</a>
+      <a href="productList?sch=gw" onmouseover="showEventSubmenu(2)">WOMEN</a>
       <div class="small_tab" id="event_submenu_2">
-        <div align="left"style="width:150px;"  onmouseover="showEventSubmenu(2) "  onmouseout="hideEventSubmenu(2)">
-          <a href="">스니커즈</a>
-          <a href="">구두</a>
-          <a href="">슬리퍼</a>
+        <div align="left" style="width:170px;"  onmouseover="showEventSubmenu(2) "  onmouseout="hideEventSubmenu(2)">
+          <a href="productList?sch=gw,ca">스니커즈</a>
+          <a href="productList?sch=gw,cb">구두</a>
+          <a href="productList?sch=gm,cc">샌들/슬리퍼</a>
         </div>
       </div>      
     </li>
     <li>
-       <a href="productList?g=k" onmouseover="showEventSubmenu(3)" >KIDS</a>
+       <a href="productList?sch=gk" onmouseover="showEventSubmenu(3)" >KIDS</a>
       <div class="small_tab"  id="event_submenu_3">
-        <div align="left"style="width:150px;"  onmouseover="showEventSubmenu(3)"  onmouseout="hideEventSubmenu(3)">
-          <a href="">스니커즈</a>
-          <a href="">구두</a>
-          <a href="">슬리퍼</a>
+        <div align="left" style="width:170px;"  onmouseover="showEventSubmenu(3)"  onmouseout="hideEventSubmenu(3)">
+          <a href="productList?sch=gk,ca">스니커즈</a>
+          <a href="productList?sch=gk,ca">구두</a>
+          <a href="productList?sch=gk,ca">샌들/슬리퍼</a>
         </div>
       </div>
     </li>
@@ -111,8 +112,9 @@ if(loginInfo != null){
       <a onmouseover="showEventSubmenu(4)" >EVENT</a>
       <div class="small_tab" id="event_submenu_4">
          <div align="left"style="width:180px;" onmouseover="showEventSubmenu(4)"  onmouseout="hideEventSubmenu(4)">
-          <a style="font-size:14px;" href="wcup">스타일 월드컵</a><br>
+          <a style="font-size:14px;" href="wcupMain">스타일 월드컵</a><br>
           <a style="font-size:14px;" href="luckyMain">행운 번호 찾기</a>
+          <a style="font-size:14px;" href="testWeather">날씨 test</a>
         </div>
       </div>
     </li>

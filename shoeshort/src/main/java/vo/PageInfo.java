@@ -3,11 +3,11 @@ package vo;
 
 
 public class PageInfo {
-// °Ô½ÃÆÇ¸ñ·Ï, »óÇ°¸ñ·Ï µî¿¡¼­ ÆäÀÌÂ¡¿¡ ÇÊ¿äÇÑ Á¤º¸µéÀ» ÀúÀåÇÒ Å¬·¡½º
-	private int cpage,  spage, psize, bsize, rcnt , pcnt;
+// ï¿½Ô½ï¿½ï¿½Ç¸ï¿½ï¿½, ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ ï¿½î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+	private int cpage,  spage, psize, bsize, rcnt , pcnt, num, count;
 	private String schtype, keyword, args, schargs, pcb, pcs, obargs, vargs, sch, ob, v, schG, schA,schS, schK;	
-	private String gender;
-	// schG = °Ë»öÁ¶°Ç ¼ºº°, schS = °Ë»öÁ¶°Ç °èÀý, schA = °Ë»öÁ¶°Ç ¿¬·Éº°, schK = °Ë»öÁ¶°Ç Å°¿öµå
+	private String init;
+	// schG = ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, schS = ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, schA = ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Éºï¿½, schK = ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½
 	
 	public int getCpage() {
 		return cpage;
@@ -20,6 +20,14 @@ public class PageInfo {
 	}
 	public void setSpage(int spage) {
 		this.spage = spage;
+	}
+	
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
 	}
 	public int getPsize() {
 		return psize;
@@ -41,6 +49,13 @@ public class PageInfo {
 	}
 	public int getPcnt() {
 		return pcnt;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	public void setPcnt(int pcnt) {
 		this.pcnt = pcnt;
@@ -135,10 +150,13 @@ public class PageInfo {
 	public void setSchK(String schK) {
 		this.schK = schK;
 	}
-	public String getGender() {
-		return gender;
+	public String getInit() {
+		return init;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setInit(String init) {
+		this.init = init;
 	}
+
+
+	
 }

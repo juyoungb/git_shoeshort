@@ -338,11 +338,6 @@ function selectAll(click)  {
 }
 
 
-function productUp(piid) {
-	
-	
-}
-
 
 </script>
 </head>
@@ -446,8 +441,8 @@ for (String st : arrKeyword) {
 </tr>
 <tr style="border: 0;">
 <td colspan="2" align="center" style="border: 0;">
-	<input type="button" value="검 색" onclick="makeSch();">
-	<input type="button" value="초기화"  onclick="location.href='adProductList';">
+	<input type="button" value="검 색"  class="btn btn-dark" onclick="makeSch();">
+	<input type="button" value="초기화" class="btn btn-secondary"  onclick="location.href='adProductList';">
 </td>
 </tr>
 </form>
@@ -488,9 +483,13 @@ if (productList.size() > 0) {
 		<td align="center">
 		<%
 		if(pi.getPi_isview().equals("y")){%>
+<<<<<<< HEAD
 			<input type="button" value="미게시" onclick="productIsview('<%=pi.getPi_id()%>', '미게시');">
+=======
+			<input type="button" width="15px" value="미게시"  class="btn btn-secondary btn-sm" onclick="productIsview('<%=pi.getPi_id()%>', '미게시');">
+>>>>>>> origin/main
 		<%} else{ %>
-			<input type="button" value="게시" onclick="productIsview('<%=pi.getPi_id()%>', '게시');">
+			<input type="button" value="게시" class="btn btn-dark btn-sm" onclick="productIsview('<%=pi.getPi_id()%>', '게시');">
 			
 		<%} %>					
 	</td>

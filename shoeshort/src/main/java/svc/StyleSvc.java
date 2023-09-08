@@ -80,4 +80,12 @@ public class StyleSvc {
 		
 		return memStyle;
 	}
+
+	public List<StyleInfo> getProductViewStyle(String piid) {
+		List<StyleInfo> styleList = styleDao.getProductViewStyle(piid);
+		
+		return styleList;
+	}
+
+	
 }

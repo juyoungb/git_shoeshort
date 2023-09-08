@@ -29,18 +29,16 @@ public class ProductSvc {
 		 return stockList;
 	}
 
-	public List<ProductInfo> getProductList(int cpage, int psize, String where, String orderBy, String s) {
+	public List<ProductInfo> getProductList(int cpage, int psize, String where, String orderBy) {
 
-		 List<ProductInfo> procductList = productDao.getProductList(cpage, psize, where, orderBy, s); 	
+		 List<ProductInfo> procductList = productDao.getProductList(cpage, psize, where, orderBy); 	
 
 		
 		return procductList;
 	}
 
 	public int getProductCount(String where) {
-		int rcnt = 0;
-		
-		rcnt = productDao.getProductCount(where);
+		 int rcnt = productDao.getProductCount(where);
 	
 		return rcnt;
 	}
@@ -60,10 +58,15 @@ public class ProductSvc {
 		List<ProductStock> sizeList =  productDao.getSizeList();
 		return sizeList;
 	}
-	// add main product list
+	
 	public List<ProductInfo> getMainList(String orderby) {
 		List<ProductInfo> mainList = productDao.getMainList(orderby);
 		return mainList;
+	}
+
+	public List<ProductInfo> getShoesList(String pcb_id) {
+		List<ProductInfo> productList = productDao.getShoesList(pcb_id);
+		return productList;
 	}
 
 }

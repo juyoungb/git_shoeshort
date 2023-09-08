@@ -8,9 +8,9 @@ List<StoreInfo> si = (List<StoreInfo>)request.getAttribute("si");
 #map {width:70%; height:80%; padding-left:20%; float: right; flex-grow: 1;}
 span{cursor:pointer}
 </style>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8932fd37db41a867de928eea7507b60&libraries=services"></script>
-<!-- <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=00cbe202e843f23e025cb4b005a51223&libraries=services"></script> -->
-<!-- 사이트 도메인 http://localhost:8001 appkey: 00cbe202e843f23e025cb4b005a51223 -->
+<!-- <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8932fd37db41a867de928eea7507b60&libraries=services"></script> -->
+<!-- 사이트 도메인 http://localhost:8087 appkey: 00cbe202e843f23e025cb4b005a51223 -->
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=00cbe202e843f23e025cb4b005a51223&libraries=services"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="resources/js/kakaoMap.js"></script>
 <br />
@@ -30,7 +30,7 @@ span{cursor:pointer}
 	</div>
 	<div id="btn" style="float:right;">
 		<input type="button" v-if="isview" value="지도 축소" class="btn btn-outline-secondary" onclick="zoom('+1')" />
-		<input type="button" v-if="isview" value="지도 확대" class="btn btn-outline-secondary" onclick="zoom('-1');" />
+		<input type="button" v-if="isview" value="지도 확대" class="btn btn-outline-secondary" onclick="zoom('-1')" />
 		<br />
 	</div>
 	<div id="map"></div>

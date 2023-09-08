@@ -1,44 +1,98 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*" %>
-<%@ page import="vo.*" %>
-<%
-MemberInfo loginInfo = (MemberInfo)session.getAttribute("loginInfo");
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script src="resources/js/jquery-3.6.4"></script>
-</head>
-<body>
-<h2>월드컵시작</h2>
-<%-- ${getWcup.getMi_id() }
-${getWcup.getEwj_seq() }
-${getWcup.getEwj_ing() }
-<c:forEach items="${detailList}" var="dl">
-<img src="resources/img/style/${dl.getSi_img()}" />
-</c:forEach> --%>
-${el.getEw_title() }
-<!--  [시작하기]- 참여한 여부를 리턴해줌 1.이미참여하였씁니다. 2. 시작하겠습니다. --> 
-<br>
-<input type="button" onclick="location.href='wcupEnjoy?uid=<%=loginInfo.getMi_id() %>&ewrule=${el.getEw_rule()}&ewidx=${ewidx}&title=${el.getEw_title() }&rand=0&seq=1&sys=${el.getEw_rule()==4 ? "1111":"11111111" }'" value="시작하기" />
-<input type="button" onclick="window.close();opener.location.reload(); " value="나가기" />
-<input type="button" onclick="" value="전체 순위 보기" />
+<%@ include file="../../_inc/inc_head_fr.jsp" %>
+<c:if test="${not empty detailList}">
+<style>
+.styled-table {
+	width: 1300px;
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+	margin: 20px 0;
+}
 
-<!--
-db pk 변경  wcup
- 1. [월드컵 참여하기]- 새 창 
-2.스타일 이미지 
- [시작하기]- 참여한 여부를 리턴해줌 1.이미참여하였씁니다. 2. 시작하겠습니다. 
-2-1. 랜덤으로 생성
-8강 1/4 2/4 3/4 4/4 1/2 2/2  결승전 height:100% width50%
-스타일 월드컵 4강 1/2  2/2  - 결승전 - 
-11 11                             01 10
-제목 
-[현재 순위 보기]
-전체 아이디 우승비율  -->
-</body>
-</body>
-</html>
+.styled-table th, .styled-table td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: center;
+}
+.styled-link {
+	display: inline-block;
+	margin: 10px;
+	text-decoration: none;
+	color: #333;
+	text-align: center;
+}
+
+.styled-link img {
+	display: block;
+	margin: 0 auto;
+}
+
+.styled-button {
+	 background-color: #333; 
+ 	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	opacity: 1;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.styled-button:hover {
+	opacity: 0.8;
+}
+</style>
+
+<br>
+<div align="center">
+<h2>${el.getEw_title()}</h2>
+<c:forEach var="dl" items="${detailList }" begin="0" end="2" varStatus="status" >
+<c:set var="late" value="${dl.getEwl_win()/el.getEw_people() }" />
+<a href="styleView?siidx=${dl.getSi_idx()}&piid=${dl.getPi_id()}" class="styled-link">
+<img width="350px" height=400px; src="resources/img/style_img/${dl.getSi_img() }" /> ${status.count }위 ${dl.getMi_id() }(
+<c:if test="${late>0}"><fmt:formatNumber value="${late*100}" pattern=".0"/></c:if> 
+<c:if test="${late<=0}">0.0</c:if>%)
+</a>
+</c:forEach>
+
+<br>
+<input type="button" class="styled-button" style="width:500px;" onclick="popUp('wcupGame?gi=${el.getEw_idx()}&rule=${el.getEw_rule()}','','1400','850');" value="코디왕을 뽑으러 가기"/>
+<br>
+이벤트 기간: ${fn:substring(el.getEw_vsdate(),0,10) }~${fn:substring(el.getEw_vedate(),0,10) }
+</div>
+<br>
+
+<div align="center">
+<h3>${rl.getEw_title()} 지원하기</h3>
+<table class="styled-table">
+	<thead>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>기간</th>
+			<th>지원현황</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>${rl.getEw_title()}</td>
+			<td>${fn:substring(rl.getEw_csdate(),0,10) }~${fn:substring(rl.getEw_cedate(),0,10) }</td>
+			<td>
+				<c:if test="${rl.getEw_people() != rl.getEw_rule() }">
+				<input type="button"onclick="popUp('wcupJoin?n=${rl.getEw_idx()}','','1300','850');" value="지원하기 (${rl.getEw_people()} / ${rl.getEw_rule()})" class="styled-button" />
+				</c:if>
+				<c:if test="${rl.getEw_people() == rl.getEw_rule() }">모집 종료</c:if>
+			</td>
+		</tr>
+		<!-- 다른 행들도 추가 가능 -->
+	</tbody>
+</table>
+</div>
+</c:if>
+<c:if test="${empty detailList}">
+<script>
+alert('현재 진행중인 이벤트가 없습니다.');
+history.back();
+</script>
+</c:if>
+<%@ include file="../../_inc/inc_foot_fr.jsp" %>

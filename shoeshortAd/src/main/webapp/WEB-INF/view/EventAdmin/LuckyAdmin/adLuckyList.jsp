@@ -75,6 +75,66 @@ function adluckyDel(elidx){
 </tr>
 </c:forEach>
 
+<<<<<<< HEAD
+=======
+
+
+
+<table align="center" width="80%" cellpadding="5" >
+<tr>
+<td align="center">
+<%
+if(rcnt > 0 ) {
+	String lnk = "adLuckyList?1=1&sch="+pageInfo.getSchargs()+"cpage=";
+
+%>
+
+	<nav aria-label="Page navigation example">
+  	<ul class="pagination justify-content-center">
+<%
+
+	if(cpage == 1) {
+%>  
+		<li class="page-item"><a class="page-link" href="#">이전</a></li>
+<%
+	} else {
+%>		
+		<li class="page-item"><a class="page-link" href="<%=lnk + (cpage - 1)%>">이전</a></li>
+<%
+	}
+	int spage = (cpage - 1) / bsize * bsize + 1; // 시작할 페이지
+	int j = 0;
+
+	for (count = 1, j = spage ; count<= bsize && j <= pcnt ; count++, j++){
+	// i : 블록에서 보여줄 페이지의 개수만큼 루프를 돌릴 조건으로 사용될 변수
+	//j: 실제 출력할 페이지 번호로 전체 페이지 개수 (마지막 페이지 번호)를 넘지 않게 사용해야 함
+		if(cpage == j ) { 
+%>		
+			<li class="page-item"><a class="page-link" href="#"><%=j %></a></li>
+<%
+		} else {
+%>			<li class="page-item"><a class="page-link" href="<%=lnk + j%>"><%=j %></a></li> <%
+	
+		}
+	}
+	if (cpage == pcnt){
+%>
+			<li class="page-item"><a class="page-link" href="#">다음</a></li>
+<%
+	} else{ 
+%>
+			<li class="page-item"><a class="page-link" href="<%=lnk +(cpage + 1) %>">다음</a></li>
+<%
+	}
+%>
+		</ul>
+	</nav>
+<%
+}
+%>  
+</td>
+</tr> 
+>>>>>>> origin/main
 </table>
 </div>
 <table style="border:none;" cellpadding="10">

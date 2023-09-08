@@ -206,7 +206,12 @@ public class AdProductCtrl {
 		return "productAdmin/adProductUp";
 	}
 	
+<<<<<<< HEAD
 	@GetMapping("/adProducIsview")
+=======
+	
+	@GetMapping("/adProducIsview") // 게시/미시게 변경
+>>>>>>> origin/main
 	public String adProducIsview (Model model, HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String piid = request.getParameter("piid");
@@ -233,7 +238,9 @@ public class AdProductCtrl {
 		String pb_id = pi_id.substring(0,2);//
 		String piname = request.getParameter("piname"); // 상품이름
 		String isview = request.getParameter("isview"); // 게시여부
+		
 		String gender = request.getParameter("gender"); // 성별
+		System.out.print("gender :" +gender);
 		int price = Integer.parseInt(request.getParameter("price")); // 판매가격
 		int cost = Integer.parseInt(request.getParameter("cost")); // 원가
 		String com = request.getParameter("com"); // 원산지

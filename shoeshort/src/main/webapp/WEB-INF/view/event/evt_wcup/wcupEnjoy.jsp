@@ -28,30 +28,19 @@ MemberInfo loginInfo = (MemberInfo)session.getAttribute("loginInfo");
 </script>
 </head>
 <body>
-<c:if test="${ewi.getSeq() != (ewi.getEw_rule()-1) && ewi.getSeq() % 2 == 1}">
-<c:set var="sys1" value="10${fn:substring(ewi.getSys(),2,4) }" />
-<c:set var="sys2" value="01${fn:substring(ewi.getSys(),2,4) }" />
-</c:if>
-<c:if test="${ewi.getSeq() != (ewi.getEw_rule()-1) && ewi.getSeq() % 2 == 0 }">
-<c:set var="sys1" value="${fn:substring(ewi.getSys(),0,2) }10" />
-<c:set var="sys2" value="${fn:substring(ewi.getSys(),0,2) }01" />
-</c:if>
-<c:if test="${ewi.getSeq() == (ewi.getEw_rule()-1)}" >
-<c:set var="sys1" value="${fn:substring(ewi.getSys(),0,2) }00" />
-<c:set var="sys2" value="00${fn:substring(ewi.getSys(),2,4) }" />
-</c:if>
+
 
 <div class="container">
-<c:if test="${ewi.getSeq() != (ewi.getEw_rule())}" >
+<c:if test="${ewi.getStage() != (ewi.getEw_rule())}" >
 <h2>${ewi.getEw_title()} </h2>
 
-<a href="wcupEnjoy?uid=${ewi.getMi_id()}&ewrule=${ewi.getEw_rule()}&ewidx=${ewi.getEw_idx()}&title=${ewi.getEw_title() }&seq=${ewi.getSeq()+1 }&sys=${sys1}&rand=${ewi.getRand()}">
+<a href="wcupEnjoy?uid=${ewi.getMi_id()}&ewrule=${ewi.getEw_rule()}&ewidx=${ewi.getEw_idx()}&title=${ewi.getEw_title() }&stage=${ewi.getStage()+1 }&sys=${ewi.getSys()}&rand=${ewi.getRand()}&choice=1">
 <img src="resources/img/style_img/${ewi.getImg1()}" style="height:700px; width:650px;"/></a>
 <div style="position:absolute; top:300px; left:560px; z-index:1;"><img src="resources/img/icon/vs.gif" style="height:300px; width:300px;"/></div>
-<a href="wcupEnjoy?uid=${ewi.getMi_id() }&ewrule=${ewi.getEw_rule()}&ewidx=${ewi.getEw_idx()}&title=${ewi.getEw_title() }&seq=${ewi.getSeq()+1 }&sys=${sys2}&rand=${ewi.getRand()}">
+<a href="wcupEnjoy?uid=${ewi.getMi_id() }&ewrule=${ewi.getEw_rule()}&ewidx=${ewi.getEw_idx()}&title=${ewi.getEw_title() }&stage=${ewi.getStage()+1 }&sys=${ewi.getSys()}&rand=${ewi.getRand()}&choice=2">
 <img src="resources/img/style_img/${ewi.getImg2()}" style="height:700px; width:600px;"/></a>
 </c:if>
-<c:if test="${ewi.getSeq() == (ewi.getEw_rule())}" >
+<c:if test="${ewi.getStage() == (ewi.getEw_rule())}" >
 <h2>${ewi.getEw_title()}(우승)</h2>
 <a href=""><img src="resources/img/style_img/${ewi.getImg1()}" style="height:600px; width:500px;"/></a>
 <form action="wcupWin" method="POST" >
@@ -60,8 +49,7 @@ MemberInfo loginInfo = (MemberInfo)session.getAttribute("loginInfo");
 <input type="hidden" name="winner" value="${ewi.getWinner() }"/>
 <br>
 <input type="submit"  value="확정하기" />
-<input type="button" onclick="location.href='wcupEnjoy?uid=<%=loginInfo.getMi_id() %>&ewrule=${ewi.getEw_rule()}&ewidx=${ewi.getEw_idx()}&title=${ewi.getEw_title() }&rand=0&seq=1&sys=${ewi.getEw_rule()==4 ? "1111":"11111111" }'" value="다시하기" />
-<input type="button" onclick="location.href='wcupMain?gi=${ewi.getEw_idx() }&rule=${ewi.getEw_rule() }'" value="취소하기" />
+<input type="button" onclick="location.href='wcupGame?gi=${ewi.getEw_idx() }&rule=${ewi.getEw_rule() }'" value="취소하기" />
 </form>
 </c:if>
 </div>

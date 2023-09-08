@@ -32,11 +32,9 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </head>
-<body class="p-3 m-0 border-0 bd-example m-0 border-0 bd-example-row">
-
 <form name="frm">
     <div class="mb-5">
-        <img src="resources/img/evt_lucky/header.png" width="100%" height="850px">
+        <img src="resources/img/product/header.png" width="100%" height="850px">
     </div> 
     <div class="row row-cols-6">
         <div class="col-12 mb-5">
@@ -55,7 +53,7 @@
             </div>      
             <div class="col-3 mb-5 mt-5">
                  <div class="card shadow">
-                        <img  src="resources/img/evt_lucky/${el.getPi_img1() }" class="bd-placeholder-img card-img-top" width="100px" height="350px" ></img>
+                        <img  src="resources/img/product/${el.getPi_img1() }" class="bd-placeholder-img card-img-top" width="100px" height="350px" ></img>
                     <div class="card-body">
                         <p class="card-text">${el.getPi_name() }</p>
                     <div class="d-flex justify-content-between align-items-center" width="100%" height="100%">

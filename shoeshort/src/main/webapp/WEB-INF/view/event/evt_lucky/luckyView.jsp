@@ -6,7 +6,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 <title>Bootstrap Example</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -138,9 +137,8 @@ function clickBtn(idx) {
 <c:forEach var="el" items="${evtList }" >  
 <div id="main" class="grid gap-2">
 	<div class="p-2 g-col-6">
-    	<img src="resources/img/evt_lucky/${el.getPi_img1() }" width="90%" height="500px">
+    	<img src="resources/img/product/${el.getPi_img1() }" width="90%" height="500px">
   	</div>
-
   	<div class="g-col-5">
    		<strong class="product-title">EVENT</strong>
     	<div>

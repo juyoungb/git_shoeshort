@@ -13,7 +13,7 @@ public class AdOrderDao {
 		this.jdbc = new JdbcTemplate(dataSource);
 	}
 	public int getOrderCount(String where) {
-		String sql = "select count(*) from t_order_info "+ where;
+		String sql = "select count(*) from t_order_info a, t_member_info c  "+ where +" and a.mi_id= c.mi_id ";
 		System.out.println(sql);
 		int rcnt = jdbc.queryForObject(sql, Integer.class);
 		
@@ -26,9 +26,12 @@ public class AdOrderDao {
 		
 		List<OrderInfo> memberList = jdbc.query(sql,(ResultSet rs, int rowNum) -> {
 				OrderInfo oi = new OrderInfo();
-				oi.setOi_id(rs.getString("oi_id"));			oi.setMi_id(rs.getString("mi_id"));
-				oi.setMi_name(rs.getString("mi_name"));		oi.setCnt(rs.getString("cnt"));
-				oi.setOi_pay(rs.getInt("oi_pay"));			oi.setOi_date(rs.getString("oi_date"));
+				oi.setOi_id(rs.getString("oi_id"));
+				oi.setMi_id(rs.getString("mi_id"));
+				oi.setMi_name(rs.getString("mi_name"));
+				oi.setCnt(rs.getString("cnt"));
+				oi.setOi_pay(rs.getInt("oi_pay"));
+				oi.setOi_date(rs.getString("oi_date"));
 				oi.setOi_status(rs.getString("oi_status"));
 	            return oi;
 		});

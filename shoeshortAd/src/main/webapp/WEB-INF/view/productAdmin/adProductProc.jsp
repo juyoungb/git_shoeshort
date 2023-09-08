@@ -158,8 +158,7 @@ for(String st : arrGender){
 <div style="margin:20px;">
 <table width="50%" style="float:left;">
 <tr>
-<th width="50%">사이즈</th>
-<th width="50%">재고량</th>
+<th width="50%">사이즈</th><th width="50%">재고량</th>
 </tr>
 <tr>
 <td>225</td>

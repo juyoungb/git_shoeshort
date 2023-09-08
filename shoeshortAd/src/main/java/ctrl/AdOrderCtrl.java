@@ -26,39 +26,43 @@ public class AdOrderCtrl {
 		String where =" where 1=1 ";
 		String[] period = request.getParameterValues("period");
 		String[] status = request.getParameterValues("status");
-		String sdate = request.getParameter("sdate");	
-		String edate = request.getParameter("edate");
-		String schtype = request.getParameter("schtype");
-		String keyword = request.getParameter("keyword");
-		String args = "", schargs="";
+		String sdate = (request.getParameter("sdate") == null ? "" :  request.getParameter("sdate"));
+		String edate = (request.getParameter("edate") == null ? "" :  request.getParameter("edate"));
+		String schtype = (request.getParameter("schtype") == null ? "" :  request.getParameter("schtype"));
+		String keyword = (request.getParameter("keyword") == null ? "" :request.getParameter("keyword").trim());
+		String args = "", schargs="", periods="",status2="";
 		args = "&cpage=" + cpage;
-		
-		System.out.println("schtype:"+schtype);
-		System.out.println("keyword:"+keyword);
-		if(keyword == null) System.out.println("keyword empty:"); 
-		if(schtype != null && keyword != null) {
-			System.out.println(1231231);
-			System.out.println("schtype: "+schtype);
+
+		if(!schtype.equals("") && !keyword.equals("")) {
 			if(!schtype.equals("all")) {
-				where+=" and "+schtype+" like '%"+keyword+"%' ";
+				where+=" and "+ (schtype.equals("oi_id")? "a.":"c.") + schtype +" like '%"+keyword+"%' ";
 			}else {
-				where+=" and( oi_name like '%"+keyword+"%' or oi_id like '%"+keyword+"%' )";
+				where+=" and( mi_name like '%"+keyword+"%' or a.oi_id like '%"+keyword+"%' )";
 			}
 		}
 		
+	//--------------------------------------
 		if(sdate != "" && sdate != null) where+=" and date(oi_date) >= date('"+sdate+"') ";
 		if(edate != "" && edate != null) where+=" and date(oi_date) <= date('"+edate+"') ";
 		if(period != null) {
-			for(String per:period) {
-				System.out.println(per);//t, w, m
-				if(per.equals("t")) where+=" and date(oi_date) = date(now()) ";
-				if(per.equals("w")) where+=" and (date(oi_date) >= date(now())-7 and date(oi_date) <= date(now())) ";
-				if(per.equals("m")) where+=" and (date(oi_date) >= date(now())-30 and date(oi_date) <= date(now())) ";
+			if(!period[0].equals("all")) {
+			where +=" and (";
+			for(int i=0; i<period.length; i++) {
+				periods+=","+period[i];
+				System.out.println(period[i]);//t, w, m
+				if(i >0) where+=" or ";
+				if(period[i].equals("t")) where+=" date(oi_date) = date(now()) ";
+				else if(period[i].equals("w")) where+=" (date(oi_date) >= date(now())-7 and date(oi_date) <= date(now())) ";
+				else if(period[i].equals("m")) where+=" (date(oi_date) >= date(now())-30 and date(oi_date) <= date(now())) ";
+			}
+			where +=")";
 			}
 		}
 		if(status != null) {
 			if(!status[0].equals("all")) {
 			for(int i=0; i<status.length; i++) {
+				status2+=","+status[i];
+				System.out.println(status[i]);
 				if(i == 0) where+=" and (oi_status='"+status[i]+"' ";
 				else where+=" or oi_status='"+status[i]+"' ";
 			}
@@ -66,6 +70,7 @@ public class AdOrderCtrl {
 			}
 		}
 		//-------------------------------------------------------------
+		System.out.println("status2 :"+status2);
 		System.out.println("where :"+where);
 		rcnt = adOrderSvc.getOrderCount(where);
 		
@@ -81,6 +86,9 @@ public class AdOrderCtrl {
 		pageInfo.setRcnt(rcnt);				pageInfo.setPsize(psize);
 		pageInfo.setSchtype(schtype); 		pageInfo.setKeyword(keyword);
 		pageInfo.setArgs(args);				pageInfo.setSchargs(schargs);
+		pageInfo.setSdate(sdate);			pageInfo.setEdate(edate);
+		if(!periods.equals("")) pageInfo.setPeriods(periods.substring(1));
+		if(!status2.equals("")) pageInfo.setStatus2(status2.substring(1));
 		
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("orderList", orderList);
