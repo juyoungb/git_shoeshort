@@ -1,6 +1,6 @@
 package vo;
 
-public class ProductCtgrBig {
+public class ProductCtgrBig {  
 	private String pcb_id, pcb_name;
 
 	public String getPcb_id() {

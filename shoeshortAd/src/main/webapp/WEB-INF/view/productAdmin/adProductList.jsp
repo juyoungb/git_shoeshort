@@ -338,11 +338,6 @@ function selectAll(click)  {
 }
 
 
-function productUp(piid) {
-	
-	
-}
-
 
 </script>
 </head>

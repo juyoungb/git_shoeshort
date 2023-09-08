@@ -116,7 +116,7 @@ function adluckyDel(elidx){
 <td align="center">
 <%
 if(rcnt > 0 ) {
-	String lnk = "adLuckyList?1=1&cpage=";
+	String lnk = "adLuckyList?1=1&sch="+pageInfo.getSchargs()+"cpage=";
 
 %>
 

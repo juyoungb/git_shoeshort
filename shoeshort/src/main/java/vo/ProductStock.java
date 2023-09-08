@@ -4,6 +4,7 @@ public class ProductStock {
 	
 	private int ps_idx,ps_stock, ps_sale;
 	private String pi_id, ps_isview, ps_size;
+	
 	public int getPs_idx() {
 		return ps_idx;
 	}

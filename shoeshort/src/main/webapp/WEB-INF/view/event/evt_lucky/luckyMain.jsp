@@ -32,8 +32,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </head>
-<body class="p-3 m-0 border-0 bd-example m-0 border-0 bd-example-row">
-
 <form name="frm">
     <div class="mb-5">
         <img src="resources/img/product/header.png" width="100%" height="850px">
