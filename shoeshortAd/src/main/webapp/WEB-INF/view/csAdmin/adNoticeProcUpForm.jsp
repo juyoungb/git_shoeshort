@@ -2,17 +2,42 @@
 <%@ include file="../_inc/inc_head_ad.jsp" %>
 <%
 request.setCharacterEncoding("utf-8");
-String args = (String)request.getAttribute("args");
 NoticeList noticeInfo = (NoticeList)request.getAttribute("noticeInfo");
 PageInfo pi = (PageInfo)request.getAttribute("pi");
 int nlidx = Integer.parseInt(request.getParameter("nlidx"));
 String ctgr = pi.getCtgr();
+System.out.println(ctgr);
 %>
-<h2>공지사항 글 수정 폼</h2>
-<form name="frm" action="adNoticeProcUp" method="post">
-<input type="hidden" name="args" value="<%=args %>" />
+<script>
+function chkForm(){
+	var frm = document.frm;
+	var ctgr = frm.ctgr.value;
+	var title = frm.title.value;
+	var content = frm.content.value;
+	
+	if (ctgr == "" || title == "" || content == ""){
+		alert("입력칸을 확인해주세요.");
+		return false;
+	}
+	if (ctgr != "" && title != "" && content != ""){ 
+		document.frm.submit();
+	}
+}
+function link(){
+	location.href="adNoticeList";
+}
+</script>
+<style>
+.form-group {width:50%; height:80%; align:center; margin-left:25%; margin-top:40px;}
+.btn {margin-left:100px;}
+</style>
+<link rel="stylesheet" href="resources/css/style.css" />
+<form name="frm" action="adNoticeProcIn" method="post">
 <input type="hidden" name="nlidx" value="<%=nlidx %>" />
-<fieldset>
+<div class="form-group">
+<h2>공지사항 수정 폼</h2>
+<br/>
+	<fieldset>
 		<select name="ctgr">
 			<option value="">분류조건</option>
 			<option value="a" <% if(ctgr.equals("a")){ %>selected="selected"<% } %>>공지사항</option>
@@ -20,27 +45,39 @@ String ctgr = pi.getCtgr();
 			<option value="c" <% if(ctgr.equals("c")){ %>selected="selected"<% } %>>이벤트발표</option>
 		</select>
 	</fieldset>
-<table width="600" cellpadding="5">
-<tr>
-<th width="15%">관리자 번호 : </th>
-<td width="35%"><%=noticeInfo.getAi_idx() %></td>
-<th width="15%">작성일</th>
-<td width="35%"><%=noticeInfo.getNl_date() %></td>
-</tr>
-<tr>
-<th width="15%">글제목</th>
-<td colspan="3"><input type="text" name="title" size="60" value="<%=noticeInfo.getNl_title() %>"></td>
-</tr>
-<tr>
-<th>글내용</th>
-<td colspan="3"><textarea name="content" rows="10" cols="65"><%=noticeInfo.getNl_content() %></textarea></td>
-</tr>
-<tr><td colspan="4" align="center">
-	<input type="submit" value="글 수정">
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="reset" value="다시 입력">
-</td></tr>
-</table>
+		<label for="exampleFormControlInput1">작성자</label>
+		<p><%=aiid %></p>
+	      <label for="exampleFormControlInput1">제목</label>
+	    <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="<%=noticeInfo.getNl_title() %>">
+	  
+	    <label for="exampleFormControlInput1">내용</label>
+	    <textarea class="form-control" id="exampleFormControlTextarea1" name="content" rows="9"><%=noticeInfo.getNl_content() %></textarea>  
+	<div class="btn">
+	<button type="submit" class="btn btn-dark">수정하기</button>
+	<button type="button" class="btn btn-dark" onclick="link();">목록으로</button>
+	<button type="reset" class="btn btn-dark">다시입력</button>
+	</div>
+</div>
 </form>
-</body>
-</html>
+<%@ include file="../_inc/inc_foot_ad.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -44,7 +44,7 @@ public class WalkingDao {
 			return pi;
 		}));
 		
-		sql = "SELECT * FROM t_product_info WHERE pi_gubun = 'c' AND pcb_id = 'a'  " + 
+		sql = "SELECT * FROM t_product_info WHERE pi_gubun = 'k' AND pcb_id = 'a'  " + 
 				" AND pi_date BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() order by pi_sale desc " + 
 				" LIMIT 1 ";
 			product.addAll(jdbc.query(sql, (ResultSet rs, int rowNum) -> {

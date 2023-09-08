@@ -21,35 +21,44 @@ function chkForm(){
 		document.frm.submit();
 	}
 }
+function link(){
+	location.href="adFaqList";
+}
 </script>
-<h2>faq 글 수정 폼</h2>
-<form name="frm" action="adFaqProcUp" method="post">
-<input type="hidden" name="flidx" value="<%=flidx %>" />
-<table width="600" cellpadding="5">
-<tr>
-<th width="15%">관리자 번호 : </th>
-<td width="35%"><%=faqInfo.getAi_idx() %></td>
-<th width="15%">작성일</th>
-<td width="35%"><%=faqInfo.getFl_date() %></td>
-</tr>
-<tr>
-<th width="15%">질문 제목</th>
-<td colspan="3"><input type="text" name="title" size="60" value="<%=faqInfo.getFl_title() %>"></td>
-</tr>
-<tr>
-<th>질문 내용</th>
-<td colspan="3"><textarea name="content" rows="10" cols="65"><%=faqInfo.getFl_content() %></textarea></td>
-</tr>
-<tr>
-<th>질문 답변</th>
-<td colspan="3"><textarea name="answer" rows="10" cols="65"><%=faqInfo.getFl_answer() %></textarea></td>
-</tr>
-<tr><td colspan="4" align="center">
-	<input type="button" value="글 수정" onclick="chkForm();">
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="reset" value="다시 입력">
-</td></tr>
-</table>
+<style>
+.form-group {width:50%; height:80%; align:center; margin-left:25%; margin-top:40px;}
+.btn {margin-left:100px;}
+</style>
+<link rel="stylesheet" href="resources/css/style.css" />
+<form name="frm" action="adFaqProcIn" method="post">
+<input type="hidden" name="idx" value="<%=loginInfo.getAi_idx() %>" />
+<div class="form-group">
+<h2>faq 수정 폼</h2>
+<br/>
+		<label for="exampleFormControlInput1">작성자</label>
+		<p><%=aiid %></p>
+	      <label for="exampleFormControlInput1">제목</label>
+	    <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="<%=faqInfo.getFl_title() %>">
+	    <label for="exampleFormControlInput1">질문</label>
+	    <textarea class="form-control" id="exampleFormControlTextarea1" name="content" rows="9"><%=faqInfo.getFl_content() %></textarea>
+	    <label for="exampleFormControlTextarea1">답변</label>
+	    <textarea class="form-control" id="exampleFormControlTextarea1" name="answer" rows="9"><%=faqInfo.getFl_answer() %></textarea>	  
+	<div class="btn">
+	<button type="submit" class="btn btn-dark">수정하기</button>
+	<button type="button" class="btn btn-dark" onclick="link();">목록으로</button>
+	<button type="reset" class="btn btn-dark">다시입력</button>
+	</div>
+</div>
 </form>
-</body>
-</html>
+<%@ include file="../_inc/inc_foot_ad.jsp" %>
+
+
+
+
+
+
+
+
+
+
+

@@ -6,6 +6,7 @@ import java.util.*;
 import javax.servlet.http.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import svc.*;
@@ -100,5 +101,5 @@ public class WalkingCtrl {
         
         
         return "walkingTrails/walkingList";
-    }
+    }	
 }

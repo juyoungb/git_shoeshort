@@ -15,34 +15,39 @@ function chkForm(){
 		document.frm.submit();
 	}
 }
+function link(){
+	location.href="adFaqList";
+}
 </script>
+<style>
+.form-group {width:50%; height:80%; align:center; margin-left:25%; margin-top:40px;}
+.btn {margin-left:100px;}
+</style>
 <link rel="stylesheet" href="resources/css/style.css" />
-<h2>faq 글 등록 폼</h2>
 <form name="frm" action="adFaqProcIn" method="post">
-<table width="600" cellpadding="5">
 <input type="hidden" name="idx" value="<%=loginInfo.getAi_idx() %>" />
-<tr>
-<th width="15%">작성자</th>
-<td width="35%"><%=aiid %></td>
-</tr>
-<tr>
-<th width="15%">질문제목</th>
-<td colspan="3"><input type="text" name="title" size="60"></td>
-</tr>
-<tr>
-<th>질문내용</th>
-<td colspan="3"><textarea name="content" rows="10" cols="65"></textarea></td>
-</tr>
-<tr>
-<th>질문답변</th>
-<td colspan="3"><textarea name="answer" rows="10" cols="65"></textarea></td>
-</tr>
-<tr><td colspan="4" align="center">
-	<input type="button" value="글 등록" onclick="chkForm();">
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="reset" value="다시 입력">
-</td></tr>
-</table>
+<div class="form-group">
+<h2>faq 등록 폼</h2>
+<br/>
+		<label for="exampleFormControlInput1">작성자</label>
+		<p><%=aiid %></p>
+	      <label for="exampleFormControlInput1">제목</label>
+	    <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="제목을 작성해주세요.">
+	  
+	    <label for="exampleFormControlInput1">질문</label>
+	    <textarea class="form-control" id="exampleFormControlTextarea1" name="content" rows="9"></textarea>
+	    <label for="exampleFormControlTextarea1">답변</label>
+	    <textarea class="form-control" id="exampleFormControlTextarea1" name="answer" rows="9"></textarea>	  
+	<div class="btn">
+	<button type="submit" class="btn btn-dark">등록하기</button>
+	<button type="button" class="btn btn-dark" onclick="link();">목록으로</button>
+	<button type="reset" class="btn btn-dark">다시입력</button>
+	</div>
+</div>
 </form>
-</body>
-</html>
+<%@ include file="../_inc/inc_foot_ad.jsp" %>
+
+
+
+
+
