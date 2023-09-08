@@ -29,9 +29,9 @@ public class ProductSvc {
 		 return stockList;
 	}
 
-	public List<ProductInfo> getProductList(int cpage, int psize, String where, String orderBy, String s) {
+	public List<ProductInfo> getProductList(int cpage, int psize, String where, String orderBy) {
 
-		 List<ProductInfo> procductList = productDao.getProductList(cpage, psize, where, orderBy, s); 	
+		 List<ProductInfo> procductList = productDao.getProductList(cpage, psize, where, orderBy); 	
 
 		
 		return procductList;

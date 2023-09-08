@@ -1,23 +1,22 @@
 package ctrl;
 
-import java.io.*;
-import java.net.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.net.URLEncoder;
 import java.util.*;
-
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.*;
 import javax.servlet.http.*;
 
-import org.json.simple.*;
-import org.json.simple.parser.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriBuilder;
-
 import svc.*;
 import vo.*;
 
@@ -28,8 +27,7 @@ public class ProductCtrl {
 	public void setProductSvc(ProductSvc productSvc) {
 		this.productSvc = productSvc;
 	}
-	
-	// New/�Ż�ǰ List�����ִ� @GetMapping
+
 	@GetMapping("/newProduct")
 	public String newProduct(HttpServletRequest request) throws Exception {
 		
@@ -39,15 +37,15 @@ public class ProductCtrl {
 		return "product/newProduct";
 	}	
 	
-	// ��ǰ Ŭ���� view�� �̵��ϴ� @GetMapping
+	
 	@GetMapping("/productView")
 	public String productView(Model model, HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String piid = request.getParameter("piid");
 		
-		List<ProductInfo> productList = productSvc.productView(piid); // ��ǰ�� ���� ������ �������°�
+		List<ProductInfo> productList = productSvc.productView(piid); 
 		
-		List<ProductStock> stockList = productSvc.productStockView(piid); // ��ǰ�� ���� �Ź� ������ �������°�
+		List<ProductStock> stockList = productSvc.productStockView(piid); 
 	
 		
 		request.setAttribute("productList", productList); 
@@ -56,64 +54,76 @@ public class ProductCtrl {
 		return "product/productView";
 	}
 	
+	@GetMapping("/productView2")
+	public String productView2(Model model, HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String piid = request.getParameter("piid");
+		
+		List<ProductInfo> productList = productSvc.productView(piid); 
+		
+		List<ProductStock> stockList = productSvc.productStockView(piid); 
 	
-	// ��з�(����,����,Ű��) Ŭ���� List�� �̵��ϴ� @GetMapping
+		
+		request.setAttribute("productList", productList); 
+		model.addAttribute("stockList", stockList);	
+		
+		return "product/productView2";
+	}
+	
+
 	@GetMapping("/productList")
 	public String productList(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception {
 		request.setCharacterEncoding("utf-8");
-
+	        
 		int cpage = 1, spage = 0, psize = 12, bsize = 10, rcnt = 0, pcnt = 0;
-		String gender ="", s = "", where = "", schargs ="";
+		String gender ="", where = "", schargs ="", init ="";
 		
 		if(request.getParameter("cpage") != null) 
 		cpage = Integer.parseInt(request.getParameter("cpage"));
 		
+
+		String pcb = request.getParameter("pcb"); 	
+		String sch = request.getParameter("sch"); 
 		
-		gender = request.getParameter("g"); 
-		if(gender != null ) where += " and a.pi_gubun= '"+ gender +"' ";
-		
-		String pcb = request.getParameter("pc	b"); // ��з� ����		
-		String sch = request.getParameter("sch"); // �˻� ����(���ݴ� : p, ��ǰ�� : n, �귣�� : b, ������ :s, ����:m)
-		
-		
-		if (sch != null && !sch.equals("")) {// �˻����� : &sch=ntest,bB1:B2:B3,p100000~20000	
+		if (sch != null && !sch.equals("")) {
+			
 			schargs +="&sch=" + sch;
 			String[] arrSch = sch.split(",");
 			for (int i = 0 ; i < arrSch.length ; i++) {
 				char c = arrSch[i].charAt(0);
-				if(c == 'n') {// ��ǰ�� �˻��� ���(n �˻���)
-					where += " and a.pi_name like '%" + arrSch[i].substring(1) + "%' ";
-					
-				} else if (c =='b') {// �귣�� �˻��� ���(b �귣�� 1:�귣��2)
-				// where +=" and (a.pb_id = '��1' or a.pb_id = '��2')";
-					String[] arr = arrSch[i].substring(1).split(":"); // :�� ��� �������
+				if(c == 'n') {
+					where += " and a.pi_name like '%" + arrSch[i].substring(1) + "%' ";				
+				} else if (c =='b') {
+					String[] arr = arrSch[i].substring(1).split(":"); 
 					where += " and (";
 					for(int j = 0 ; j < arr.length; j++) {
-						where += (j == 0 ? "" : " or ") + "a.pb_id ='" + arr[j] + "' "; // +�� �켱������ �����Ƿ� ���׿����ڿ� ()�� ����
+						where += (j == 0 ? "" : " or ") + "a.pb_id ='" + arr[j] + "' "; 
 					} 
 					where += ") ";
-					
-				} else if (c =='s') {// �귣�� �˻��� ���(s ������ 1:������2)
-						s = "k";
-						String[] arr = arrSch[i].substring(1).split(":"); // :�� ��� �������
+				} else if (c == 'c') {
+						String[] arr = arrSch[i].substring(1).split(":"); 
 						where += " and (";
 						for(int j = 0 ; j < arr.length; j++) {
-							where += (j == 0 ? "" : " or ") + "b.ps_size = " + arr[j]; // +�� �켱������ �����Ƿ� ���׿����ڿ� ()�� ����
-							
+							where += (j == 0 ? "" : " or ") + "a.pcb_id ='" + arr[j] + "' "; 
 						} 
 						where += ") ";
-						
-						
-				}else if (c =='g') {// �귣�� �˻��� ���(s �귣�� 1:�귣��2)
-						// where +=" and (a.pb_id = '��1' or a.pb_id = '��2')";
-							String[] arr = arrSch[i].substring(1).split(":"); // :�� ��� �������
+
+				} else if (c =='s') {
+						String[] arr = arrSch[i].substring(1).split(":"); 
+						where += " and (";
+						for(int j = 0 ; j < arr.length; j++) {
+							where += (j == 0 ? "" : " or ") + "b.ps_size = " + arr[j]; 
+						} 
+						where += ") ";	
+				}else if (c =='g') {
+							String[] arr = arrSch[i].substring(1).split(":"); 
 							where += " and (";
 							for(int j = 0 ; j < arr.length; j++) {
-								where += (j == 0 ? "" : " or ") + "a.pi_gubun ='" + arr[j] + "' "; // +�� �켱������ �����Ƿ� ���׿����ڿ� ()�� ����
+								where += (j == 0 ? "" : " or ") + "a.pi_gubun ='" + arr[j] + "' "; 
 							} 
 							where += ") ";
 													
-				} else if (c =='p') { // ���ݴ� �˻��� ���(p���۰�~���ᰡ (�̻�~����))
+				} else if (c =='p') { 
 					String sp = arrSch[i].substring(1, arrSch[i].indexOf('~'));
 					if (sp !=null && !sp.equals(""))
 					where += " and a.pi_price >= " + sp;
@@ -125,67 +135,59 @@ public class ProductCtrl {
 				}
 			}
 		}	
-		
-		String orderBy = " order by "; // ��� ���� ���� 
-		String  ob = request.getParameter("ob"); // ���� ����
-		//System.out.println(ob);
+	
+		String orderBy = " order by "; 
+		String  ob = request.getParameter("ob"); 
 		
 		if(ob == null || ob.equals(""))  ob = "a";
-		String obargs = "&ob=" + ob; // ���� ������ ���� ������Ʈ��
+		String obargs = "&ob=" + ob; 
 		switch (ob) {	
-		case "a" : //�ֽż�(�⺻��)
+		case "a" :
 			orderBy += " a.pi_date desc ";  break;
-		case "b" : // �Ǹŷ�(�α��)
+		case "b" : 
 			orderBy += " a.pi_sale desc ";  break;
-		case "c" : // ���� ���ݼ�
+		case "c" : 
 			orderBy += " a.pi_price asc ";  break;
-		case "d" : // ���� ���ݼ�
+		case "d" : 
 			orderBy += " a.pi_price desc ";  break;	
 		}
+		List<ProductInfo> productList = productSvc.getProductList(cpage, psize, where, orderBy);
 		
-		System.out.println(where);
-		List<ProductInfo> productList = productSvc.getProductList(cpage, psize, where, orderBy,s);//�˻��� ��ǰ�� �� ���� ���������� ������ ��ǰ ����� �޾ƿ�
-
-		rcnt = productSvc.getProductCount(where); // �˻��� ��ǰ�� �� ������ ��ü ���������� ���� �� ����
-		
+		rcnt = productSvc.getProductCount(where); 
 	
 		
-		List<ProductBrand> brandList = productSvc.getBrandList(); // �˻� �������� ������ �귣����� ����� �޾ƿ�
-		List<ProductCtgrBig> ctgrList = productSvc.getCtgrList(); // �˻� �������� ������ ī�װ����� ����� �޾ƿ�
-		List<ProductStock> stockList = productSvc.getSizeList(); // �˻� �������� ������ ��������� ����� �޾ƿ�
+		List<ProductBrand> brandList = productSvc.getBrandList(); 
+		List<ProductCtgrBig> ctgrList = productSvc.getCtgrList();
+		List<ProductStock> stockList = productSvc.getSizeList(); 
 
 		pcnt = rcnt /psize;
 		if(rcnt % psize > 0) 	pcnt++;
 		spage = (cpage -1) / bsize * bsize + 1;
-		
-		// ����¡�� ��ũ�� ���õ� �������� pageInfo�� �ν��Ͻ��� ����
-		
-		
-			
-		
+	
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setCpage(cpage);		pageInfo.setSpage(spage);
 		pageInfo.setPsize(psize); 		pageInfo.setBsize(bsize);				
 		pageInfo.setPcnt(pcnt);		    pageInfo.setRcnt(rcnt);
 		pageInfo.setSch(sch);			pageInfo.setOb(ob);
 	   	pageInfo.setSchargs(schargs);	pageInfo.setObargs(obargs);   
-	   	pageInfo.setGender(gender);   
-
 	   	
+	   	
+	   	System.out.print("pageInfo.getInit() :" +pageInfo.getInit());
+	   	if(pageInfo.getInit() == null) 	pageInfo.setInit(sch);	
 
-		request.setAttribute("pageInfo", pageInfo);	  	  // ������ ����
-		request.setAttribute("ctgrList", ctgrList);   	  // ī�װ� 
-		request.setAttribute("brandList", brandList); 	  // �귣��
-		request.setAttribute("stockList", stockList);     // ������ ����Ʈ
-		request.setAttribute("productList", productList); // ��ǰ ����Ʈ
+		request.setAttribute("pageInfo", pageInfo);	  	 
+		request.setAttribute("ctgrList", ctgrList);   	
+		request.setAttribute("brandList", brandList); 	  
+		request.setAttribute("stockList", stockList);     
+		request.setAttribute("productList", productList);
 		model.addAttribute("gender", gender);
 		return "product/productList";
 	}
-	
+
 	@GetMapping("/testWeather")
 	public String testWeather(HttpServletRequest request) throws Exception {
 		//현재 날짜를 가져옴
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
+	//	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
 /*		SimpleDateFormat date1 = new SimpleDateFormat("yyyyMMdd0600");
 		SimpleDateFormat date2 = new SimpleDateFormat("yyyyMMdd1800");*/
 /*		Date cur = new Date();
@@ -262,8 +264,95 @@ public class ProductCtrl {
         request.setAttribute("itemList", itemList);
         request.setAttribute("productList", productList);
         return "product/testWeather";
-       
-		
-		
+ 
 	}
+	
+	 @RequestMapping(value = "/trans", produces = "application/text; charset=utf-8")
+	   @ResponseBody
+	    public static String naverPapago(HttpServletRequest request) throws Exception {
+	      request.setCharacterEncoding("utf-8");
+	      String clientId = "wBlZUp0siZGe_kgC7560";//애플리케이션 클라이언트 아이디값";
+	        String clientSecret = "RF_OLwA8GZ";//애플리케이션 클라이언트 시크릿값";
+	        String text = request.getParameter("text");
+	        
+	        String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
+	        try {
+	           text = URLEncoder.encode(text, "UTF-8");
+	        } catch (UnsupportedEncodingException e) {
+	            throw new RuntimeException("인코딩 실패", e);
+	        }
+
+	        Map<String, String> requestHeaders = new HashMap<>();
+	        requestHeaders.put("X-Naver-Client-Id", clientId);
+	        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+
+	        String responseBody = post(apiURL, requestHeaders, text);
+
+	        System.out.println("responseBody : " + responseBody);
+	        
+	        // 번역된 결과를 받아오기 위해 JSON인스턴스 만든 후 setAttribute
+	        JSONParser parser = new JSONParser();
+	        JSONObject jo = (JSONObject) parser.parse(responseBody);
+	        JSONObject message = (JSONObject)jo.get("message");
+	        JSONObject result = (JSONObject)message.get("result");
+	        String translatedText = (String)result.get("translatedText");
+	        
+	        return translatedText;
+	    }
+
+	    private static String post(String apiUrl, Map<String, String> requestHeaders, String text){
+	        HttpURLConnection con = connect(apiUrl);
+	        String postParams = "source=en&target=ko&text=" + text; //원본언어: 한국어 (ko) -> 목적언어: 영어 (en)
+	        try {
+	            con.setRequestMethod("POST");
+	            for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
+	                con.setRequestProperty(header.getKey(), header.getValue());
+	            }
+
+	            con.setDoOutput(true);
+	            try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+	                wr.write(postParams.getBytes());
+	                wr.flush();
+	            }
+
+	            int responseCode = con.getResponseCode();
+	            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 응답
+	                return readBody(con.getInputStream());
+	            } else {  // 에러 응답
+	                return readBody(con.getErrorStream());
+	            }
+	        } catch (IOException e) {
+	            throw new RuntimeException("API 요청과 응답 실패", e);
+	        } finally {
+	            con.disconnect();
+	        }
+	    }
+
+	    private static HttpURLConnection connect(String apiUrl){
+	        try {
+	            URL url = new URL(apiUrl);
+	            return (HttpURLConnection)url.openConnection();
+	        } catch (MalformedURLException e) {
+	            throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
+	        } catch (IOException e) {
+	            throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
+	        }
+	    }
+
+	    private static String readBody(InputStream body){
+	        InputStreamReader streamReader = new InputStreamReader(body);
+
+	        try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+	            StringBuilder responseBody = new StringBuilder();
+
+	            String line;
+	            while ((line = lineReader.readLine()) != null) {
+	                responseBody.append(line);
+	            }
+
+	            return responseBody.toString();
+	        } catch (IOException e) {
+	            throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
+	        }
+	    }
 }

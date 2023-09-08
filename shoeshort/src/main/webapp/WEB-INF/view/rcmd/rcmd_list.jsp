@@ -300,7 +300,7 @@ if (pi.getPi_dc() > 0) {  //할인율이 있으면
 <td align="center" colspan="7">
 <% 
 if (rcnt > 0) {
-	String link = "rcmdList?1=1&cpage=";
+	String link = "rcmd?1=1&cpage=";
 %>
 	<nav aria-label="Page navigation example" style="text-align:center; width:200px;">
 		<ul class="pagination">

@@ -105,8 +105,8 @@ int rcnt = pageInfo.getRcnt(), cpage = pageInfo.getCpage(), bsize = pageInfo.get
 	a {color:black; text-decoration: none;}
     </style>
 
-  </head>
-  <body>
+</head>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0 bd-example-row">
 <div id="tmp">
 <div><h2 align="center">STYLE</h2></div>
 <div align="right" style="margin-right: 100px;"><a href="style?cpage=1&ob=a">인기순</a> | <a href="style?cpage=1&ob=b">최신순</a></div>

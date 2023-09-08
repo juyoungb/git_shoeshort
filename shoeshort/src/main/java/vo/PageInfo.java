@@ -6,7 +6,7 @@ public class PageInfo {
 // �Խ��Ǹ��, ��ǰ��� ��� ����¡�� �ʿ��� �������� ������ Ŭ����
 	private int cpage,  spage, psize, bsize, rcnt , pcnt, num, count;
 	private String schtype, keyword, args, schargs, pcb, pcs, obargs, vargs, sch, ob, v, schG, schA,schS, schK;	
-	private String gender;
+	private String init;
 	// schG = �˻����� ����, schS = �˻����� ����, schA = �˻����� ���ɺ�, schK = �˻����� Ű����
 	
 	public int getCpage() {
@@ -150,10 +150,13 @@ public class PageInfo {
 	public void setSchK(String schK) {
 		this.schK = schK;
 	}
-	public String getGender() {
-		return gender;
+	public String getInit() {
+		return init;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setInit(String init) {
+		this.init = init;
 	}
+
+
+	
 }

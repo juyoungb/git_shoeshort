@@ -6,6 +6,7 @@ import java.util.*;
 import javax.servlet.http.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import svc.*;
@@ -69,7 +70,7 @@ public class WalkingCtrl {
 
         JSONParser p = new JSONParser();
         JSONObject jo = (JSONObject)p.parse(sb.toString());
-        System.out.println("jo : " + jo);
+        // System.out.println("jo : " + jo);
         JSONObject response = (JSONObject)jo.get("response");
         JSONObject record = (JSONObject)response.get("record");
         
@@ -100,5 +101,5 @@ public class WalkingCtrl {
         
         
         return "walkingTrails/walkingList";
-    }
+    }	
 }

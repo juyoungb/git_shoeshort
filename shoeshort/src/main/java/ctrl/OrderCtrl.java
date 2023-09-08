@@ -42,7 +42,7 @@ public class OrderCtrl {
 		HttpSession session = request.getSession();
 		MemberInfo mi = (MemberInfo)session.getAttribute("loginInfo");
 		
-		System.out.println(oiid);
+//		System.out.println(oiid);
 		MemberInfo memberInfo = memberSvc.getMemberInfo(mi.getMi_id(), mi.getMi_pw());
 		OrderInfo orderInfo = orderSvc.getOneOrderInfo(mi.getMi_id(),oiid);
 		model.addAttribute("oi", orderInfo);
@@ -53,7 +53,7 @@ public class OrderCtrl {
 	@GetMapping("/orderCart")
 	public String orderCart(HttpServletRequest request, Model model) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("orderCart");
+		
 		HttpSession session = request.getSession();
 		
 		MemberInfo mi = (MemberInfo)session.getAttribute("loginInfo");
@@ -112,9 +112,12 @@ public class OrderCtrl {
 		request.setCharacterEncoding("utf-8");	
 		String piid = request.getParameter("piid");	
 		int pssize = Integer.parseInt(request.getParameter("psidx"));
-
+		
 		int cnt = Integer.parseInt(request.getParameter("cnt"));
-	
+
+		//System.out.println(piid);
+		
+		System.out.println(cnt);
 		HttpSession session = request.getSession();
 		MemberInfo loginInfo =(MemberInfo)session.getAttribute("loginInfo");
 		String miid = loginInfo.getMi_id();	
@@ -122,9 +125,9 @@ public class OrderCtrl {
 		OrderCart oc = new OrderCart();
 		oc.setMi_id(miid);		    oc.setPi_id(piid);
 		oc.setPs_size(pssize);		oc.setOc_cnt(cnt);
-		System.out.println(piid+cnt+pssize+miid);
+		//System.out.println(piid+cnt+pssize+miid);
 		int result = orderSvc.cartInsert(oc);
-		System.out.println("result :" + result);
+		//System.out.println("result :" + result);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println(result);
@@ -189,10 +192,11 @@ public class OrderCtrl {
 			}			
 			where +=") order by a.pi_id, c.ps_idx";
 		} else {
-			
+			System.out.println("바로구매");
 			String piid = request.getParameter("piid");
 			int size = Integer.parseInt(request.getParameter("size"));
 			int cnt = Integer.parseInt(request.getParameter("cnt"));
+			
 			System.out.println(piid+":"+size+":"+cnt);
 			select +=cnt + " cnt ";
 			where +=" and a.pi_id ='"+piid+"' and b.ps_size ="+size;

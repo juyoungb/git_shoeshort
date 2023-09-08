@@ -139,7 +139,6 @@ function clickBtn(idx) {
 	<div class="p-2 g-col-6">
     	<img src="resources/img/product/${el.getPi_img1() }" width="90%" height="500px">
   	</div>
-
   	<div class="g-col-5">
    		<strong class="product-title">EVENT</strong>
     	<div>
