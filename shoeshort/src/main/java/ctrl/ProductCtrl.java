@@ -23,10 +23,15 @@ import vo.*;
 @Controller
 public class ProductCtrl {
 	private ProductSvc productSvc;
+	private StyleSvc styleSvc;
 	
+	public void setStyleSvc(StyleSvc styleSvc) {
+		this.styleSvc = styleSvc;
+	}
 	public void setProductSvc(ProductSvc productSvc) {
 		this.productSvc = productSvc;
 	}
+
 
 	@GetMapping("/newProduct")
 	public String newProduct(HttpServletRequest request) throws Exception {
@@ -42,35 +47,23 @@ public class ProductCtrl {
 	public String productView(Model model, HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String piid = request.getParameter("piid");
+		System.out.println("piid :" +piid);
 		
 		List<ProductInfo> productList = productSvc.productView(piid); 
 		
 		List<ProductStock> stockList = productSvc.productStockView(piid); 
 	
 		
+		//스타일 
+
+		//List<StyleInfo> styleList = styleSvc.getProductViewStyle(piid);
 		request.setAttribute("productList", productList); 
 		model.addAttribute("stockList", stockList);	
+		//model.addAttribute("styleList", styleList);	
 		
 		return "product/productView";
 	}
 	
-	@GetMapping("/productView2")
-	public String productView2(Model model, HttpServletRequest request) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		String piid = request.getParameter("piid");
-		
-		List<ProductInfo> productList = productSvc.productView(piid); 
-		
-		List<ProductStock> stockList = productSvc.productStockView(piid); 
-	
-		
-		request.setAttribute("productList", productList); 
-		model.addAttribute("stockList", stockList);	
-		
-		return "product/productView2";
-	}
-	
-
 	@GetMapping("/productList")
 	public String productList(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception {
 		request.setCharacterEncoding("utf-8");
@@ -155,7 +148,6 @@ public class ProductCtrl {
 		
 		rcnt = productSvc.getProductCount(where); 
 	
-		
 		List<ProductBrand> brandList = productSvc.getBrandList(); 
 		List<ProductCtgrBig> ctgrList = productSvc.getCtgrList();
 		List<ProductStock> stockList = productSvc.getSizeList(); 
@@ -187,7 +179,7 @@ public class ProductCtrl {
 	@GetMapping("/testWeather")
 	public String testWeather(HttpServletRequest request) throws Exception {
 		//현재 날짜를 가져옴
-	//	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
 /*		SimpleDateFormat date1 = new SimpleDateFormat("yyyyMMdd0600");
 		SimpleDateFormat date2 = new SimpleDateFormat("yyyyMMdd1800");*/
 /*		Date cur = new Date();
@@ -211,7 +203,7 @@ public class ProductCtrl {
         urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON)Default: XML*/
         urlBuilder.append("&" + URLEncoder.encode("stnId","UTF-8") + "=" + URLEncoder.encode("108", "UTF-8")); /*108 전국, 109 서울, 인천, 경기도 등 (활용가이드 하단 참고자료 참조)*/
         urlBuilder.append("&" + URLEncoder.encode("regId","UTF-8") + "=" + URLEncoder.encode("11B00000", "UTF-8")); 
-        urlBuilder.append("&" + URLEncoder.encode("tmFc","UTF-8") + "=" + URLEncoder.encode("202309060600", "UTF-8")); /*-일 2회(06:00,18:00)회 생성 되며 발표시각을 입력 YYYYMMDD0600 (1800)-최근 24시간 자료만 제공*/
+        urlBuilder.append("&" + URLEncoder.encode("tmFc","UTF-8") + "=" + URLEncoder.encode("202309080600", "UTF-8")); /*-일 2회(06:00,18:00)회 생성 되며 발표시각을 입력 YYYYMMDD0600 (1800)-최근 24시간 자료만 제공*/
         System.out.println(urlBuilder);
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();      

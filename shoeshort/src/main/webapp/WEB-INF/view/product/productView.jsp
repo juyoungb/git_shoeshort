@@ -282,7 +282,22 @@ function showTap(chk) {
 </table>
 <hr>
 <div><!-- style -->
-	스타일
+<%-- <c:forEach items="${styleList }" var="si" >
+
+	   <div class="col">
+          <div class="card shadow-sm">
+          	<a href="styleView?siidx=${si.getSi_idx() }&piid=${si.getPi_id()}">
+            <img src="resources\img\style_img\${si.getSi_img()}" width="100%" height="350" /></a>
+            <div class="card-body">
+              <p class="card-text"><a href="memStyle?miid=${si.getMi_id()}" style="color:black; text-decoration-line: none;">${si.getMi_id() }</a></p>
+              <div class="d-flex justify-content-between align-items-center">
+                	<div width="50%">${si.getSi_content() }</div>
+                <div align="right"><img src="resources\img\style_img\style_good02.png" width="20px" height="20px"/>${si.getSi_good() }</div>
+              </div>
+            </div>
+          </div>
+        </div>
+</c:forEach> --%>
 </div>
 
   <ul class="nav nav-tabs">
@@ -300,7 +315,7 @@ function showTap(chk) {
     </div>
     <div class="tab-pane fade" id="change">
     	<div id="app">
-	    	<form action="trans">
+	    	<form action="trans" onsubmit="return false;">
     	    	내용  <input type="text" v-model="text" /> <br>
     	   		 결과 <p>{{result}}</p>
     		    <input type="button" value="번역하기" v-on:click="translate()"/>
@@ -330,7 +345,7 @@ new Vue({
                 }
             )
             .then(response => {
-                alert(JSON.stringify(response.data));
+               // alert(JSON.stringify(response.data));
 
                 this.result = response.data;
             })

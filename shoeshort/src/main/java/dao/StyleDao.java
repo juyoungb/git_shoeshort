@@ -201,4 +201,24 @@ public class StyleDao {
 		
 		return styleList;
 	}
+
+	public List<StyleInfo> getProductViewStyle(String piid) {
+		System.out.println("getProductViewStyle");
+		String sql= "select * from t_style_info where pi_id='"+piid+"' order by si_read desc";
+		System.out.println(sql);
+		List<StyleInfo> styleList = jdbc.query(sql, 
+				(ResultSet rs, int rowNum) -> {
+				StyleInfo si = new StyleInfo();
+				si.setSi_idx(rs.getInt("si_idx"));
+				si.setMi_id(rs.getString("mi_id"));
+				si.setPi_id(rs.getString("pi_id"));
+				si.setSi_img(rs.getString("si_img"));
+				si.setSi_good(rs.getInt("si_good"));
+				si.setSi_content(rs.getString("si_content"));
+	            return si;
+		});
+		return styleList.isEmpty() ? null : styleList ;
+	}
+
+
 }

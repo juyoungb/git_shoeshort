@@ -180,13 +180,13 @@ public class ProductDao {
 	}
 
 	public List<ProductInfo> getShoesList(String pcb_id) {
-		String sql ="select a.pi_id, a.pi_name from t_product_info a, t_product_stock b where a.pi_id=b.pi_id and a.pcb_id='"+pcb_id+"' and a.pi_isview='y' "
-				+ "and b.ps_stock != 0 order by a.pi_sale desc limit 0,3";
+		String sql ="select a.pi_id, a.pi_img1 from t_product_info a, t_product_stock b where a.pi_id=b.pi_id and a.pcb_id='"+pcb_id+"' and a.pi_isview='y' "
+				+ "and b.ps_stock != 0 order by a.pi_sale desc limit 0,1";
 		List<ProductInfo> productList = jdbc.query(sql,  new RowMapper<ProductInfo>(){
 			public ProductInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 				ProductInfo pi = new ProductInfo();
 				pi.setPi_id(rs.getString("pi_id"));
-				pi.setPi_name(rs.getString("pi_name"));
+				pi.setPi_img1(rs.getString("pi_img1"));
 				return pi;
 			}
 		});
