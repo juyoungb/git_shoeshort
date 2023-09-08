@@ -78,6 +78,13 @@ del { font-size:0.7em; color:#a0a0a0;}
   background-color: #fafafa; 
   border-color: #ccc;
 }
+#main {   
+	 margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    overflow: hidden;
+    padding: 30px 40px 120px
+    }
 </style>
 <script>
 function makeSch() {   // 검색폼의 조건들을 쿼리스트링sch의 값으로 만듬    검색조건 : &sch=ntest,c:a,bB1:B2:B3,gw,s240,p100000~20000   
@@ -288,15 +295,19 @@ function display(ct){
 	if (pageInfo.getRcnt() > 0) {
    		String lnk = "productList?cpage=1" + pageInfo.getSchargs();  // 정렬 및 보기 방식용 공통 링크 정렬이 바뀌면 다시 1페이지로돌아옴
 	%>
-   		<p align="right">
+	   <div class="container">
+	   <hr>
+   		<div align="right" style="width:100%;">
      	 <select name="ob" onchange="location.href='<%=lnk  %>&ob=' + this.value;">
          	<option value="a" <% if(pageInfo.getOb().equals("a")) { %>selected="selected"<% } %>>최신 순</option>
          	<option value="b" <% if(pageInfo.getOb().equals("b")) { %>selected="selected"<% } %>>판매 순</option>
          	<option value="c" <% if(pageInfo.getOb().equals("c")) { %>selected="selected"<% } %>>낮은 가격순</option>
          	<option value="d" <% if(pageInfo.getOb().equals("d")) { %>selected="selected"<% } %>>높은 가격순</option>
       	</select>&nbsp;&nbsp;&nbsp;&nbsp;
-   		</p>   
-   <table width="100%" cellpadding="15" cellspacing="0">
+   		</div>   
+  
+
+   <div class="row row-cols-4">
 	<%
    		int i = 0;
    	 	for (i = 0 ; i < productList.size() ; i++) {
@@ -306,24 +317,28 @@ function display(ct){
             	price = Math.round(pi.getPi_price() * (1 - pi.getPi_dc()) )+ "원"; //실제 판매가
             	price = "<del>" + pi.getPi_price() + "</del>&nbsp;&nbsp;&nbsp;" + price;
         	}
-        	if (i % 4 == 0) out.println("<tr>");
+        
 			%>
-			<div class="col">
-			<td align="center" onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
-				<div class="card shadow-sm">
+			
+			
+			<div class="col-2 m-4"> 
+				<div class="card" style="width: 15rem;">
 		   			<a href="productView?&piid=<%=pi.getPi_id()%>" >
-		   			<img src="resources/img/product/<%=pi.getPi_img1() %>" class="card-img" width="200px" height="200"></a>
-		        <div class="card-body">
-		        	<p class="card-text" style="font-size: 10px"><%=pi.getPi_name() %></p>
-		        	 <p class="card-text"><%=price %></p>
-		        </div>
-		        
-		      </div>
-			</td>
+		   			<img src="resources/img/product/<%=pi.getPi_img1() %>" class="card-img" width="250px" height="250px"></a>
+		        	<div class="card-body">
+		        		<p class="card-text" style="font-weight:bold; font-size: 11px"><%=pi.getPb_name() %></p>
+		        		<p style="font-size: 11px"><%=pi.getPi_name() %></p>
+		        	 	<em><%=price %></em>
+		        	</div>       
+		      	</div>
+		   </div>
+		    
 		
 			<%         
-         	if (i % 4 == 3) out.println("</tr>");
    		}
+   out.println("</div>");
+   out.println("</div>");	
+
    out.println("</table>");
   
 	%>
@@ -379,5 +394,4 @@ if (pageInfo.getRcnt() > 0) {
 </td>
 </tr>
 </table>
-
 <%@ include file="../_inc/inc_foot_fr.jsp" %>

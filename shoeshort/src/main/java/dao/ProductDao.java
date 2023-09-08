@@ -79,11 +79,11 @@ public class ProductDao {
 		}
 
 	public List<ProductInfo> getProductList(int cpage, int psize, String where, String orderBy) {
-		String sql = "select a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_sale, sum(b.ps_stock) stock " + 
-				" from t_product_info a, t_product_stock b where a.pi_id = b.pi_id  and "
-				+ "a.pi_isview = 'y' "+  where +" group by a.pi_id " + orderBy +" limit " + ((cpage - 1) * psize) + "," + psize ;
-			//System.out.println(sql);
-			//System.out.println("s :" +s);
+		String sql = "select a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_sale, sum(b.ps_stock) stock, if(c.pb_id ='NN', 'NIKE',if(c.pb_id='CC','Crocs', 'Dr. Martens')) pbname" + 
+				" from t_product_info a, t_product_stock b, t_product_brand c where a.pi_id = b.pi_id  and a.pb_id=c.pb_id and "
+				+ "a.pi_isview = 'y' and b.ps_isview ='y' "+  where +" group by a.pi_id " + orderBy +" limit " + ((cpage - 1) * psize) + "," + psize ;
+			System.out.println(sql);
+		
 			 List<ProductInfo> productList = jdbc.query(sql,
 						(ResultSet rs,int rowNum)->{
 						ProductInfo pi = new ProductInfo();
@@ -94,6 +94,7 @@ public class ProductDao {
 						pi.setPi_dc(rs.getDouble("pi_dc"));
 						pi.setPi_sale(rs.getInt("pi_sale"));
 						pi.setStock(rs.getInt("stock"));						
+						pi.setPb_name(rs.getString("pbname"));						
 						return pi;
 				});	
 			 
