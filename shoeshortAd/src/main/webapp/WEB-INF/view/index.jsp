@@ -130,15 +130,16 @@ font-weight:600;
 				<br>
 				<span id="itemtitle">행운의 숫자 찾기</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
-				<tr><th>마감일</th><td>D-10</td></tr>
-				<tr><th>참여자</th><td>20명</td></tr>
+				<tr><th>마감일</th><td style="font-weight:bold">D-${td.getLuckyDiff() }</td></tr>
+				<tr><th>참여자</th><td>${td.getLuckyMem()}명</td></tr>
 				</table>
 	        </div>
 	        <div class="flex-item" align="center">
 	        <br>
-	        	<span id="itemtitle">이 주의 날씨 추천 신발</span>
+	        	<span id="itemtitle">판매량 1위 </span>
 	        	<!-- <a href="" style="padding-left: 50px;"><img src="resources/img/icon/more.png"></a> -->
-	        	<img src="resources/img/product/NN10003_pd.png" width="290px" style="margin:10px">
+	        	<img src="resources/img/product/${td.getPi_img1()}" width="250px" height="200px;" style="border-radius:10px;" /><br>
+	        	<span style="font-weight:600;">< ${td.getPi_name()} > </span>
 			</div>
 	</div>
 </div>

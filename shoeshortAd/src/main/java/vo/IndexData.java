@@ -7,7 +7,8 @@ public class IndexData {
 	private int tdOrderCnt,  allMem, todayMem, salesMonth, total,acmltPoint; 
 	private int ve, prt, ce, vol;
 	private int maleCnt, ordCntTotal, ordCnt1, ordCnt2, ordCnt3;
-	private int pcnt, sale, unsale, ps;
+	private int pcnt, sale, unsale, ps, luckyMem, luckyDiff;
+	private String pi_img1, pi_name;
 	private List<NoticeInfo> noticeInfo; 
 	private List<ChartData> salesChart; 
 	private List<ChartData> ordChart; 
@@ -125,6 +126,30 @@ public class IndexData {
 	}
 	public void setPs(int ps) {
 		this.ps = ps;
+	}
+	public int getLuckyMem() {
+		return luckyMem;
+	}
+	public void setLuckyMem(int luckyMem) {
+		this.luckyMem = luckyMem;
+	}
+	public int getLuckyDiff() {
+		return luckyDiff;
+	}
+	public void setLuckyDiff(int luckyDiff) {
+		this.luckyDiff = luckyDiff;
+	}
+	public String getPi_img1() {
+		return pi_img1;
+	}
+	public void setPi_img1(String pi_img1) {
+		this.pi_img1 = pi_img1;
+	}
+	public String getPi_name() {
+		return pi_name;
+	}
+	public void setPi_name(String pi_name) {
+		this.pi_name = pi_name;
 	}
 	public List<NoticeInfo> getNoticeInfo() {
 		return noticeInfo;

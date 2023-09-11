@@ -48,7 +48,7 @@ public class IndexDao {
 		
 //	7. 주문현황
 		sql="select count(*) as ord, sum(case when oi_status = 'b' then 1 else 0 end) do, sum(case when oi_status = 'c' then 1 else 0 end) doing, sum(case when oi_status = 'd' then 1 else 0 end) done "
-		+ " from t_order_info where oi_date >= date_add(now(), interval -100 day)";
+		+ " from t_order_info where oi_date >= date_add(now(), interval -30 day)";
 		jdbc.queryForObject(sql,(ResultSet rs, int rowNum) -> {
 			indexData.setOrdCntTotal(rs.getInt("ord"));		indexData.setOrdCnt1(rs.getInt("do"));
 			indexData.setOrdCnt2(rs.getInt("doing"));		indexData.setOrdCnt3(rs.getInt("done"));				
@@ -63,8 +63,13 @@ public class IndexDao {
 			indexData.setUnsale(rs.getInt("unsale"));		indexData.setPs(rs.getInt("ps"));				
             return indexData;
 		});	
-//9. 이 주의 신발
-		
+//9. 이 판매량 1위 신발
+		sql = "select a.pi_img1, a.pi_name, sum(c.ps_idx) ps_idx from t_product_info a, t_order_info b, t_order_detail c "+ 
+			  " where a.pi_id =c.pi_id and b.oi_id = c.oi_id and b.oi_date >= date_sub(now(), interval 30 day) group by c.pi_id order by ps_idx desc limit 0,1 ";
+		jdbc.queryForObject(sql,(ResultSet rs, int rowNum) -> {
+			indexData.setPi_img1(rs.getString("pi_img1"));			indexData.setPi_name(rs.getString("pi_name"));			
+            return indexData;
+		});	
 //10. 이벤트 처리
 		sql = "select" + 
 				"(select datediff(date(ew_vedate), now()) from t_evt_wcup where ew_isview ='y' and ew_status ='b') ve," + 
@@ -76,7 +81,14 @@ public class IndexDao {
 			indexData.setVe(rs.getInt("ve"));		indexData.setPrt(rs.getInt("prt"));
 			indexData.setCe(rs.getInt("ce"));		indexData.setVol(rs.getInt("vol"));	
             return indexData;
-		});	
+		});
+		
+		sql ="select (select count(*) from t_evt_lucky_detail a, t_evt_lucky_detail b where a.el_idx =b.el_idx) mem, "+
+			"(select datediff(date(el_edate), now()) from t_evt_lucky_list where el_isview='y' order by el_edate desc limit 0,1) diff";
+		jdbc.queryForObject(sql,(ResultSet rs, int rowNum) -> {
+			indexData.setLuckyMem(rs.getInt("mem"));		indexData.setLuckyDiff(rs.getInt("diff"));
+            return indexData;
+		});
 //10. 그래프
 		//최근 10일 매출액 
 		
