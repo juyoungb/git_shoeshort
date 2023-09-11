@@ -103,7 +103,7 @@ font-weight:600;
 	        <div id="chart_div"></div></div>
 	        <div class="flex-item" align="center">
 	        	<br>
-	        	<span id="itemtitle">주문처리(100일 기준)</span>
+	        	<span id="itemtitle">주문처리(30일 기준)</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
 				<tr><th>주문 접수</th><td>${td.getOrdCntTotal() }개</td></tr>
 				<tr><th>상품 준비</th><td>${td.getOrdCnt1() }개</td></tr>

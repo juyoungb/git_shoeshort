@@ -21,11 +21,11 @@ else			url = url.replace('~', '&');
     padding: 0;
   }
 #loginbody{
-	  margin: auto;
+	margin-top:100px;
     width: 400px;
     background-color: 	white;
     text-align: center;
-     border-radius: 20px;
+    border-radius: 20px;
     padding: 20px;
 }
 
@@ -45,6 +45,7 @@ a {
 </style>
 </head>
 <body>
+<div align="center">
 <div  id="loginbody">
 	<div class="container" align="center">
 	 <div align="center"><img alt="banner" id="cenlo" style="width:80%;cursor:pointer;" src="/shoeshort/resources/img/logo.png" class="logo" onclick="location.href='/shoeshort/';"></div>
@@ -69,8 +70,9 @@ a {
     </div>
 	<a href="https://kauth.kakao.com/oauth/authorize?client_id=456f5080f677824581cb16867e1a0280&redirect_uri=http://localhost:8087/shoeshort/kakaoLoginProc
 &response_type=code"><img src="/shoeshort/resources/img/btn/kakaoBtn.png" id="apiBtn" onclick="" /></a>
-<a href="https://kauth.kakao.com/oauth/logout?client_id=456f5080f677824581cb16867e1a0280&logout_redirect_uri=http://localhost:8087/shoeshort/kakaoLogoutProc">카카오 로그아웃</a>
+<!-- <a href="https://kauth.kakao.com/oauth/logout?client_id=456f5080f677824581cb16867e1a0280&logout_redirect_uri=http://localhost:8087/shoeshort/kakaoLogoutProc">카카오 로그아웃</a> -->
     <br>
+</div>
 </div>
 </body>
 </html>

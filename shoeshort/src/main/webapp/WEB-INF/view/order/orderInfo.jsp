@@ -45,12 +45,6 @@ function cart(index) {
 <h2 style="text-align: center; margin-top: 30px;">주문내역</h2>
 <div style="margin: 20px auto; width: 1000px;">
   <table style="width: 100%; border-collapse: collapse;">
-    <!-- 
-    a : 입금 대기 중	b : 배송 준비 중
-    c : 배송 중		d : 배송 완료
-    e : 구매 확정		f : 주문 취소(배송 전)
-    g : 교환			h : 환불 
-    -->
 <c:if test="${not empty orderList}">
     <c:forEach items="${orderList}" var="ol" varStatus="i">
     <c:if test="${i.count == 0}"><c:set var="pdate" value="${fn:substring(ol.getOi_date(),0,10)}"/></c:if>    

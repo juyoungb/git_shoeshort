@@ -57,7 +57,6 @@ public class IndexDao {
 // 8. 상품 현황(판매중, 판매중지, 품절)
 		sql = "select (select count(*) from t_product_info) pcnt , (select count(*) from t_product_info where pi_isview='y') sale, (select count(*) from t_product_info where pi_isview='n') unsale, "+
 			  "(select sum(ps_stock) from t_product_stock where ps_isview='y') ps";
-		System.out.println(sql);
 		jdbc.queryForObject(sql,(ResultSet rs, int rowNum) -> {
 			indexData.setPcnt(rs.getInt("pcnt"));			indexData.setSale(rs.getInt("sale"));
 			indexData.setUnsale(rs.getInt("unsale"));		indexData.setPs(rs.getInt("ps"));				
@@ -76,7 +75,6 @@ public class IndexDao {
 				"(select count(*) from t_evt_wcup_join a, t_evt_wcup b where a.ew_idx =b.ew_idx and b.ew_status = 'b') prt," + 
 				"(select datediff(date(ew_cedate), now()) from t_evt_wcup where ew_isview ='y' and ew_status ='a') ce," + 
 				"(select count(*)from t_evt_wcup_list a, t_evt_wcup b where a.ew_idx = b.ew_idx and b.ew_isview ='y' and b.ew_status ='a') vol";
-		System.out.println(sql);
 		jdbc.queryForObject(sql,(ResultSet rs, int rowNum) -> {
 			indexData.setVe(rs.getInt("ve"));		indexData.setPrt(rs.getInt("prt"));
 			indexData.setCe(rs.getInt("ce"));		indexData.setVol(rs.getInt("vol"));	
