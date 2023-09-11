@@ -14,9 +14,9 @@ public class RcmdDao {
 		this.jdbc = new JdbcTemplate(dataSource);
 	}
 
-	public int getRcmdCount() {
+	public int getRcmdCount(String where) {
 	// 상품 정보 레코드 개수를 받아오는 메소드
-		String sql = "select count(*)rcnt from t_product_info";
+		String sql = "select count(*)rcnt from t_product_info " + where;
 		
 		int rcnt = jdbc.queryForObject(sql, (ResultSet rs, int rowNum) -> {
             return rs.getInt("rcnt");

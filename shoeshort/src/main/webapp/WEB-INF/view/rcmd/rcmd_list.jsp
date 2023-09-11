@@ -311,7 +311,7 @@ if (rcnt > 0) {
 <%
 	} else {
 %>
-			<li class="page-item"><a class="page-link" href="<%=link + (cpage - 1)%>">이전</a></li>
+			<li class="page-item"><a class="page-link" href="<%=link + (cpage - 1)%>&sch=<%=sch %>">이전</a></li>
 <% 
 	}
 	int spage = (cpage -1) / bsize * bsize + 1; //현재 블록에서의 시작 페이지 번호
@@ -321,10 +321,10 @@ if (rcnt > 0) {
 		// j :실제 출력할 페이지 번호로 전체 페이지 개수(마지막 페이지 번호)를 넘지 않게 사용해야 함
 		if (cpage == j){
 %>
-			<li class="page-item"><a class="page-link" href="#"><%=j %></a></li>
+			<li class="page-item"><a class="page-link" href="<%=link + j%>&sch=<%=sch %>"><%=j %></a></li>
 <%
 		} else {
-%>			<li class="page-item"><a class="page-link" href="<%=link + j%>"><%=j %></a></li> <%
+%>			<li class="page-item"><a class="page-link" href="<%=link + j%>&sch=<%=sch %>"><%=j %></a></li> <%
 		}
 	}
 	if (cpage == pcnt){
@@ -333,7 +333,7 @@ if (rcnt > 0) {
 <%
 	} else{ 
 %>
-			<li class="page-item"><a class="page-link" href="<%=link +(cpage + 1) %>">다음</a></li>
+			<li class="page-item"><a class="page-link" href="<%=link +(cpage + 1) %>&sch=<%=sch %>">다음</a></li>
 <%
 	}
 %>

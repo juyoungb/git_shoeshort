@@ -12,8 +12,8 @@ public class RcmdSvc {
 		this.rcmdDao = rcmdDao;
 	}
 
-	public int getRcmdCount() {
-		int rcnt = rcmdDao.getRcmdCount();
+	public int getRcmdCount(String where) {
+		int rcnt = rcmdDao.getRcmdCount(where);
 		
 		return rcnt;
 	}
