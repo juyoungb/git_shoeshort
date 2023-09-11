@@ -25,5 +25,15 @@ public class AdOrderSvc {
 		int result = adOrderDao.upOrderStatus(where,schOrder);
 		return result;
 	}
+
+	public OrderInfo getOrderInfo(String uid, String oiid) {
+		OrderInfo orderInfo = adOrderDao.getOrderInfo(uid,oiid);
+		return orderInfo;
+	}
+
+	public MemberInfo getMemberInfo(String uid) {
+		MemberInfo memberInfo = adOrderDao.getMemberInfo(uid);
+		return memberInfo;
+	}
 	
 }

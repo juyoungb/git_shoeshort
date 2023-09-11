@@ -103,7 +103,7 @@ font-weight:600;
 	        <div id="chart_div"></div></div>
 	        <div class="flex-item" align="center">
 	        	<br>
-	        	<span id="itemtitle">주문처리(100일 기준)</span>
+	        	<span id="itemtitle">주문처리(30일 기준)</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
 				<tr><th>주문 접수</th><td>${td.getOrdCntTotal() }개</td></tr>
 				<tr><th>상품 준비</th><td>${td.getOrdCnt1() }개</td></tr>
@@ -122,15 +122,15 @@ font-weight:600;
 	        	<br>
 	        	<span id="itemtitle">스타일 월드컵</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
-				<tr><th>투표 기간</th><td style="font-weight:bold">D-${td.getVe()}</td></tr>
+				<tr><th>투표 기간</th><td style="font-weight:bold"><%=(td.getVe() > 0 ? "D-"+td.getVe():(td.getVe() == 0 ? "D-DAY":"마감")) %></td></tr>
 				<tr><th>참여자</th><td>${td.getPrt() }명</td></tr>
-				<tr><th>모집 기간</th><td style="font-weight:bold">D-${td.getCe()}</td></tr>
+				<tr><th>모집 기간</th><td style="font-weight:bold"><%=(td.getCe() > 0 ? "D-"+td.getCe():(td.getCe() == 0 ? "D-DAY":"마감")) %></td></tr>
 				<tr><th>지원자</th><td>${td.getVol() }명</td></tr>
 				</table>
 				<br>
 				<span id="itemtitle">행운의 숫자 찾기</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
-				<tr><th>마감일</th><td style="font-weight:bold">D-${td.getLuckyDiff() }</td></tr>
+				<tr><th>마감일</th><td style="font-weight:bold"><%=(td.getLuckyDiff() > 0 ? "D-"+td.getLuckyDiff():(td.getLuckyDiff() == 0 ? "D-DAY":"마감")) %></td></tr>
 				<tr><th>참여자</th><td>${td.getLuckyMem()}명</td></tr>
 				</table>
 	        </div>

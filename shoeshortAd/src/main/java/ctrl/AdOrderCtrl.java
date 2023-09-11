@@ -93,7 +93,7 @@ public class AdOrderCtrl {
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("orderList", orderList);
 		
-		return "OrderAdmin/adOrderList";
+		return "orderAdmin/adOrdList";
 	}
 	@PostMapping("/orderStatus")
 	public void orderForm(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception  {
@@ -120,6 +120,19 @@ public class AdOrderCtrl {
 			out.println("location.href = 'adOrderList';");
 			out.println("</script>");
 		}
+	}
+	@GetMapping("/orderDetail")
+	public String orderDetail(HttpServletRequest request, Model model) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String oiid = request.getParameter("oiid");
+		String uid = request.getParameter("uid");
+		
+		OrderInfo orderInfo = adOrderSvc.getOrderInfo(uid,oiid);
+		MemberInfo memberInfo = adOrderSvc.getMemberInfo(uid);
+		System.out.println(orderInfo.getOi_id());
+		model.addAttribute("oi", orderInfo);
+		model.addAttribute("mi", memberInfo);
+		return "orderAdmin/adOrdDetail";
 	}
 
 }

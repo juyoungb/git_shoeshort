@@ -150,7 +150,7 @@ if (orderList.size() > 0) {
 	for(OrderInfo oi : orderList) {%>
 	
     <tr>
-		<tr>
+		<tr style="cursor:pointer;"onclick="popUp('orderDetail?oiid=<%=oi.getOi_id()%>&uid=<%=oi.getMi_id()%>','','1000','800');">
 		<td  style ="vertical-align : middle " ><input type="checkbox"  name="chk" value="<%=oi.getOi_id() %>" onclick="chkOne(this)" /></td>
 		<td><%=oi.getMi_id() %></td><td><%=oi.getMi_name() %></td>
 		<td><%=oi.getOi_id() %></td><td><%=oi.getCnt() %></td>
