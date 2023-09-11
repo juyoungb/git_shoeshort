@@ -251,7 +251,7 @@ function drawChart2() {
 	  data.addColumn('number', '개수');
 
 	  data.addRows([
-		  <%for(ChartData sale: td.getOrdChart()) {%>
+		  <%for(ChartData sale: td.getMemChart()) {%>
 		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".")%>', <%=sale.getVal()%>],
 	    <%}%>
 	    // 나머지 요일에 대한 데이터를 추가하세요.
@@ -275,7 +275,7 @@ function drawChart3() {
 	  data.addColumn('number', '개수');
 
 	  data.addRows([
-		  <%for(ChartData sale: td.getMemChart()) {%>
+		  <%for(ChartData sale: td.getOrdChart()) {%>
 		  ['<%=(sale.getDate().substring(5, 10)).replace("-", ".") %>', <%=sale.getVal() %>],
 	    <%}%>
 	    // 나머지 요일에 대한 데이터를 추가하세요.
