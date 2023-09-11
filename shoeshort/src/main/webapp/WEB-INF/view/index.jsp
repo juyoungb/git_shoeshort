@@ -85,7 +85,6 @@ if(itemList.size() > 0){
 	</div>
 	</div>
 	
-</div>
 <div style="width:1300px"><hr></div>
 <div style="width:1300px; padding-left:10px;" align="left">
 <span style="font-size:20px; font-weight:bold;">Top brand</span>

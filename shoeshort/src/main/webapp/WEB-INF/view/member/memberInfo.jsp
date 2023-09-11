@@ -12,7 +12,7 @@ table{
 <h2>내 정보 변경</h2><br>
 <table>
 <tr>
-	<td colspan="2"><strong>이름 :</strong> ${mi.getMi_name() }</td><td colspan="2"><strong>아이디 :</strong> ${mi.getMi_id()}</td>
+	<td colspan="4"><strong>이름 :</strong> ${mi.getMi_name() }(${mi.getMi_id()})</td><td>
 </tr>
 <tr>
 	<td colspan="4"><hr></td>

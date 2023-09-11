@@ -37,11 +37,9 @@ public class MemberCtrl {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		System.out.println("kind :"+kind);
 		out.println("<script>");
 		if(kind.equals("id")) {
 			String mi_id = memberSvc.getMemberId(mi);
-			System.out.println(mi_id);
 				if (!mi_id.equals("")) {
 				out.println("alert('회원님의 아이디는 "+mi_id+"입니다.');");
 				out.println("location.href = 'memberSch';");
@@ -170,7 +168,6 @@ public class MemberCtrl {
 			int maidx = Integer.parseInt(n);	
 			ma = memberSvc.getMemberAddr(maidx);
 			ma.getAll();
-			System.out.println("test");
 		}
 		model.addAttribute("ma", ma);
 		return "member/addrForm";

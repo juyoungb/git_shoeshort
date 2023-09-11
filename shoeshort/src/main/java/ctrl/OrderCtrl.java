@@ -42,9 +42,9 @@ public class OrderCtrl {
 		HttpSession session = request.getSession();
 		MemberInfo mi = (MemberInfo)session.getAttribute("loginInfo");
 		
-//		System.out.println(oiid);
 		MemberInfo memberInfo = memberSvc.getMemberInfo(mi.getMi_id(), mi.getMi_pw());
 		OrderInfo orderInfo = orderSvc.getOneOrderInfo(mi.getMi_id(),oiid);
+		System.out.println("order: "+orderInfo.getOi_payment());
 		model.addAttribute("oi", orderInfo);
 		model.addAttribute("mi", memberInfo);
 		return "order/orderDetail";

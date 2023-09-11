@@ -26,7 +26,7 @@ ${el.getEw_title() }
 <c:forEach begin="1" end="${el.getEw_rule()}" var="i">
 <c:set var="sys" value="${sys}${1}"/>
 </c:forEach>
-<input type="button" onclick="location.href='wcupEnjoy?uid=<%=loginInfo.getMi_id() %>&ewrule=${el.getEw_rule()}&rand=${el.getRand()}&ewidx=${ewidx}&title=${el.getEw_title() }&stage=1&sys=${sys}'" value="시작하기" />
+<input type="button" onclick="location.href='wcupEnjoy?ewrule=${el.getEw_rule()}&rand=${el.getRand()}&ewidx=${el.getEw_idx()}&title=${el.getEw_title() }&stage=1&sys=${sys}'" value="시작하기" />
 <input type="button" onclick="window.close();opener.location.reload(); " value="나가기" />
 <input type="button" onclick="" value="전체 순위 보기" />
 
