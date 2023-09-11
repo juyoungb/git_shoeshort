@@ -122,9 +122,9 @@ font-weight:600;
 	        	<br>
 	        	<span id="itemtitle">스타일 월드컵</span>
 	        	<table style="width:300px;text-align:center; margin:5px 7px; padding:10px;" border="1">
-				<tr><th>투표 기간</th><td style="font-weight:bold">D-${(td.getVe() > 0 ? td.getVe():"End") }</td></tr>
+				<tr><th>투표 기간</th><td style="font-weight:bold">D-${td.getVe()}</td></tr>
 				<tr><th>참여자</th><td>${td.getPrt() }명</td></tr>
-				<tr><th>모집 기간</th><td style="font-weight:bold">D-${(td.getCe() > 0 ? td.getCe():"End") }</td></tr>
+				<tr><th>모집 기간</th><td style="font-weight:bold">D-${td.getCe()}</td></tr>
 				<tr><th>지원자</th><td>${td.getVol() }명</td></tr>
 				</table>
 				<br>

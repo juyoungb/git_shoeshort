@@ -19,8 +19,9 @@ table th,td{
 </style>
 </head>
 <body>
+<div style="width:1300px;" align="center">
 <h2>주문 확인</h2>
-<table>
+<table class="table">
 <tr>
 <th>주문자 성함</th>
 <td>${mi.getMi_name()}</td>
@@ -32,7 +33,7 @@ table th,td{
 <td>${oi.getOi_date()}</td>
 <th>결제방법</th>
 <!-- a: 카드결제 b: 휴대폰결제 c: 무통장입금 -->
-<td>${oi.getOi_pay() == a ? "카드결제" : (oi.getOi_pay() == b ? "휴대폰결제" : "무통장입금")}</td>
+<td>${oi.getOi_payment() == "a" ? "카드결제" : (oi.getOi_payment() == "b" ? "휴대폰결제" : "무통장입금")}</td>
 </table><br><br><br><br>
 <table>
 <tr><th>받으시는분</th><td>${oi.getOi_name()}</td></tr>
@@ -51,6 +52,6 @@ table th,td{
 </tr>
 </c:forEach>
 </table>
-
+</div>
 </body>
 </html>

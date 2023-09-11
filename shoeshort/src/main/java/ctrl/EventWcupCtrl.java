@@ -26,11 +26,23 @@ public class EventWcupCtrl {
 		EventWcupInfo recruitList = (EventWcupInfo)eventWcupSvc.getEventList("a");
 		if(voteList != null || recruitList != null ) {		 		
 		List<WcupDetail> detailList = eventWcupSvc.getEventDList(voteList.getEw_idx());
+		voteList.setRand(wcupSeq(voteList.getEw_rule()));
 		model.addAttribute("el", voteList);
 		model.addAttribute("rl", recruitList);
 		model.addAttribute("detailList", detailList);
 		} 
 		return "event/evt_wcup/wcupMain"; 
+	}
+	@GetMapping("/wcupGame")
+	public String wcupGame(HttpServletRequest request,HttpServletResponse response,  Model model) throws Exception  {
+		request.setCharacterEncoding("utf-8");
+		
+		int ewidx =Integer.parseInt(request.getParameter("gi")); 
+		model.addAttribute("ewidx",  ewidx);	
+		EventWcupInfo eventList = (EventWcupInfo)eventWcupSvc.getEventList("b");
+		
+		model.addAttribute("el", eventList);
+		return "event/evt_wcup/wcupGame"; 
 	}
 	//스타일 월드컵 지원하는 폼
 	@GetMapping("/wcupJoin")
@@ -76,39 +88,32 @@ public class EventWcupCtrl {
 		}
 		out.close();
 	}
-	@GetMapping("/wcupGame")
-	public String wcupGame(HttpServletRequest request,HttpServletResponse response,  Model model) throws Exception  {
-		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		MemberInfo mi = (MemberInfo)session.getAttribute("loginInfo");
-		isLogin(response,mi);
-		int ewidx =Integer.parseInt(request.getParameter("gi")); 
-		model.addAttribute("ewidx",  ewidx);	
-		EventWcupInfo eventList = (EventWcupInfo)eventWcupSvc.getEventList("b");
-		List<WcupDetail> detailList = eventWcupSvc.getEventDList(eventList.getEw_idx()); 
-		eventList.setRand(wcupSeq(eventList.getEw_rule()));
-		model.addAttribute("el", eventList);
-		model.addAttribute("dl", detailList);
-		return "event/evt_wcup/wcupGame"; 
-	}
 	//스타일 월드컵 게임 진행 구조
 	@GetMapping("/wcupEnjoy")
 	public String wcupEnjoy(HttpServletRequest request,HttpServletResponse response,  Model model) throws Exception  {
 		request.setCharacterEncoding("utf-8");
-		String uid =request.getParameter("uid"), title=request.getParameter("title");
+		HttpSession session = request.getSession();
+		MemberInfo mi = (MemberInfo)session.getAttribute("loginInfo");
+		isLogin(response,mi);
+		System.out.println("test11111111111111111");
+		String uid =mi.getMi_id(), title=request.getParameter("title");
 		int ewidx=Integer.parseInt(request.getParameter("ewidx")), stage =Integer.parseInt(request.getParameter("stage"));
+		System.out.println("test1231231");
 		String sys = request.getParameter("sys");	//선택한 값 저장용 변수 ex) 1111 -> 1011 0은 선택 받지 못한 데이터 최종적으로 하나만 남게 됨
 		String choice = request.getParameter("choice");		// 사용자가 선택한 값 저장 변수
 		int ewrule = Integer.parseInt(request.getParameter("ewrule"));	//8
-		
 		userValid(response,"join",uid,request.getParameter("ewidx"));//참여 여부 판별
 		
+		System.out.println("test23123123123123121231231");
 		List<WcupDetail> detailList = null;
 		detailList = eventWcupSvc.getEventDList(ewidx);
 		
 		String img1="",img2="",imgs ="", winner="";
 		String[][] arr = new String[2][ewrule];
 		String rand =request.getParameter("rand");
+		System.out.println("RAND :"+rand);
+		System.out.println("sys :"+sys);
+		System.out.println("ewrule :"+ewrule);
 		if(stage>1) sys = wcupResult(ewrule, sys,stage, choice);
 		for(int i=0; i<ewrule; i++){ //42318765
 			//Random 배열에 램덤 순서에 맞게 이미지와 아이디를   담는다.(0: 스타일 이미지 , 1: 아이디)

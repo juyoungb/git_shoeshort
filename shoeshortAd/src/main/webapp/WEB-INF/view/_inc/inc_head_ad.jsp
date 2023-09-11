@@ -118,12 +118,12 @@ String aiid = loginInfo.getAi_id();
         </ul>
       </li>
       <li>
-        <a href="adMainSet">
-          <i class='bx bx-compass' ></i>
-          <span class="link_name">메인 관리</span>
+        <a href="adStore">
+          <i class='bx bx-cog' ></i>
+          <span class="link_name">매장관리</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="adMainSet">메인 관리</a></li>
+          <li><a class="link_name" href="adStore">매장관리</a></li>
         </ul>
       </li>
       <li>
@@ -133,15 +133,6 @@ String aiid = loginInfo.getAi_id();
         </a>
         <ul class="sub-menu blank">
           <li><a class="link_name" href="logout">logout</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="adStore">
-          <i class='bx bx-cog' ></i>
-          <span class="link_name">매장관리</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="adStore">매장관리</a></li>
         </ul>
       </li>
 </ul>

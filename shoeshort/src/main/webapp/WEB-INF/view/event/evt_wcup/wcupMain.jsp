@@ -53,9 +53,11 @@
 <c:if test="${late<=0}">0.0</c:if>%)
 </a>
 </c:forEach>
-
+<c:forEach begin="1" end="${el.getEw_rule()}" var="i">
+<c:set var="sys" value="${sys}${1}"/>
+</c:forEach>
 <br>
-<input type="button" class="styled-button" style="width:500px;" onclick="popUp('wcupGame?gi=${el.getEw_idx()}&rule=${el.getEw_rule()}','','1400','850');" value="코디왕을 뽑으러 가기"/>
+<input type="button" class="styled-button" style="width:500px;" onclick="popUp('wcupEnjoy?ewrule=${el.getEw_rule()}&title=${el.getEw_title() }&rand=${el.getRand()}&ewidx=${el.getEw_idx()}&stage=1&sys=${sys}','','1400','850');" value="코디왕을 뽑으러 가기"/>
 <br>
 이벤트 기간: ${fn:substring(el.getEw_vsdate(),0,10) }~${fn:substring(el.getEw_vedate(),0,10) }
 </div>

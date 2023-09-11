@@ -31,7 +31,6 @@ public class MemberDao {
 	public int memberUpdate(MemberInfo mi) {
 		String sql = "update t_member_info set mi_phone='" + mi.getMi_phone() + "', mi_email='" + mi.getMi_email() + "' "+
 				 "where mi_id='" + mi.getMi_id() + "' ";
-		// System.out.println(sql);
 		int result = jdbc.update(sql);
 	
 		return result;
@@ -55,7 +54,6 @@ public class MemberDao {
 	}
 	public int setMemberInfo(String uid, String kind, String data) {
 		String sql = "update t_member_info set mi_"+kind+"='"+data+"' where mi_id='"+uid+"'";
-		System.out.println(sql);
 		int result = jdbc.update(sql);
 	
 		return result;
@@ -63,7 +61,6 @@ public class MemberDao {
 
 	public MemberInfo getMemberInfo(String mi_id, String mi_pw) {
 		String sql = "select * from t_member_info where mi_id = ? and mi_pw = ? ";
-		System.out.println(sql);
 		List<MemberInfo> results = jdbc.query(sql, new RowMapper<MemberInfo>(){
 			public MemberInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 				MemberInfo mi = new MemberInfo();
@@ -130,7 +127,6 @@ public class MemberDao {
 		String sql="";
 		if(ma.getMa_basic().equals("y")) AddrUpBasic(ma.getMi_id());
 		sql = "insert into t_member_addr values(null, ?, ?, ?, ?, ?, ?, ?, ?, now())";
-		System.out.println(sql);
 		int result = jdbc.update(sql, ma.getMi_id(), ma.getMa_name(), ma.getMa_rname(), ma.getMa_phone(),ma.getMa_zip(), ma.getMa_addr1(),ma.getMa_addr2(), ma.getMa_basic());
 			
 			return result;
@@ -141,19 +137,16 @@ public class MemberDao {
 		if(ma.getMa_basic().equals("y")) AddrUpBasic(ma.getMi_id());
 		String sql = "update t_member_addr set ma_name='"+ma.getMa_name()+"', ma_rname='"+ma.getMa_rname()+"', ma_phone='"+ma.getMa_phone()+
 				"', ma_zip='"+ma.getMa_zip()+"', ma_addr1='"+ma.getMa_addr1()+"',  ma_addr2='"+ma.getMa_addr2()+"', ma_basic='"+ma.getMa_basic()+"' where ma_idx="+ma.getMa_idx(); 
-		System.out.println(sql);
 		int result = jdbc.update(sql);
 		return result;
 	}
 	public void AddrUpBasic(String uid) {
-		System.out.print("asdasdasdased");
 		String sql = "update t_member_addr set ma_basic='n' where mi_id='"+uid+"' "; 
 		jdbc.update(sql);
 	}
 
 	public int AddrDelete(String maidx) {
 		String sql = "delete from t_member_addr where ma_idx="+maidx;
-		System.out.println(sql);
 		int result = jdbc.update(sql);
 	
 		return result;
@@ -161,7 +154,12 @@ public class MemberDao {
 
 	public String getMemberId(MemberInfo mi) {
 		String sql = "select mi_id from t_member_info where mi_name='"+mi.getMi_name()+"' and mi_email ='"+mi.getMi_email()+"' ";
-		String mi_id = jdbc.queryForObject(sql, String.class);
+		String mi_id = "";
+		try {
+			mi_id = jdbc.queryForObject(sql, String.class);
+		}catch(Exception e) {
+			 mi_id ="none";
+		}
 		return mi_id;
 	}
 

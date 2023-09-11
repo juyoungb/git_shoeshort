@@ -26,8 +26,7 @@ table th,td{
 <h2>포인트 내역</h2>
 <div align="left">
 <div style="width:1000px; height:100px; border-radius:8px; outline: solid 1px black;">
-<div style="margin:20px;">사용가능한 포인트  <%=loginInfo.getMi_point() %>
-소멸예정 포인트  <%=loginInfo.getMi_point()/10 %>
+<div style="margin:5px;">사용가능한 포인트  <%=loginInfo.getMi_point() %>p
 </div>
 <br>
 </div>
