@@ -160,10 +160,10 @@ font-weight:600;
 				  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" align="center">
 				    <div id="chart_div2"></div>
 				  </div>
-				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				  <div class="tab-pane fade active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div id="chart_div3"></div>
 				  </div>
-				  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+				  <div class="tab-pane fade active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 				  	<div id="chart_div4"></div>
 				  </div>
 			</div>
@@ -242,6 +242,7 @@ function drawChart1() {
 	  var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
 	  chart.draw(data, options);
 	}
+
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawChart2);
 
@@ -269,6 +270,7 @@ function drawChart2() {
 	}
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawChart3);
+
 function drawChart3() {
 	  var data = new google.visualization.DataTable();
 	  data.addColumn('string', 'Day'); // 요일을 문자열로 추가
