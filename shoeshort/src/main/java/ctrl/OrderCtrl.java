@@ -164,7 +164,7 @@ public class OrderCtrl {
 	public String orderForm(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception  {
 		request.setCharacterEncoding("utf-8");
 		String kind = request.getParameter("kind");
-	
+		System.out.println("orderForm");
 		HttpSession session = request.getSession();
 		MemberInfo mi = (MemberInfo)session.getAttribute("loginInfo");
 		isLogin(response,mi);

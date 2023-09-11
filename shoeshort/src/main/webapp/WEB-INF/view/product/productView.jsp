@@ -84,7 +84,6 @@ display: inline-block;
 </style>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="resources/js/jquery-3.6.4.js"></script>
 <script>
 function swapIng(img){
    var big = document.getElementById("bigImg"); 
@@ -169,10 +168,7 @@ function buy(kind) {
       			}
      		}); 
     } else {// 바로 구매하기일 경우
-    	alert("바로구매일 경우")
-		alert("cnt :" +cnt);
-		alert("size :" +size);
-      	document.frm2.size.value = ss;
+        document.frm2.size.value = ss;
 	    document.frm2.cnt.value = cnt;
 	    document.frm2.submit(); 	      
     }
@@ -227,6 +223,7 @@ function showTap(chk) {
 		   <input type="hidden" name="piid" value="<%=pl.getPi_id()%>">
 		   <input type="hidden" name="kind" value="d">
 		   <input type="hidden" name="cnt" value="">
+		   <input type="hidden" name="size" value="">
 	 </form>  
 <td width="35%" valign="top">
 <!-- 상품 정보 관련 영역 -->
@@ -373,7 +370,7 @@ new Vue({
     }
 });
 </script> 
- 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <%} %>
