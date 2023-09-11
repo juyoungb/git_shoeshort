@@ -483,11 +483,7 @@ if (productList.size() > 0) {
 		<td align="center">
 		<%
 		if(pi.getPi_isview().equals("y")){%>
-<<<<<<< HEAD
-			<input type="button" value="미게시" onclick="productIsview('<%=pi.getPi_id()%>', '미게시');">
-=======
 			<input type="button" width="15px" value="미게시"  class="btn btn-secondary btn-sm" onclick="productIsview('<%=pi.getPi_id()%>', '미게시');">
->>>>>>> origin/main
 		<%} else{ %>
 			<input type="button" value="게시" class="btn btn-dark btn-sm" onclick="productIsview('<%=pi.getPi_id()%>', '게시');">
 			
@@ -507,8 +503,8 @@ if (productList.size() > 0) {
 	if (pageInfo.getCpage() == 1) {
 		out.println("[<<]&nbsp;&nbsp;&nbsp;[<]&nbsp;&nbsp;");
 	}else{
-		out.println("<a href='adProductList?capage=1'>[<<]</a>&nbsp;&nbsp;&nbsp;");
-		out.println("<a href='adProductList?capage=1" + (pageInfo.getCpage() - 1) + "'>[<]</a>&nbsp;&nbsp;&nbsp;");		
+		out.println("<a href='adProductList?cpage=1'>[<<]</a>&nbsp;&nbsp;&nbsp;");
+		out.println("<a href='adProductList?cpage=1" + (pageInfo.getCpage() - 1) + "'>[<]</a>&nbsp;&nbsp;&nbsp;");		
 	}
 	
 	

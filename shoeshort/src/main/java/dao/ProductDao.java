@@ -181,7 +181,8 @@ public class ProductDao {
 
 	public List<ProductInfo> getShoesList(String pcb_id) {
 		String sql ="select a.pi_id, a.pi_img1 from t_product_info a, t_product_stock b where a.pi_id=b.pi_id and a.pcb_id='"+pcb_id+"' and a.pi_isview='y' "
-				+ "and b.ps_stock != 0 order by a.pi_sale desc limit 0,1";
+				+ "and b.ps_stock != 0 order by a.pi_sale, rand() desc limit 0,1";
+		System.out.println(sql);
 		List<ProductInfo> productList = jdbc.query(sql,  new RowMapper<ProductInfo>(){
 			public ProductInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 				ProductInfo pi = new ProductInfo();
@@ -193,6 +194,25 @@ public class ProductDao {
 	
 		return productList;
 	}
+	
+	public List<StyleInfo> getProductViewStyle(String piid) {
+		System.out.println("getProductViewStyle");
+		String sql= "select * from t_style_info where pi_id='"+piid+"' order by si_read desc Limit 0,3";
+		System.out.println(sql);
+		List<StyleInfo> styleList = jdbc.query(sql, 
+				(ResultSet rs, int rowNum) -> {
+				StyleInfo si = new StyleInfo();
+				si.setSi_idx(rs.getInt("si_idx"));
+				si.setMi_id(rs.getString("mi_id"));
+				si.setPi_id(rs.getString("pi_id"));
+				si.setSi_img(rs.getString("si_img"));
+				si.setSi_good(rs.getInt("si_good"));
+				si.setSi_content(rs.getString("si_content"));
+	            return si;
+		});
+		return styleList.isEmpty() ? null : styleList ;
+	}
+
 
 
 }

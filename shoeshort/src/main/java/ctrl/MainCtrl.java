@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.*;
@@ -55,15 +56,25 @@ public class MainCtrl {
 		SimpleDateFormat now_format = new SimpleDateFormat("yyyyMMddHHmm"); 
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd0600"); 
 		SimpleDateFormat format2 = new SimpleDateFormat("yyyyMMdd1800");
-		
+		String tomorrowDate = Calculation(format1.format(now), 0 ,0, 1);
+	
 		String nowTime ="";
-		
-		if(now_format.format(now).compareTo(format2.format(now)) == -1) { // 현재 시간이 오후6시 보다 전일 경우
-			 nowTime = format1.format(now);
+
+		System.out.println(now_format.format(now).compareTo(format2.format(now)));
+		if(now_format.format(now).compareTo(format2.format(now)) < 0) { // 현재 시간이 오후6시 보다 전일 경우
+			nowTime = format1.format(now);
+			
 		}else {
 			nowTime = format2.format(now);
 		}
+		//3일후 날짜 20230913
+		int[] nums = new int[5];
+		String[] strArray = new String[8];
 		
+		for (int i = 3; i < 11; i++) {
+			String tmp = (Calculation(nowTime.substring(0,8), 0 ,0, i).substring(4));
+			strArray[i-3] = tmp.substring(0,2) +"/" +tmp.substring(2);
+		}	
 		// 날씨 api
 	//	StringBuilder urlBuilder = new StringBuilder(URL); /*URL*/
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst"); /*URL*/
@@ -106,26 +117,49 @@ public class MainCtrl {
         JSONArray itemList = (JSONArray) parse_items.get("item");
         
         String[] rnSt = {"rnSt3Pm", "rnSt4Pm","rnSt5Pm","rnSt6Pm", "rnSt7Pm", "rnSt8", "rnSt9","rnSt10"};
-        
+        JSONObject jo =null;
         int sum = 0; // 강수량 전체 합계 변수
         for(int i = 0 ; i < itemList.size(); i++ ) {        	
-        	JSONObject jo = (JSONObject)itemList.get(i);
+        	 jo = (JSONObject)itemList.get(i);
     	    for(int j = 0 ; i < rnSt.length; i++) {
     	    	sum += Integer.parseInt((String.valueOf(jo.get(rnSt[i]))));	        	
-        	}
-        }	
-		
+    	    	
+    	    }
+    	   
+    	}    
+      	
+        
         String pcb_id = "a";  // a가 스니커즈
 		
 		// 강수량이 50%가 넘는다는 뜻(비가 온다는 뜻) 
         if(sum / 8 >= 50 )  pcb_id = "c";  // 샌들/슬리퍼
         
         List<ProductInfo> productList = productSvc.getShoesList(pcb_id);	
-
+    
+       
         request.setAttribute("itemList", itemList);
-        request.setAttribute("productList", productList);
+     
+        model.addAttribute("productList", productList);
+        model.addAttribute("jo", jo);
+        model.addAttribute("strArray", strArray);
         
 		return "index";
+	}
+	
+	private String Calculation(String nowTime, int year, int month, int day) throws ParseException {
+		SimpleDateFormat tmp = new SimpleDateFormat("yyyyMMdd");
+		Calendar cal = Calendar.getInstance();
+		Date date = tmp.parse(nowTime);
+		
+		cal.setTime(date);
+		
+		
+
+		cal.add(Calendar.YEAR,  year);
+		cal.add(Calendar.MONTH, month);
+		cal.add(Calendar.DATE,  day);
+			
+		return tmp.format(cal.getTime());
 	}
 	
 

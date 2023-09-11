@@ -36,9 +36,25 @@ function updateRemainingTime() {
     document.getElementById('seconds').textContent = '0';
   }
 }
-
+end();
 setInterval(updateRemainingTime, 1000);
 updateRemainingTime();
+
+function end (){
+	
+	const curDate = new Date();
+	
+	const timeDiff = endDate - curDate;
+	
+	if(timeDiff < 0) {
+		setTimeout(function() {  //종료도
+           alert("종료된 이벤트 입니다.")// 
+           window.close();
+        }, timeDiff);
+	}else {
+		
+	}
+}
 
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

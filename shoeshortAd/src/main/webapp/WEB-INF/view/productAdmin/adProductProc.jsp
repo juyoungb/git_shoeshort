@@ -17,6 +17,7 @@ String [] arrKeyword = rc_keyword.split(",");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <style>
 #list, th, td {border:1px solid black;}
 #fontBlue {color:blue;}
@@ -36,8 +37,7 @@ function makeSch() {
 	 var isFrist = true;   //size 체크박스들 중 첫번째로 선택한 체크박스인지 여부를 저장
 	 for(var i = 0 ; i < sarr.length ; i++){
 		if (sarr[i].value) {    
-		alert("sarr[i].value : " + sarr[i].value);
-	    	if (isFrist){ //첫번째로 선택한 체크박스이면
+	    	if (isFrist){
 	        	if (sch != "") sch += ",";   // 기존에 검색어가 있을경우 쉼표로 구분         
 	         	isFrist = false;         
 	         	sch += "s" + sarr[i].id + " " + sarr[i].value;
@@ -45,10 +45,9 @@ function makeSch() {
 	        	sch += ":" + sarr[i].id + " " + sarr[i].value;
 	      	}
 	    }
-	/* 	else return alert("재고를 입력해주세요."); */
 	 }   
 	 
-
+	 alert("sch :" +sch);
 	 document.frm2.sch.value = sch;   
 	 document.frm2.submit();
 }
@@ -89,9 +88,7 @@ function chkDupId(piid) { //상품아이디가 이미 있는지 확인
 <body>
 <div style="margin:20px;" width="80%" align="center">
 <h2>상품 등록</h2>
-<form name="frm">
-<input type="hidden" name="sch" value="">
-</form>
+
 <form name="frm2" action="adProductFile" method="post" enctype="multipart/form-data">
 <input type="hidden" name="sch" value=""> 
 <table width="80%" cellpadding="10" cellspacing="0" id="list" class="mx-auto">
@@ -155,69 +152,60 @@ for(String st : arrGender){
 </td>
 </tr>
 </table>
-<div style="margin:20px;">
+<div style="margin:20px;" id="app">
 <table width="50%" style="float:left;">
-<tr>
-<th width="50%">사이즈</th><th width="50%">재고량</th>
-</tr>
-<tr>
-<td>225</td>
-<td><input type="number" id="225" name="size" class="input"></td>
-</tr>
-<tr>
-<td>230</td>
-<td><input type="number" id="230" name="size" class="input"></td>
-</tr>
-<tr>
-<td>235</td>
-<td><input type="number" id="235" name="size" class="input"></td>
-</tr>
-<tr>
-<td>240</td>
-<td><input type="number" id="240" name="size" class="input"></td>
-</tr>
-<tr>
-<td>245</td>
-<td><input type="number" id="245" name="size" class="input"></td>
-</tr>
-<tr>
-<td>250</td>
-<td><input type="number" id="250" name="size" class="input"></td>
-</tr>
- </table>
-  </div>
-  
-<div style="margin:20px;">
-<table width="50%" style="float:left;" >
-
 <tr>
 <th width="50%">사이즈</th>
 <th width="50%">재고량</th>
+<th width="50%">사이즈</th>
+<th width="50%">재고량</th>
 </tr>
-
+<tr>
+<td>225</td>
+<td><input type="number" id="225" v-bind:value="defalut" name="size" class="input"></td>
+</tr>
 <tr>
 <td>255</td>
-<td><input type="number" id="255"  name="size" class="input"></td>
+<td><input type="number" id="255" v-bind:value="defalut"  name="size" class="input"></td>
+</tr>
+<tr>
+<td>230</td>
+<td><input type="number" id="230" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
 <tr>
 <td>260</td>
-<td><input type="number" id="260" name="size" class="input"></td>
+<td><input type="number" id="260" v-bind:value="defalut"  name="size" class="input"></td>
+</tr>
+<tr>
+<td>235</td>
+<td><input type="number" id="235" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
 <tr>
 <td>265</td>
-<td><input type="number" id="265" name="size" class="input"></td>
+<td><input type="number" id="265" v-bind:value="defalut" name="size" class="input"></td>
+</tr>
+<tr>
+<td>240</td>
+<td><input type="number" id="240" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
 <tr>
 <td>270</td>
-<td><input type="number" id="270" name="size" class="input"></td>
+<input type="number" id="270" v-bind:value="defalut"  name="size" class="input"></td>
+</tr>
+<tr>
+<td>245</td>
+<td><input type="number" id="245" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
 <tr>
 <td>275</td>
-<td><input type="number" id="275" name="size" class="input"></td>
+<td><input type="number" id="275" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
 <tr>
+<td>250</td>
+<td><input type="number" id="250" v-bind:value="defalut" name="size" class="input"></td>
+</tr>
 <td>280</td>
-<td><input type="number" id="280" name="size" class="input"></td>
+<td><input type="number" id="280" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
 <tr style="border: 0;">
 <td colspan="2" align="center" style="border: 0;">
@@ -225,11 +213,25 @@ for(String st : arrGender){
 	<input type="button" class="btn btn-secondary"  value="취소"  onclick="location.href='adProductProc';">
 </td>
 </tr>
-</table>
+
+ </table>
+
+
+
+
+
 </div>
 </div>
 </form>
+
 </div>
-</div>
+<script>
+new Vue({
+	el : "#app",
+	data : {
+		defalut:0
+	}
+});
+</script>
 </body>
 </html>

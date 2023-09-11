@@ -173,33 +173,11 @@ function makeSch() {   // 검색폼의 조건들을 쿼리스트링sch의 값으
 }
 
 function initSch() { // 검색조건 (상품명, 브랜드, 가격대)들을 모두 없애주는 함수
-	
-   var frm = document.frm2;
-   frm.pdt.value="";   frm.sp.value="";   frm.ep.value="";
 
-   
-   var arr ="";
-   
-   arr = frm.ctgr;   // ctgr라는 이름의 컨트롤들을 배열로 받아옴
-   for(var i = 0; i < arr.length; i++) {
-      arr[i].checked = false;   // 체크표시 날림
-   }
-   
-   arr = frm.brand;   // brand라는 이름의 컨트롤들을 배열로 받아옴
-   for(var i = 0; i < arr.length; i++) {
-      arr[i].checked = false;   // 체크표시 날림
-   }
-   
-   
-   arr = frm.gender;   // gender라는 이름의 컨트롤들을 배열로 받아옴
-   for(var i = 0; i < arr.length; i++) {
-      arr[i].checked = false;   // 체크표시 날림
-   }
-   
-   arr = frm.size;   // size라는 이름의 컨트롤들을 배열로 받아옴
-   for(var i = 0; i < arr.length; i++) {
-      arr[i].checked = false;   // 체크표시 날림
-   }
+	 var linkURL = document.querySelector("a").getAttribute("href");
+	alert(linkURL);
+     // 페이지를 해당 URL로 다시 로드합니다.
+     window.location.href = linkURL;
 } 
 
 function onlyNum(obj) {
@@ -221,7 +199,13 @@ function display(ct){
        con1.src="resources/img/product/plus.png"
     } 
 }
-
+window.onload = function() {
+    // 돌아가기 링크를 클릭하면 navigateBack 함수가 호출됩니다.
+    document.querySelector("a").addEventListener("click", function(event) {
+        event.preventDefault(); // 링크의 기본 동작을 중지합니다.
+        navigateBack(); // 페이지를 다시 로드합니다.
+    });
+};
 </script>
 </head>
 <body>
@@ -282,7 +266,7 @@ function display(ct){
 				    <input type="text" name="ep" class="price" value="" placeholder="최고가" onkeyup="onlyNum(this);" width="100" height="20px">
    					<div class="mx-auto p-2">	
 					    <input type="button" value="상품 검색" class="btn btn-dark btn-sm" onclick="makeSch();">
-						<input type="button" value="조건 초기화" class="btn btn-outline-secondary btn-sm"  onclick="location.href=productList?sch=<%=pageInfo.getInit()%>">
+						<input type="button" value="조건 초기화" class="btn btn-outline-secondary btn-sm"  onclick="location.reload()">
 					</div>		   
 
 				</div>  

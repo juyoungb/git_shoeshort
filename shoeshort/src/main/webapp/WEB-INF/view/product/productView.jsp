@@ -235,8 +235,8 @@ function showTap(chk) {
    <input type="hidden" name="piid" value="<%=pl.getPi_id()%>">
    
    <table  cellpadding="5" style="height:600px; width:100%" id="info">   
-   <tr><td colspan="2" style="font-weight: bold;">&nbsp;&nbsp;&nbsp;<%=pl.getPb_name()%></td>
-   <tr><td width="20%" align="right" >상품명</td><td width="*"><%=pl.getPi_name()%></td>
+   <tr><td  align="left" colspan="2" style="font-weight: bold;">&nbsp;&nbsp;&nbsp;<%=pl.getPb_name()%></td>
+   <tr><td width="20%" align="right" ></td><td width="*"><%=pl.getPi_name()%></td>
    <tr><td align="right">브랜드</td><td><%=pl.getPb_name()%></td></tr>
    <tr><td align="right">제조사</td><td><%=pl.getPi_com() %></td></tr>
    <tr><td align="right">가격</td><td><%=realPrice %></td></tr>   
@@ -281,25 +281,33 @@ function showTap(chk) {
 <tr>
 </table>
 <hr>
+<p align="left" style="">스타일</p>
 <div><!-- style -->
-<%-- <c:forEach items="${styleList }" var="si" >
-
-	   <div class="col">
-          <div class="card shadow-sm">
+<div class="album py-5 bg-body-tertiary" >
+<div class="container">
+<div class="row row-cols-3 g-3">
+ <c:forEach items="${styleList }" var="si" >
+	   <div class="col-xs-3">
+          <div class="card" style="width: 18rem;">
           	<a href="styleView?siidx=${si.getSi_idx() }&piid=${si.getPi_id()}">
             <img src="resources\img\style_img\${si.getSi_img()}" width="100%" height="350" /></a>
             <div class="card-body">
               <p class="card-text"><a href="memStyle?miid=${si.getMi_id()}" style="color:black; text-decoration-line: none;">${si.getMi_id() }</a></p>
               <div class="d-flex justify-content-between align-items-center">
                 	<div width="50%">${si.getSi_content() }</div>
-                <div align="right"><img src="resources\img\style_img\style_good02.png" width="20px" height="20px"/>${si.getSi_good() }</div>
+                <div align="right"><img src="resources\img\style_img\${si.getSi_img()}" width="20px" height="20px"/>${si.getSi_good() }</div>
               </div>
             </div>
           </div>
         </div>
-</c:forEach> --%>
-</div>
 
+</c:forEach>
+   </div>   
+ </div>
+  </div>   
+</div>
+<a href="style">더보기</a>
+<hr>
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#desc">상품설명</a>
@@ -314,12 +322,21 @@ function showTap(chk) {
    <%--     <img src="resources/img/product/<%=pl.getPi_desc() %>" width="1200" height="1000"> --%>
     </div>
     <div class="tab-pane fade" id="change">
-    	<div id="app">
-	    	<form action="trans" onsubmit="return false;">
-    	    	내용  <input type="text" v-model="text" /> <br>
-    	   		 결과 <p>{{result}}</p>
-    		    <input type="button" value="번역하기" v-on:click="translate()"/>
-    		</form>
+   	<div id="app">
+   	<div class="row m-3">
+    <div class="col-md-6">
+    	내용  <textarea v-model="text" style="width:100%; height:350px;"></textarea>
+    </div>
+    <div class="col-md-6">
+       	 결과  <div style="width:100%; height:350px; background-color: #f5d682; padding: 10px;">{{ result }}</div>
+    </div>
+	</div>
+	<div class="row">
+    <div class="col-md-12 text-center mt-3">
+        <!-- 번역하기 버튼 -->
+        <button class="btn btn-dark" v-on:click="translate()">번역하기</button>
+    </div>
+</div>
     	</div>
     </div>
   </div>

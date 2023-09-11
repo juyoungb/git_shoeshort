@@ -6,8 +6,16 @@
 <%
 request.setCharacterEncoding("utf-8");
 JSONArray itemList = (JSONArray)request.getAttribute("itemList");
+
 %>
 <link rel="stylesheet" href="resources/css/indexStyle.css">
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+#id {
+	border: 1px solid black;
+}
+</style>
 <div id="video" align="center" style="background-color:black;">
     <video
   src="resources/video/${videoInfo.getMm_media() }"
@@ -18,49 +26,65 @@ JSONArray itemList = (JSONArray)request.getAttribute("itemList");
 <br>
 <div align="center">
 <div style="width:1300px"><hr></div>
-<div>
 	<div style="width:1300px;height:300px;">
-		<div style="width:45%;height:100%; display:inline-block;">
+		<div id="app" class="container" style="width:100%; ">
+		 <div class="row justify-content-center">
+    <div class="col-8 p-5">
+		<table style="width:100%; ">
+		<tr>
+			<c:forEach items="${strArray }" var="i">
+				<td>${i}</td>
+			</c:forEach>
+		</tr>
 		<%
+		
 if(itemList.size() > 0){
-	for(int i = 0; i<itemList.size(); i++){
+	for(int i = 0; i<itemList.size(); i++) {
 		JSONObject jo = (JSONObject)itemList.get(i);
-		out.println(jo.get("wf3Am"));// 
+%>	
 	
-		out.println(jo.get("wf4Am"));
-		
-		out.println(jo.get("wf5Am"));
-		
-		out.println(jo.get("wf6Am"));
+	<tr>
+	<td><input type="hidden" v-model="src1" value="<%=jo.get("wf3Am") %>" ><p v-html="icon(src1)"></p></td>
+	<td><input type="hidden" v-model="src2" value="<%=jo.get("wf4Am") %>"><p v-html="icon(src2)"></p></td>
+	<td><input type="hidden" v-model="src3" value="<%=jo.get("wf5Am") %>"><p v-html="icon(src3)"></p></td>
+	<td><input type="hidden" v-model="src4" value="<%=jo.get("wf6Am") %>"><p v-html="icon(src4)"></p></td>
+	<td><input type="hidden" v-model="src5" value="<%=jo.get("wf7Am") %>"><p v-html="icon(src5)"></p></td>
+	<td><input type="hidden" v-model="src6" value="<%=jo.get("wf8") %>"><p v-html="icon(src6)"></p></td>
+	<td><input type="hidden" v-model="src7" value="<%=jo.get("wf9") %>"><p v-html="icon(src7)"></p></td>
+	<td><input type="hidden" v-model="src8" value="<%=jo.get("wf10") %>"><p v-html="icon(src8)"></p></td>
+	</tr>
 	
-		out.println(jo.get("wf7Am"));
+	<tr>
+	<td><%=jo.get("wf3Am") %></td>
+	<td><%=jo.get("wf4Am") %></td>
+	<td><%=jo.get("wf5Am") %></td>
+	<td><%=jo.get("wf6Am") %></td>
+	<td><%=jo.get("wf7Am") %></td>
+	<td><%=jo.get("wf8") %></td>
+	<td><%=jo.get("wf9") %></td>
+	<td><%=jo.get("wf10") %></td>
+	</tr>
 	
-		out.println(jo.get("wf8"));
+<%
 	
-		out.println(jo.get("wf9"));
-	
-		out.println(jo.get("wf10"));
-	
-		out.println(jo.get("wf7Pm"));
-	
-		out.println(jo.get("wf8"));
-		
-		out.println(jo.get("wf9"));
-		
-		out.println(jo.get("wf10"));
-		
 	}
 } else{
 	out.println("데이터가 없습니다.");
 }
-%>
+%></table>
 		</div>
-		<div style="width:45%;height:100%; display:inline-block;">
+		<div class="col" style="width:45%;height:100%; display:inline-block;">
 			<div>
-			 <img src="resources/img/product/CC10003.png" width="200" height="200">
+			<c:forEach var="pl" items="${productList}">
+				<a href="productView?&piid=${pl.getPi_id() }"><img src="resources/img/product/${pl.getPi_img1() }" width="200" height="200"></a>
+			</c:forEach>
 			</div>
 		</div>
+		
 	</div>
+	</div>
+	</div>
+	
 </div>
 <div style="width:1300px"><hr></div>
 <div style="width:1300px; padding-left:10px;" align="left">
@@ -168,4 +192,35 @@ if(itemList.size() > 0){
 </div>
 <br>
 <hr><br>
+<script>
+new Vue ({
+	el : "#app",
+	data:{
+        src1: '${jo.get("wf3Am")}',
+        src2: '${jo.get("wf4Am")}',
+        src3: '${jo.get("wf5Am")}',
+        src4: '${jo.get("wf6Am")}',
+        src5: '${jo.get("wf7Am")}',
+        src6: '${jo.get("wf8")}',
+        src7: '${jo.get("wf9")}',
+        src8: '${jo.get("wf10")}'
+      },
+	computed : {
+		icon () {
+			 return function(srcKey) {
+				switch (srcKey) {
+            	case '맑음':
+                	return "<img src='resources/img/weather/sun.png' width='30px' height='30px'>";
+            	case '비':
+                	return "<img src='resources/img/weather/rain.png' width='30px' height='30px'>"; 
+           		 default:
+                	return "<img src='resources/img/weather/cloud.png' width='30px' height='30px'>";
+        		}
+			};
+		}
+	}
+
+});
+
+</script>
 <%@ include file="_inc/inc_foot_fr.jsp" %>

@@ -68,5 +68,12 @@ public class ProductSvc {
 		List<ProductInfo> productList = productDao.getShoesList(pcb_id);
 		return productList;
 	}
+	
+	public List<StyleInfo> getProductViewStyle(String piid) {
+		List<StyleInfo> styleList = productDao.getProductViewStyle(piid);
+		
+		return styleList;
+	}
+
 
 }

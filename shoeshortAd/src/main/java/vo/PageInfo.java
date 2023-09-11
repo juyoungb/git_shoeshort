@@ -3,12 +3,9 @@ package vo;
 
 
 public class PageInfo {
-<<<<<<< HEAD
-// �Խ��Ǹ��, ��ǰ��� ��� ����¡�� �ʿ��� �������� ������ Ŭ����
-	private int cpage,  spage, psize, bsize, rcnt , pcnt;
-=======
+
 	private int cpage,  spage, psize, bsize, rcnt , pcnt, count;
->>>>>>> origin/main
+
 	private String schtype, keyword, args, schargs, pcb, pcs, obargs, vargs, sch, ob, v, ctgr;
 	private String sdate, edate,periods,status2;
 	
@@ -146,4 +143,11 @@ public class PageInfo {
 	public void setStatus2(String status2) {
 		this.status2 = status2;
 	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
 }
