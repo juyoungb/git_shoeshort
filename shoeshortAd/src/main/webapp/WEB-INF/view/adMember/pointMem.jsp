@@ -16,9 +16,12 @@ String schtype = pageInfo.getSchtype() , keyword = pageInfo.getKeyword(), args =
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="resources/js/popUpJs.js"></script>
+<style>
+a {text-decoration: none; color:black;}
+</style>
 </head>
 <body>
-<div align="center" style="position: absolute; left: 200px; top: 100px; width: 80%; height:90%;">
+<div align="center" style="position: absolute; left: 200px; top: 100px; width: 80%;">
 <table width="100%" cellpadding="5" >
 <tr><th align="left" style="font-size:30px; ">포인트 관리</th></tr>
 <tr><td align="right">
@@ -59,12 +62,15 @@ if (pointList.size() > 0) {
 <td><input type="button" class="btn btn-outline-dark" onclick="popUp('pointForm?miid=<%=mp.getMi_id() %>','','500','300');" value="적립"/></td></tr>
 <%
 		num--;
-	} 
+	}
 
+} else if (pointList.size() > 10){
+	
 } else { //게시글 목록이 없으면
 	out.println("<tr><td colspan='5' align='center'>");
 	out.println("검색 결과가 없습니다.</td></tr>");
 }
+
 %>
 </table>
 <br>
@@ -72,14 +78,14 @@ if (pointList.size() > 0) {
 <tr>
 <td width="600" align="center">
 <%
-if (rcnt > 0) { //게시글이 있으면 - ㅍㅔ이징 영역을 보여줌
+if (rcnt > 0) { //게시글이 있으면 - 페이징 영역을 보여줌
 	String link = "pointMem?1=1" + schargs + "&cpage=";
 	
 	if (cpage == 1) {
 		out.println("[<<]&nbsp;&nbsp;&nbsp;[<]&nbsp;&nbsp;");
 	}else{
 		out.println("<a href='" + link + "1'>[<<]</a>&nbsp;&nbsp;&nbsp;");
-		out.println("<a href='" + link + (cpage - 1) + "'>[<]</a>&nbsp;&nbsp;&nbsp;");		
+		out.println("<a href='" + link + (cpage - 1) + "&schtype="+ schtype +"&keyword="+ keyword +"'>[<]</a>&nbsp;&nbsp;&nbsp;");		
 	}
 	int spage = (cpage -1) / bsize * bsize + 1; //현재 블록에서의 시작 페이지 번호
 	for (int i = 1, j = spage ; i<= bsize && j <=pcnt ; i++, j++){
@@ -88,7 +94,7 @@ if (rcnt > 0) { //게시글이 있으면 - ㅍㅔ이징 영역을 보여줌
 		if (cpage == j){
 			out.println("&nbsp;<strong>" + j + "</strong>&nbsp;");
 		} else {
-			out.println("&nbsp;<a href='" + link + j + "'>" + j + "</a>&nbsp;");
+			out.println("&nbsp;<a href='" + link + j + "&schtype="+ schtype +"&keyword="+ keyword +"'>" + j + "</a>&nbsp;");
 		}
 	}
 	
@@ -96,7 +102,7 @@ if (rcnt > 0) { //게시글이 있으면 - ㅍㅔ이징 영역을 보여줌
 		out.println("&nbsp;&nbsp;[>]&nbsp;&nbsp;&nbsp;[>>]");
 	}else{
 		out.println("&nbsp;&nbsp;<a href='" + link + (cpage + 1) +"'>[>]</a>");
-		out.println("&nbsp;&nbsp;&nbsp;<a href='" + link + pcnt + "'>[>>]</a>");
+		out.println("&nbsp;&nbsp;&nbsp;<a href='" + link + pcnt + "&schtype="+ schtype +"&keyword="+ keyword +"'>[>>]</a>");
 	}
 }
 %>
