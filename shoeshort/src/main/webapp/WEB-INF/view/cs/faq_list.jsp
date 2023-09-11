@@ -17,8 +17,10 @@ String schtype = pageInfo.getSchtype() , keyword = pageInfo.getKeyword(), args =
 #list th { border-bottom:double black 3px;}
 #list td { border-bottom:dotted black 1px;}
 </style>
+<br />
 <div width="60%" align="center">
-<h2 align="left">FaQ 목록</h2>
+<h2 style="text-align:left; width:80%;">FaQ 목록</h2>
+<br />
 <table width="80%"  cellpadding="0" cellspacing="0" id="list">
 <tr>
 <th width="10%">번호</th><th width="30%">제목</th><th width="30%">내용</th><th width="15%">작성일</th><th width="10%">조회수</th>

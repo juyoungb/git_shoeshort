@@ -53,10 +53,11 @@
     font-weight: bold;
   }
 </style>
+<br />
   <div id="side_container">
     <div id="side_tabs">
       <div id="side_banner">
-        <h2>고객 센터</h2>
+        <h2 style="text-align:center; margin-left:7%;">고객 센터</h2>
       </div>
       <ul id="side_list">
         <li><a href="noticeList">공지 사항</a></li>
