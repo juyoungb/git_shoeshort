@@ -40,7 +40,7 @@ table th,td{
 <td>${oi.getOi_date()}</td>
 <th>결제방법</th>
 <!-- a: 카드결제 b: 휴대폰결제 c: 무통장입금 -->
-<td>${oi.getOi_payment() == "a" ? "카드결제" : (oi.getOi_payment() == "b" ? "휴대폰결제" : "무통장입금")}</td>
+<td>${oi.getOi_payment() == "a" ? "카드결제" : (oi.getOi_payment() == "b" ? "휴대폰결제" : "계좌이체")}</td>
 
 </table><br><br>
 <table class="table table-striped table-hover" style="width:90%">

@@ -19,11 +19,26 @@ function chAddr(val){
 	
 }
 </script>
-<h2>주문 폼</h2>
-<h3>구매할 상품 목록</h3>
-<%-- <c:set var="ocidxs" value="${pdtList.get(0).getOc_idx()}" />
-<input type="hidden" value="${pdtList.get(0).getPi_price()}" /> --%>
-<table width="800" cellpadding="5" >
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+  }
+#orderbody{
+	  margin: auto;
+    width: 900px;
+    background-color: 	white;
+    text-align: center;
+     border-radius: 20px;
+    padding: 20px;
+}
+</style>
+<div align="center">
+<div id="orderbody">
+<h2>주문 결제</h2>
+<table width="800" cellpadding="5" align="center">
 <c:forEach items="${pdtList}" var="oc" varStatus="i">
 <c:set var="ocidxs" value="${ocidxs},${oc.getOc_idx()}" />
 
@@ -42,7 +57,7 @@ function chAddr(val){
 <td width="*">${oc.getPi_price()*oc.getOc_cnt() }원</td>
 </tr>
 </c:forEach>
-<tr><td colspan="5" align="right">총 결제 금액: ${total }원</td></tr>
+<tr><td colspan="5" align="right" style="font-size:20px;">총 결제 금액: <strong>${total }원</strong></td></tr>
 </table>
 <hr />
 <form name="frmOrder" action="orderIn" method="post">
@@ -51,7 +66,7 @@ od.getOd_price(),od.getOd_name(), od.getOd_img(),od.getOd_size()
  -->
 
 <h3>배송지 정보</h3>
-<table width="800" cellpadding="5">
+<table width="800" cellpadding="5" align="center">
 <tr>
 <th>배송지 정보</th>
 <td colspan="3">
@@ -72,11 +87,11 @@ od.getOd_price(),od.getOd_name(), od.getOd_img(),od.getOd_size()
 </tr>
 <tr>
 <th width="15%">주소명</th>
-<td width="35%">
+<td width="35%" align="left">
 	<input type="text" name="ma_name" value="${maname}" readonly="readonly" onfocus="this.blur();" style="border:none;"/>
 </td>
 <th width="15%">수취인명</th>
-<td width="35%">
+<td width="35%" align="left">
 	<input type="text" name="oi_name" value="${marname}" />
 </td>
 </tr>
@@ -88,21 +103,22 @@ od.getOd_price(),od.getOd_name(), od.getOd_img(),od.getOd_size()
 	- <input type="text" name="p3" value="${tel[2]}" size="4" maxlength="4" />
 </td>
 <th>우편번호</th>
-<td>
+<td align="left">
 	<input type="text" name="oi_zip" value="${mazip}" size="5" maxlength="5" />
 </td>
 </tr>
 <tr>
 <th>주소</th>
-<td colspan="3">
-	<input type="text" name="oi_addr1" value="${maaddr1 }" size="40"/>
-	<input type="text" name="oi_addr2" value="${maaddr2 }" size="40"/>
+<td colspan="3" align="left">
+	<input type="text" name="oi_addr1" value="${maaddr1 }"style="margin:3px;" size="60%"/>
+	<input type="text" name="oi_addr2" value="${maaddr2 }"style="margin:3px;" size="60%"/>
 </td>
 </tr>
 </table>
 <hr>
 <h3>결제 정보</h3>
-<p style="width:800px;">
+<div align="center">
+<p style="width:800px;" >
 	<input type="radio" name="oi_payment" value="a" id="payA" checked=u"checked"/>
 	<label for="payA">카드 결제</label>&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="radio" name="oi_payment" value="b" id="payB" />
@@ -110,9 +126,10 @@ od.getOd_price(),od.getOd_name(), od.getOd_img(),od.getOd_size()
 	<input type="radio" name="oi_payment" value="b" id="payB" />
 	<label for="payB">계좌 이체</label>&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
+
 <hr>
 <p style="width:800px; text-align:center">
-	<input type="submit" value="결제 하기" />
+	<input type="submit" class="btn btn-dark" value="결제 하기" />
 </p>
 <input type="hidden" name="piid" value="<%=oc.getPi_id()%>"/>
 <input type="hidden" name="cnt" value="<%=oc.getOc_cnt()%>"/>
@@ -121,6 +138,9 @@ od.getOd_price(),od.getOd_name(), od.getOd_img(),od.getOd_size()
 <input type="hidden" name="kind" value="${kind }"/>
 <input type="hidden" name="ocidxs" value="${ocidxs }"/>
 <input type="hidden" name="total" value="${total }"/>
+</div>
 </form>
+</div>
+</div>
 <br><br>
 <%@ include file="../_inc/inc_foot_fr.jsp" %>
