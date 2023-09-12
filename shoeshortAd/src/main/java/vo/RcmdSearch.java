@@ -4,7 +4,7 @@ public class RcmdSearch {
 	private String gender = "men,women,kids";
 	private String rc_season = "봄,여름,가을,겨울"; 
 	private String rc_age = "10대,20대,30대,40대";
-	private String rc_keyword = "바닷가,졸업식 ,수학여행,결혼식,소개팅,생일선물,운동회,어버이날";
+	private String rc_keyword = "바닷가,졸업식,수학여행,결혼식,소개팅,생일선물,운동회,어버이 날,비오는 날,데이트,편안하게 신기 좋은,면접볼 때";
 	
 	public String getGender() {
 		return gender;
