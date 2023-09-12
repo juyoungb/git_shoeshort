@@ -3,7 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="_inc/inc_head_ad.jsp" %>
-<%IndexData td = (IndexData)request.getAttribute("td"); %>
+<%
+IndexData td = (IndexData)request.getAttribute("td"); 
+%>
 <br>
 <style>
 body{
@@ -178,7 +180,7 @@ font-weight:600;
 				</div>
 				<table>
 				<c:forEach var="nl" items="${td.getNoticeInfo()}"><!-- ${nl.getNl_idx()}  -->
-				<tr><td><a href="adNoticeView?nlidx=${nl.getNl_idx() }" style="text-decoration-line:none; color:black;">[${nl.getNl_ctgr()}] ${nl.getNl_title()}	</a></td></tr>
+				<tr><td><a href="adNoticeView?nlidx=${nl.getNl_idx() }" style="text-decoration-line:none; color:black;">[${nl.getNl_ctgr()}] ${nl.getNl_title()}</a></td></tr>
 				</c:forEach>
 				</table>
 

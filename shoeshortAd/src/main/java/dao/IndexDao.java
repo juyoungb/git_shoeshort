@@ -140,9 +140,15 @@ public class IndexDao {
 		sql="select nl_idx ,nl_ctgr, nl_title from t_notice_list where nl_isview = 'y' order by nl_date desc limit 0,5";
 		List<NoticeInfo> noticeInfo= jdbc.query(sql, new RowMapper<NoticeInfo>() {
 			public NoticeInfo mapRow(ResultSet rs, int rowNum) throws SQLException{
+				String ctgr = "";
 				NoticeInfo ni =new NoticeInfo();
 				ni.setNl_idx(rs.getString("nl_idx"));
-				ni.setNl_ctgr(rs.getString("nl_ctgr"));
+				
+				if (rs.getString("nl_ctgr").equals("a")) ctgr = "공지사항";
+				if (rs.getString("nl_ctgr").equals("b")) ctgr = "이벤트 안내";
+				if (rs.getString("nl_ctgr").equals("c")) ctgr = "이벤트 발표";
+				
+				ni.setNl_ctgr(ctgr);
 				ni.setNl_title(rs.getString("nl_title"));
 				return ni;
 			}
