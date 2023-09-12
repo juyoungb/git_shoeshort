@@ -67,7 +67,7 @@ public class RcmdCtrl {
 					where +=  " and ( ";
 					for (int j = 0; j < arr.length ; j++) {
 						schK = arr[j];
-						where += (j == 0 ? "" : " or ") + "pi_rc_keyword = '"+ arr[j] +"' ";
+						where += (j == 0 ? "" : " or ") + "pi_rc_keyword like '%"+ arr[j] +"%' ";
 					}
 					where += " )";
 				}

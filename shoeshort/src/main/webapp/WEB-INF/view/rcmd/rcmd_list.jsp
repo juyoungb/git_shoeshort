@@ -196,6 +196,7 @@ function initSch(){
   z-index: 1500;
     }
 .page-link {color:black;}
+
 a {color:black; text-decoration: none;}
 </style>
 
@@ -204,7 +205,7 @@ a {color:black; text-decoration: none;}
 <br />
 <h3 align="center">추천 검색</h3>
 <form name="frm">
-<table width="700" align="center">
+<table width="800" align="center">
 <input type="hidden" name="sch" value="" />
 <tr>
 <th align="left">성별</th>
@@ -218,7 +219,7 @@ a {color:black; text-decoration: none;}
 for (String st : arrGender) {
 %>
     <input type="checkbox" name="pi_gubun" value="<%=st %>" <% if (st.equals(pageInfo.getSchG())) {%> checked="checked" <%} %>  onclick="handleCheckboxClick('pi_gubun', this)" />
-    <label for="<%=st %>"><% if (st.equals("m")){st = "남자";} 
+    <label for="<%=st %>"><% if (st.equals("m")){st = "남자";}
     else if (st.equals("w")){st = "여자";}	
     else if (st.equals("k")){st = "키즈";} %><%=st %></label><br />
 <%
@@ -245,14 +246,17 @@ for (String st : arrAge) {
 } 
 %>
 </td>
-<td align="left">
+<td align="left" width="60%" >
 <%
-for (String st : arrKeyword) {
+for (int i = 0; i < arrKeyword.length; i++){
+	String st = arrKeyword[i];
 %>
     <input type="checkbox" name="pi_rc_Keyword" value="<%=st %>" <% if (st.equals(pageInfo.getSchK())) {%> checked="checked" <%} %> onclick="handleCheckboxClick('pi_rc_Keyword', this)" />
-    <label for="<%=st %>"><%=st %></label><br />
+    <label for="<%=st %>"><%=st %></label>&nbsp;&nbsp;&nbsp;
 <%
-} 
+	if (i == 3) out.println("<br />");
+    if (i == 7) out.println("<br />");
+}
 %>
 </td></tr>
 </table>
