@@ -202,7 +202,7 @@ function showTap(chk) {
 
  <% 
    for(ProductInfo pl: productList){%>
-      <img src="resources/img/product/<%=pl.getPi_img1()%>" width="500" height="500" id="bigImg">
+      <img src="resources/img/product/<%=pl.getPi_img1()%>" width="450px" height="450" id="bigImg">
       </td></tr>      
       <tr align="center">
       <div>
@@ -225,14 +225,14 @@ function showTap(chk) {
 		   <input type="hidden" name="cnt" value="">
 		   <input type="hidden" name="size" value="">
 	 </form>  
-<td width="35%" valign="top">
+<td width="35%" valign="top" >
 <!-- 상품 정보 관련 영역 -->
    <form name="frm" method="post">
    <input type="hidden" name="kind" value="d">
    <input type="hidden" name="piid" value="<%=pl.getPi_id()%>">
    
    <table  cellpadding="5" style="height:600px; width:100%" id="info">   
-   <tr><td  align="left" colspan="2" style="font-weight: bold;">&nbsp;&nbsp;&nbsp;<%=pl.getPb_name()%></td>
+   <tr><td  align="left" colspan="2" style="font-weight: bold;"><%=pl.getPb_name()%></td>
    <tr><td width="20%" align="right" ></td><td width="*"><%=pl.getPi_name()%></td>
    <tr><td align="right">브랜드</td><td><%=pl.getPb_name()%></td></tr>
    <tr><td align="right">제조사</td><td><%=pl.getPi_com() %></td></tr>
@@ -261,12 +261,12 @@ function showTap(chk) {
    <tr>
    <td align="right">수량</td>
    <td>
-   <input type="button"  class="btn btn-outline-secondary btn-sm"  value="-" onclick="setCnt(this.value);">
-   <input type="text" name="cnt" id="cnt"  value="1" readonly="readonly" >
-   <input type="button"  class="btn btn-outline-secondary btn-sm" value="+" onclick="setCnt(this.value);">
+   <input type="button"  class="btn btn-outline-secondary btn-sm"  value="-" onclick="setCnt(this.value);" style="width:25px; height:30px">
+   <input type="text" name="cnt" id="cnt"  value="1" readonly="readonly" style="width:25px; height:30px">
+   <input type="button"  class="btn btn-outline-secondary btn-sm" value="+" onclick="setCnt(this.value);" style="width:25px; height:30px">
    </td>
    </tr>
-   <tr><td colspan="2" align="left" style="font-size: 16px; font-weight: bold;"> 총 결제 금액: <span  align="right" id="total"></span>원
+   <tr><td colspan="2" align="left" style="font-size: 20px; font-weight: bold;"> 총 결제 금액: <span  align="right" id="total"></span>원
    </td></tr>
    <tr><td colspan="2" align="center">
    <input type="button" value="장바구니 담기" class="btn btn-danger" style="background-color: #FF4646;"  onclick="buy('c');">
@@ -325,7 +325,7 @@ function showTap(chk) {
     	내용  <textarea v-model="text" style="width:100%; height:350px;"></textarea>
     </div>
     <div class="col-md-6">
-       	 결과  <div style="width:100%; height:350px; background-color: #f5d682; padding: 10px;">{{ result }}</div>
+       	 결과  <div style="width:100%; height:350px; background-color: #efefefef; padding: 10px; text-align: left;">{{ result }}</div>
     </div>
 	</div>
 	<div class="row">

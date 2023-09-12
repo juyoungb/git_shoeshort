@@ -25,7 +25,7 @@ JSONArray itemList = (JSONArray)request.getAttribute("itemList");
 </div>
 <br>
 <div align="center">
-<div style="width:1300px"><hr></div>
+<div style="width:1300px" align="left"><hr><span style="font-size:18px; font-weight:bold;">이주의 추천 신발</span></div>
 	<div style="width:1300px;height:300px;">
 		<div id="app" class="container" style="width:100%; ">
 		 <div class="row justify-content-center">
