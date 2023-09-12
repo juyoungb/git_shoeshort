@@ -65,6 +65,7 @@ public class IndexDao {
 //9. 이 판매량 1위 신발
 		sql = "select a.pi_img1, a.pi_name, sum(c.ps_idx) ps_idx from t_product_info a, t_order_info b, t_order_detail c "+ 
 			  " where a.pi_id =c.pi_id and b.oi_id = c.oi_id and b.oi_date >= date_sub(now(), interval 30 day) group by c.pi_id order by ps_idx desc limit 0,1 ";
+		System.out.print(sql);
 		jdbc.queryForObject(sql,(ResultSet rs, int rowNum) -> {
 			indexData.setPi_img1(rs.getString("pi_img1"));			indexData.setPi_name(rs.getString("pi_name"));			
             return indexData;

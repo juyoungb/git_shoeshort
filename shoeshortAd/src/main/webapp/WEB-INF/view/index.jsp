@@ -100,6 +100,7 @@ font-weight:600;
 <div style="margin:10px 20px;">
 	<div class="flex-container">
 	        <div class="flex-item" align="center">
+	        <div id="itemtitle" style="margin: 10px">회원 성별 비율</div>
 	        <div id="chart_div"></div></div>
 	        <div class="flex-item" align="center">
 	        	<br>
@@ -204,7 +205,7 @@ function drawChart() {
   // Set chart options
   var options = {
     'width': 350,
-    'height': 350,
+    'height': 300,
     is3D: true,
     legend: 'top',
     backgroundColor: 'transparent' // 배경을 투명하게 설정

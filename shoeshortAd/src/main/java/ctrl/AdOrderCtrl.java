@@ -93,7 +93,7 @@ public class AdOrderCtrl {
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("orderList", orderList);
 		
-		return "orderAdmin/adOrdList";
+		return "orderAdmin/adOrderList";
 	}
 	@PostMapping("/orderStatus")
 	public void orderForm(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception  {
