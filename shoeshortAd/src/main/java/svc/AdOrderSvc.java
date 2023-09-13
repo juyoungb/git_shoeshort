@@ -35,5 +35,4 @@ public class AdOrderSvc {
 		MemberInfo memberInfo = adOrderDao.getMemberInfo(uid);
 		return memberInfo;
 	}
-	
 }

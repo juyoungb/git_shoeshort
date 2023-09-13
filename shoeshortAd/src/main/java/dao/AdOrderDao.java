@@ -87,5 +87,4 @@ public class AdOrderDao {
 		
 		return results.isEmpty() ? null : results.get(0);
 	}
-
 }

@@ -132,7 +132,7 @@ public class AdOrderCtrl {
 		System.out.println(orderInfo.getOi_id());
 		model.addAttribute("oi", orderInfo);
 		model.addAttribute("mi", memberInfo);
-		return "orderAdmin/adOrdDetail";
+		return "orderAdmin/adOrderDetail";
 	}
 
 }
