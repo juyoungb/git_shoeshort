@@ -10,7 +10,6 @@ JSONArray itemList = (JSONArray)request.getAttribute("itemList");
 
 %>
 <link rel="stylesheet" href="resources/css/indexStyle.css">
-
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <style>
 #id {
@@ -169,7 +168,7 @@ if(itemList.size() > 0){
   <div class="carousel-inner">
    <c:forEach var="il" items="${imgList}" varStatus="i">
 		<div class="carousel-item active">
-			<a href="${il.getMm_link() }"><img style="width:700px; height:450px;"src="resources/img/slide/${il.getMm_media() }"  class="d-block w-100" alt="" ></a>
+			<a href="${il.getMm_link() }"><img style="width:700px; height:450px;" src="resources/img/slide/${il.getMm_media() }"  class="d-block w-100" alt="" ></a>
 		</div>
 	 </c:forEach>
   </div>
