@@ -299,14 +299,14 @@ if (pi.getPi_dc() > 0) {  //할인율이 있으면
     </div>
   </div>
 <!-- 페이징 영역 시작 -->
-<table width="100%" align="center" cellpadding="6" border="0">
+<table width="100%" align="center" cellpadding="6">
 <tr>
-<td align="center" colspan="7">
+<td align="center" colspan="7" >
 <% 
 if (rcnt > 0) {
 	String link = "rcmd?1=1&cpage=";
 %>
-	<nav aria-label="Page navigation example" style="text-align:center; width:200px;">
+	<nav aria-label="Page navigation example" style="margin-left:43%; width:100%;">
 		<ul class="pagination">
 <%
 	if (cpage == 1) {
