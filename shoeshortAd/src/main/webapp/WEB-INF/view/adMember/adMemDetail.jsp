@@ -8,14 +8,17 @@ MemberDetails memberDetails = (MemberDetails)request.getAttribute("memberDetails
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <style>
-tr {border:1px solid black;}
+td {border:1px solid black;}
 </style>
 </head>
 <body>
-<div id="memDetails" style="display: block;">
-<table width="500" >
+<div>
+<table width="600" height="200" class="table table-striped table-sm">
 <h2>회원 상세 정보</h2>
+<br />
 <%
 String mi_id = "", mi_name = "", mi_birth = "", mi_email = "", mi_status = "", ma_addr1 ="", ma_addr2 = "", mi_date = "";
 int mi_point = 0;
@@ -51,21 +54,16 @@ if (memberDetails == null){
 %>
 <tr>
     <td>아이디 : <%=mi_id %></td><td>이름 : <%=mi_name %></td>
-</tr>
-<tr>
-    <td>생년월일 : <%=bt1 %>년<%=bt2 %>월<%=bt3 %>일</td><td>이메일 : <%=mi_email %></td>
+    <td>생년월일 : <%=bt1 %>년<%=bt2 %>월<%=bt3 %>일</td>
 </tr>
 <tr>
     <td>상태 : <%=mi_status %></td><td>보유 포인트 : <%=mi_point %>P</td>
+	<td>주소 1 : <%=ma_addr1 %></td>
 </tr>
 <tr>
-    <td>주소 1 : <%=ma_addr1 %></td>
-</tr>
-<tr>
-    <td>주소 2 : <%=ma_addr2 %></td><td>방문 횟수 : </td>
-</tr>
-<tr>
-    <td>가입일 : <%=mi_date %></td><td>최근 접속일 : </td>
+	<td>이메일 : <%=mi_email %></td>
+    <td>주소 2 : <%=ma_addr2 %></td>
+    <td>가입일 : <%=mi_date %></td>
 </tr>
 </table>
 </div>

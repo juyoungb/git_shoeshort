@@ -12,6 +12,9 @@ String schtype = pageInfo.getSchtype() , keyword = pageInfo.getKeyword(), args =
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<style>
+td, th {border:1px solid black;}
+</style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -21,10 +24,11 @@ a {text-decoration: none; color:black;}
 </style>
 </head>
 <body>
-<div align="center" style="position: absolute; left: 200px; top: 100px; width: 80%;">
-<table width="100%" cellpadding="5" >
-<tr><th align="left" style="font-size:30px; ">포인트 관리</th></tr>
-<tr><td align="right">
+<div align="center" style="position: absolute; left: 200px; top: 100px; width: 80%; ">
+<h2 align="left">포인트 관리</h2>
+<br />
+<table width="100%" cellpadding="5">
+<tr><td align="right" style="border: none;">
 	<form name="frmSch" method="get">
 	<fieldset>
 		<select name="schtype">
@@ -40,7 +44,7 @@ a {text-decoration: none; color:black;}
 </td></tr>
 </table>
 <br /> 
-<table width="100%" height="60%"  cellpadding="0" cellspacing="0" id="list" >
+<table width="100%" height="60%"  cellpadding="0" cellspacing="0" id="list" style="text-align:center; " >
 <tr>
 <th width="10%" align="left">번호</th><th width="10%">아이디</th><th width="10%">이름</th><th width="10%">사용처</th>
 <th width="15%">상세내역</th><th width="15%">발행일자</th><th width="15%">유효기간</th><th width="10%">포인트</th><th width="10%">적립</th>
@@ -76,7 +80,7 @@ if (pointList.size() > 0) {
 <br>
 <table width="100%" cellpadding="5">
 <tr>
-<td width="600" align="center">
+<td width="600" align="center" style="border: none;">
 <%
 if (rcnt > 0) { //게시글이 있으면 - 페이징 영역을 보여줌
 	String link = "pointMem?1=1" + schargs + "&cpage=";

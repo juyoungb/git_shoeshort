@@ -24,7 +24,7 @@ public class AdMemberDao {
 	public List<MemberInfo> getMemberList(int cpage, int psize, String where) {
 	// ȸ�� ������ List<MemberInfo> �� �ν��Ͻ��� ���� �� �����ϴ� �޼ҵ�
 		String sql ="select * from t_member_info " + 
-				where + "limit " + ((cpage - 1) * psize) + "," + psize ; 
+				where + " order by mi_date desc limit " + ((cpage - 1) * psize) + "," + psize ; 
 		System.out.println(sql);
 		List<MemberInfo> memberList = jdbc.query(sql, 
 				(ResultSet rs, int rowNum) -> {

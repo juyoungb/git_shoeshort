@@ -157,7 +157,7 @@ public class AdMemberCtrl {
 		
 		return "adMember/allMem";
 	}
-	@RequestMapping("/memDetail")
+	@RequestMapping("/adMemDetail")
 	public String memDetail(HttpServletRequest request) throws Exception {
 	// 회원 1명의 주소정보를 보여주는 메소드
 		request.setCharacterEncoding("utf-8");

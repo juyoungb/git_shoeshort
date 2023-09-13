@@ -24,6 +24,7 @@ option {border: 1px solid black;}
 .hand { cursor:pointer; }
 #list {border:1px solid black;}
 tr, th, td {border:1px solid black;}
+th {text-align:center;}
 </style>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
@@ -171,7 +172,7 @@ function calendar() {
 </head>
 <body>
 <div align="center">
-<h2>전체 회원 조회</h2>
+<h2 align="left" style="margin-left: 10%;">전체 회원 조회</h2>
 <br />
 <form name="frm" >
 <table align="center" width="80%" height="100px" cellpadding="10" >
@@ -217,7 +218,7 @@ function calendar() {
 </div>
 </form>
 <br><br>
-<table width="80%" height="100px" >
+<table width="80%" height="50%" style="text-align:center;">
 <tr>
 <th>번호</th>
 <th>아이디</th>
@@ -230,7 +231,7 @@ function calendar() {
 <%
 
 if (memberList.size() > 0) {
-	int i = 1 ;
+	int i = rcnt - (psize * (cpage - 1));
 	for(MemberInfo mi : memberList) {
 		String status = "";
 		if (mi.getMi_status().equals("a")) status = "정상회원";
@@ -239,7 +240,7 @@ if (memberList.size() > 0) {
 %>
 		<tr>
 		<td><%=i %></td>
-		<td><div onclick="popUp('memDetail?miid=<%=mi.getMi_id() %>','','700','500');" style="cursor:pointer;"><%=mi.getMi_id() %></div></td>
+		<td><div onclick="popUp('adMemDetail?miid=<%=mi.getMi_id() %>','','650','350');" style="cursor:pointer;"><%=mi.getMi_id() %></div></td>
 		<td align="center"><%=mi.getMi_name() %></td>
 		<td align="center"><%=mi.getMi_email() %></td>
 		<td><%=mi.getMi_phone() %></td>
@@ -247,7 +248,7 @@ if (memberList.size() > 0) {
 		<td><%=status %></td>
 	</tr>
 <%
-		i++;
+		i--;
 	}
 } else { //검색이 잘못되서 목록이 없으면
 	out.println("<tr><td colspan='11' align='center'>");
