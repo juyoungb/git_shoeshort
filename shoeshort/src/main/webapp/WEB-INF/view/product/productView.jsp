@@ -206,16 +206,19 @@ function showTap(chk) {
       </td></tr>      
       <tr align="center">
       <div>
-      <td width="33.33%">
-         <img src="resources/img/product/<%=pl.getPi_img1()%>" width="100" height="100" onclick="swapIng('<%=pl.getPi_img1()%>')" class="hand">
+      <td width="33.3%">
+         <img src="resources/img/product/<%=pl.getPi_img1()%>" width="160" height="160" onclick="swapIng('<%=pl.getPi_img1()%>')" class="hand">
       </td>
-      <td width="33.33%">
-      <img src="resources/img/product/<%=pl.getPi_img2()%>" width="100" height="100" onclick="swapIng('<%=pl.getPi_img2()%>')" class="hand">   
-   
-      </td>
-      <td width="33.33%">
-   		<img src="resources/img/product/<%=pl.getPi_img3()%>" width="100" height="100" onclick="swapIng('<%=pl.getPi_img3()%>')" class="hand">           
-      </td>
+      <td width="33.3%">
+ <% if(pl.getPi_img2() !=null && !pl.getPi_img2().equals("")) {%>		
+			<img src="resources/img/product/<%=pl.getPi_img2() %>" width="160" height="160" onclick="swapIng('<%=pl.getPi_img2() %>')" class="hand">
+<%} %>		
+		</td>
+		<td width="33.3%">
+<% if(pl.getPi_img3() !=null && !pl.getPi_img3().equals("")) {%>		
+			<img src="resources/img/product/<%=pl.getPi_img3() %>" width="160" height="160" onclick="swapIng('<%=pl.getPi_img3() %>')" class="hand">
+<%} %>
+	  </td>	   
       </div>
       </tr>   
       </table>
@@ -232,14 +235,13 @@ function showTap(chk) {
    <input type="hidden" name="piid" value="<%=pl.getPi_id()%>">
    
    <table  cellpadding="5" style="height:600px; width:100%" id="info">   
-   <tr><td  align="left" colspan="2" style="font-weight: bold;"><%=pl.getPb_name()%></td>
-   <tr><td width="20%" align="right" ></td><td width="*"><%=pl.getPi_name()%></td>
-   <tr><td align="right">브랜드</td><td><%=pl.getPb_name()%></td></tr>
-   <tr><td align="right">제조사</td><td><%=pl.getPi_com() %></td></tr>
-   <tr><td align="right">가격</td><td><%=realPrice %></td></tr>   
+   <tr><td algin="left" colspan="2"  style="font-weight: bold;"><%=pl.getPb_name()%></td>
+   <tr><td colspan="2" width="20%" algin="left"><%=pl.getPi_name()%></td>
+   <tr><td align="left" style="font-size:15px">브랜드</td><td style="font-size:15px"><%=pl.getPb_name()%></td></tr>
+   <tr><td align="left" style="font-size:15px">제조사</td><td style="font-size:15px"><%=pl.getPi_com() %></td></tr>
+   <tr><td align="left">가격</td><td><%=realPrice %>원</td></tr>   
    <tr>
-   <td  style="font-size: 14px; font-weight: bold;">사이즈 선택</td>
-   
+   <td style="font-size: 14px; font-weight: bold;">사이즈</td>
    <td> 
      
    <div>	
@@ -292,7 +294,7 @@ function showTap(chk) {
               <p class="card-text"><a href="memStyle?miid=${si.getMi_id()}" style="color:black; text-decoration-line: none;">${si.getMi_id() }</a></p>
               <div class="d-flex justify-content-between align-items-center">
                 	<div width="50%">${si.getSi_content() }</div>
-                <div align="right"><img src="resources\img\style_img\${si.getSi_img()}" width="20px" height="20px"/>${si.getSi_good() }</div>
+                <div align="right"><img src="resources\img\style_img\${si.getSi_img()}" width="20px" height="20px" />${si.getSi_good() }</div>
               </div>
             </div>
           </div>
@@ -303,7 +305,7 @@ function showTap(chk) {
  </div>
   </div>   
 </div>
-<a href="style">더보기</a>
+<input type="button" value="더보기" class="btn btn-outline-secondary"  onclick="location.href='style'" />
 <hr>
   <ul class="nav nav-tabs">
     <li class="nav-item">

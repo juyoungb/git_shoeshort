@@ -27,7 +27,7 @@ del { font-size:0.7em; color:#a0a0a0;}
 <h2 >NEW/신상품</h2>
 <div class="album py-5 bg-body-tertiary" >
 	<div class="container">
-	<div class="row row-cols-4 g-4">
+	<div class="row row-cols-4 g-4" style="margin-left:60px">
 <%	for(int i = 0 ; i < productList.size(); i++) {
 	if (i % 4 == 0) out.println("<tr>");
 	ProductInfo pi = productList.get(i);
@@ -36,15 +36,14 @@ del { font-size:0.7em; color:#a0a0a0;}
 		price = Math.round(pi.getPi_price() * (1 - pi.getPi_dc()) )+ "원"; //실제 판매가
 		price = "<del>" + pi.getPi_price() + "</del>&nbsp;&nbsp;&nbsp;" + price;
 	}
-%>
-   		<div class="col-2 m-5"> 
-			<div class="card shadow-sm">
+%> 		
+			<div class="card shadow-sm m-3" style="width:250px; position:relative;" >
 	  			<a href="productView?piid=<%=pi.getPi_id()%>">
-	    		<img src="resources/img/product/<%=pi.getPi_img1() %>" width="100%" style="height: 11rem; object-fit:cover;" /></a>
-	    	<div class="card-body">
-	     		<p class="card-text" style="font-size:80%;"><%=pi.getPi_name() %></p>
-				<p class="card-text"><%=price %></p>
-	    	</div>
+	    		<img src="resources/img/product/<%=pi.getPi_img1() %>" width="100%" style="height: 15rem;" /></a>
+	    	<div class="card-body" style="text-align:left; padding-top: 15px; font-size: 13px; width: 200px; height: 100px;">
+	     		<p class="card-text"><%=pi.getPi_name() %></p>
+				<p class="card-text" style="font-weight:bold;"><%=price %></p>
+
 	    	</div>
 		</div>
 	

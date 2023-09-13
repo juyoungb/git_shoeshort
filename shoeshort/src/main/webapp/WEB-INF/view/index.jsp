@@ -74,16 +74,21 @@ if(itemList.size() > 0){
 %></table>
 		</div>
 		<div class="col" style="width:45%;height:100%; display:inline-block;">
-			<div>
+			<div width="100%">
 			<c:forEach var="pl" items="${productList}">
-				<a href="productView?&piid=${pl.getPi_id() }"><img src="resources/img/product/${pl.getPi_img1() }" width="200" height="200"></a>
-			</c:forEach>
+				<a href="productView?&piid=${pl.getPi_id() }"><img src="resources/img/product/${pl.getPi_img1() }" style="border-radius:8px; background-color:#efefefef; width:200px; height:200px"></a>
+				<div style="text-align:left; padding-top: 15px; font-size: 13px; width: 200px; height: 100px;">		
+					<p>${pl.getPi_name() }</p>
+					<strong style="font-size:15px; align:left; padding-top: 15px;">${pl.getPi_price() }원</strong>
+				</div>
 			</div>
+			</c:forEach>
+			
 		</div>
 		
 	</div>
 	</div>
-	</div>
+</div>
 	
 <div style="width:1300px"><hr></div>
 <div style="width:1300px; padding-left:10px;" align="left">
@@ -116,11 +121,13 @@ if(itemList.size() > 0){
 <c:forEach var="nl" items="${newList}" begin="0" end="4">
 	<td width="25%" align="center">
 		<a href="productView?piid=${nl.getPi_id()}"">
-		<img src="resources/img/product/${nl.getPi_img1()}" id="productImg" style="border-radius:8px;"/>
+		<img src="resources/img/product/${nl.getPi_img1()}" id="productImg" style="border-radius:8px; background-color:#efefefef;"/>
 		</a>
-		<br><span style=""></span>
-		${nl.getPi_name()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<fmt:formatNumber value="${nl.getPi_price()}" pattern="#,###원"/>
+		<br>
+		<div style="text-align:left; padding-top: 15px; font-size: 13px; width: 200px; height: 100px;">
+		<p>${nl.getPi_name()}</p>
+		<strong style="font-size:15px; align:left; padding-top: 15px;"><fmt:formatNumber value="${nl.getPi_price()}" pattern="#,###원"/></strong>
+		</div>
 	</td>
 </c:forEach>
 </table>
@@ -140,11 +147,13 @@ if(itemList.size() > 0){
 <c:forEach var="sl" items="${saleList}" begin="0" end="4" varStatus="idx">
 	<td width="25%" align="center">
 		<a href="productView?piid=${sl.getPi_id()}">
-		<img src="resources/img/product/${sl.getPi_img1()}" id="productImg"style="border-radius:8px;"/>
+		<img src="resources/img/product/${sl.getPi_img1()}" id="productImg" style="border-radius:8px; background-color:#efefefef;"/>
 		</a>
 		<br>
-		${sl.getPi_name()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<fmt:formatNumber value="${sl.getPi_price()}" pattern="#,###원"/>
+		<div style="text-align:left; padding-top: 15px; font-size: 13px; width: 200px; height: 100px;">
+		<p>${sl.getPi_name()}</p>
+		<strong style="font-size:15px; align:left; padding-top: 15px;"><fmt:formatNumber value="${sl.getPi_price()}" pattern="#,###원"/></strong>
+		</div>
 	</td>
 </c:forEach>
 </table>
@@ -176,7 +185,7 @@ if(itemList.size() > 0){
 </div>
 <br>
 <div style="width:1300px; padding-left:10px;" align="left">
-<span style="font-size:18px; font-weight:bold;">Top Style</span>
+	<span style="font-size:18px; font-weight:bold;">Top Style</span>
 </div>
 <br>
 <table cellpadding="2">

@@ -266,7 +266,7 @@ window.onload = function() {
 				    <input type="text" name="ep" class="price" value="" placeholder="최고가" onkeyup="onlyNum(this);" width="100" height="20px">
    					<div class="mx-auto p-2">	
 					    <input type="button" value="상품 검색" class="btn btn-dark btn-sm" onclick="makeSch();">
-						<input type="button" value="조건 초기화" class="btn btn-outline-secondary btn-sm"  onclick="location.reload()">
+						<input type="button" value="조건 초기화" class="btn btn-outline-secondary btn-sm"  onclick="location.href='productList'">
 					</div>		   
 
 				</div>  
@@ -305,14 +305,14 @@ window.onload = function() {
 			%>
 			
 			
-			<div class="col-2 m-4"> 
+			<div class="m-3" style="width:250px"> 
 				<div class="card" style="width: 15rem;">
 		   			<a href="productView?&piid=<%=pi.getPi_id()%>" >
 		   			<img src="resources/img/product/<%=pi.getPi_img1() %>" class="card-img" width="250px" height="250px"></a>
-		        	<div class="card-body">
+		        	<div class="card-body" style="height:140px">
 		        		<p class="card-text" style="font-weight:bold; font-size: 11px"><%=pi.getPb_name() %></p>
 		        		<p style="font-size: 11px"><%=pi.getPi_name() %></p>
-		        	 	<em><%=price %></em>
+		        	 	<strong><%=price %></strong>
 		        	</div>       
 		      	</div>
 		   </div>
@@ -334,7 +334,7 @@ if (pageInfo.getRcnt() > 0) {
 	String link = "productList?1=1"+pageInfo.getSchargs()+"&cpage=";
 %>
 	<nav aria-label="Page navigation example" style="text-align:center; width:200px;">
-		<ul class="pagination  justify-content-center"" >
+		<ul class="pagination  justify-content-center" >
 <%
 	if (pageInfo.getCpage() == 1) {
 %>
