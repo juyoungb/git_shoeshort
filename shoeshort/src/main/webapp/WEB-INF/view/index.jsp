@@ -219,6 +219,9 @@ new Vue ({
             	case '맑음':
                 	return "<img src='resources/img/weather/sun.png' width='30px' height='30px'>";
             	case '비':
+            	case '흐리고 비':     		
+                	return "<img src='resources/img/weather/rain.png' width='30px' height='30px'>"; 
+            	case '비':
                 	return "<img src='resources/img/weather/rain.png' width='30px' height='30px'>"; 
            		 default:
                 	return "<img src='resources/img/weather/cloud.png' width='30px' height='30px'>";
