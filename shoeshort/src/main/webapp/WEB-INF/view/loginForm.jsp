@@ -55,11 +55,11 @@ a {
 	<input type="hidden" name="url" value="<%=url%>" />
 		<div class="mb-3">
 			<label class="form-label" for="uid">아이디</label> 
-			<input class="form-control" type="text" name="uid" id="uid" value="test6" placeholder="아이디 입력" />
+			<input class="form-control" type="text" name="uid" id="uid" value="" placeholder="아이디 입력" />
 		</div>
 		<div class="mb-3">
 			<label class="form-label" for="pwd">비밀번호</label> 
-			<input class="form-control" type="password" name="pwd" id="pwd" value="1234"  placeholder="비밀번호 입력" />
+			<input class="form-control" type="password" name="pwd" id="pwd" value=""  placeholder="비밀번호 입력" />
 		</div>
 		<button class="btn btn-secondary" type="submit" style="width:100%; height:45px; font-size:22px;">로그인</button>
 	</form>

@@ -48,7 +48,7 @@ function link() {
 <tr>
 <td align="left">
 	<a href="product/product_view" >
-	<img src="resources/img/product_img/<%=styleProduct.getPi_img1() %>" width="100" height="100" /></a><br /><%=styleProduct.getPi_name() %><br /><%=styleProduct.getPi_price() %>원
+	<img src="resources/img/product/<%=styleProduct.getPi_img1() %>" width="100" height="100" /></a><br /><%=styleProduct.getPi_name() %><br /><%=styleProduct.getPi_price() %>원
 </td>
 <td width="70%" align="left"><%=styleView.getSi_content() %></td>
 <td width="10%" align="right" class="good">

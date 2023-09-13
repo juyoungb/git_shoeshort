@@ -104,7 +104,7 @@ if (rcnt > 0) { //게시글이 있으면 - ㅍㅔ이징 영역을 보여줌
 %>
 </td>
 <td width="3%" align="right">
-	<input type="button" class="btn btn-outline-dark" value="글 등록" onclick="popUp('storeFormIn','','700','500');">
+	<input type="button" class="btn btn-outline-dark" value="등록" onclick="popUp('storeFormIn','','700','500');">
 </td>
 </tr>
 </table>

@@ -61,10 +61,10 @@ try {
 	  content: {
 	    title: '좋아요 요청이 도착했습니다.',
 	    description: '클릭 후 친구에게 좋아요를 눌러보세요',
-	    imageUrl:'http://localhost:8085/shoeshort/resources/img/style_img/style_img_CC01.png',
+	    imageUrl:'http://localhost:8087/shoeshort/resources/img/style_img/style_img_CC01.png',
 	    link: {
 	      mobileWebUrl: 'https://developers.kakao.com',
-	      webUrl: 'http://localhost:8088/shoeshort/styleView?siidx=<%=styleView.getSi_idx() %>&piid=<%=styleView.getPi_id()%>',
+	      webUrl: 'http://localhost:8087/shoeshort/styleView?siidx=<%=styleView.getSi_idx() %>&piid=<%=styleView.getPi_id()%>',
 	    },
 	  },
 	  social: {
@@ -75,7 +75,7 @@ try {
 	      title: '웹으로 보기',
 	      link: {
 	        mobileWebUrl: 'https://developers.kakao.com',
-	        webUrl: 'http://localhost:8088/shoeshort/styleView?siidx=<%=styleView.getSi_idx() %>&piid=<%=styleView.getPi_id()%>',
+	        webUrl: 'http://localhost:8087/shoeshort/styleView?siidx=<%=styleView.getSi_idx() %>&piid=<%=styleView.getPi_id()%>',
 	      },
 	    },
 	  ],

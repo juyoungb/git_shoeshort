@@ -61,12 +61,12 @@ function resetBtn(){
 </script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
-<div id="wrap">
+<div id="wrap"  style="margin-left:200px;">
 <div align="center">
 
 <div align="left">
 <table style="border:none;">
-<tr><td style="text-align:left;border:none;">&nbsp;
+<tr><td style="text-align:left; border:none;">&nbsp;
 <h2 >주문 조회</h2>
 </td>
 </tr>

@@ -65,7 +65,7 @@ font-weight:600;
     /* 다른 스타일 속성을 여기에 추가할 수 있습니다. */
   }
 </style>
-<div style="margin-left:50px;">
+<div style="margin-left:200px;">
 <table id="tb1">
 <tr>
 <td width="10%" style="text-align:center"> 
