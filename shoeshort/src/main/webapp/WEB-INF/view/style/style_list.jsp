@@ -128,7 +128,7 @@ int rcnt = pageInfo.getRcnt(), cpage = pageInfo.getCpage(), bsize = pageInfo.get
               <p class="card-text"><a href="memStyle?miid=<%=si.getMi_id() %>" style="color:black; text-decoration-line: none;"><%=si.getMi_id() %></a></p>
               <div class="d-flex justify-content-between align-items-center">
                 	<div width="50%"><%=si.getSi_content() %></div>
-                <div align="right"><img src="resources\img\style_img\style_good02.png" width="20px" height="20px"/><%=si.getSi_good() %></div>
+                <div style="float:right; "><img src="resources\img\style_img\style_good02.png" width="20px" height="20px"/>&nbsp;<%=si.getSi_good() %></div>
               </div>
             </div>
           </div>
