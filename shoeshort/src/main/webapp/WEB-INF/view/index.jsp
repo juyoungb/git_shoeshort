@@ -6,6 +6,7 @@
 <%
 request.setCharacterEncoding("utf-8");
 JSONArray itemList = (JSONArray)request.getAttribute("itemList");
+  
 
 %>
 <link rel="stylesheet" href="resources/css/indexStyle.css">
