@@ -47,8 +47,8 @@ public class EvtLuckyDao {
 				
 				el.setEl_sdate(rs.getString("el_sdate"));	
 				el.setEl_edate(rs.getString("el_edate"));					
-				el.setEl_max_price(rs.getInt("el_min_price"));			
-				el.setEl_min_price(rs.getInt("el_max_price"));
+				el.setEl_min_price(rs.getInt("el_min_price"));			
+				el.setEl_max_price(rs.getInt("el_max_price"));
 					
 				return el;
 			}			

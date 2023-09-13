@@ -50,6 +50,7 @@ function makeSch() {
 	 alert("sch :" +sch);
 	 document.frm2.sch.value = sch;   
 	 document.frm2.submit();
+	 alert("등록이 되었습니다.")
 }
 
 function chkBox(name, checked) {
@@ -153,73 +154,63 @@ for(String st : arrGender){
 </tr>
 </table>
 <div style="margin:20px;" id="app">
-<table width="50%" style="float:left;">
+<table width="80%"  align="center">
 <tr>
-<th width="50%">사이즈</th>
-<th width="50%">재고량</th>
-<th width="50%">사이즈</th>
-<th width="50%">재고량</th>
+<th width="25%">사이즈</th>
+<th width="25%">재고량</th>
+<th width="25%">사이즈</th>
+<th width="25%">재고량</th>
 </tr>
 <tr>
 <td>225</td>
 <td><input type="number" id="225" v-bind:value="defalut" name="size" class="input"></td>
-</tr>
-<tr>
 <td>255</td>
 <td><input type="number" id="255" v-bind:value="defalut"  name="size" class="input"></td>
 </tr>
+
 <tr>
 <td>230</td>
 <td><input type="number" id="230" v-bind:value="defalut" name="size" class="input"></td>
-</tr>
-<tr>
 <td>260</td>
 <td><input type="number" id="260" v-bind:value="defalut"  name="size" class="input"></td>
 </tr>
+
 <tr>
 <td>235</td>
 <td><input type="number" id="235" v-bind:value="defalut" name="size" class="input"></td>
-</tr>
-<tr>
 <td>265</td>
 <td><input type="number" id="265" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
+
 <tr>
 <td>240</td>
 <td><input type="number" id="240" v-bind:value="defalut" name="size" class="input"></td>
-</tr>
-<tr>
 <td>270</td>
-<input type="number" id="270" v-bind:value="defalut"  name="size" class="input"></td>
+<td><input type="number" id="270" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
+
 <tr>
 <td>245</td>
 <td><input type="number" id="245" v-bind:value="defalut" name="size" class="input"></td>
-</tr>
-<tr>
 <td>275</td>
 <td><input type="number" id="275" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
+
 <tr>
 <td>250</td>
 <td><input type="number" id="250" v-bind:value="defalut" name="size" class="input"></td>
-</tr>
 <td>280</td>
 <td><input type="number" id="280" v-bind:value="defalut" name="size" class="input"></td>
 </tr>
+
 <tr style="border: 0;">
-<td colspan="2" align="center" style="border: 0;">
+<td colspan="4" align="center"   style="border: 0;">
 	<input type="button" class="btn btn-outline-dark" value="등록" onclick="makeSch();">
 	<input type="button" class="btn btn-secondary"  value="취소"  onclick="location.href='adProductProc';">
 </td>
 </tr>
 
  </table>
-
-
-
-
-
 </div>
 </div>
 </form>

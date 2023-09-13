@@ -66,6 +66,7 @@ public class MemberCtrl {
 	public String joinProc(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		MemberInfo mi = new MemberInfo();
+		System.out.println("member");
 		mi.setMi_id(request.getParameter("mi_id"));		mi.setMi_pw(request.getParameter("mi_pw"));
 		mi.setMi_name(request.getParameter("mi_name"));		mi.setMi_gender(request.getParameter("mi_gender"));
 		
@@ -75,10 +76,12 @@ public class MemberCtrl {
 		String p2 = request.getParameter("p2");		String p3 = request.getParameter("p3");
 		mi.setMi_phone("010-"+ p2 + "-" + p3);
 		String e1 = request.getParameter("e1");		String e2 = request.getParameter("e2");
+		
 		mi.setMi_email(e1 + "@" + e2);
 		mi.setMa_zip(request.getParameter("zip"));
 		mi.setMa_addr1(request.getParameter("addr1"));
 		mi.setMa_addr2(request.getParameter("addr2").trim());
+		
 		int result = memberSvc.memberInsert(mi);
 		if (result != 1) {
 			response.setContentType("text/html; charset=utf-8");

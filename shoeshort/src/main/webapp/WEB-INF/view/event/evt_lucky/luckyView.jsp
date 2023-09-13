@@ -47,9 +47,10 @@ function end (){
 	const timeDiff = endDate - curDate;
 	
 	if(timeDiff < 0) {
-		setTimeout(function() {  //종료도
+		setTimeout(function() {  //종료이벤트
            alert("종료된 이벤트 입니다.")// 
            window.close();
+           history.back();
         }, timeDiff);
 	}else {
 		
@@ -189,7 +190,6 @@ function clickBtn(idx) {
     		<strong>응모가격</strong>
     		<p style="font-size:14px"> ${el.getEl_min_price() }원 ~ ${el.getEl_max_price()}원</p>
     	</div>
-  	</div>
 </c:forEach>
   	<div class="p-2 g-col-12">
   		<hr>

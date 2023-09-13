@@ -269,7 +269,7 @@
 						<option value="naver.com">네이버</option>
 						<option value="nate.com">네이트</option>
 						<option value="gmail.com">지메일</option>
-						<option value="direct"<c:if test="${email[1] != ''}"> selected="selected"</c:if>>직접입력</option>
+						<option value="${email[1]}"<c:if test="${email[1] != ''}"> selected="selected"</c:if>>직접입력</option>
 				</select> <input type="text" name="e3" id="e3" size="10" value="${email[1]}" /></td>
 			</tr>
         <th>전화번호</th>
