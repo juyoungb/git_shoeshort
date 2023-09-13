@@ -280,7 +280,7 @@ function showTap(chk) {
 <tr>
 </table>
 <hr>
-<p align="left" style="">스타일</p>
+<p align="left" style="font-weight: bold; font-size: 17px">Style</p>
 <div><!-- style -->
 <div class="album py-5 bg-body-tertiary" >
 <div class="container">
@@ -289,12 +289,12 @@ function showTap(chk) {
 	   <div class="col-xs-3">
           <div class="card" style="width: 18rem;">
           	<a href="styleView?siidx=${si.getSi_idx() }&piid=${si.getPi_id()}">
-            <img src="resources\img\style_img\${si.getSi_img()}" width="100%" height="350" /></a>
+            <img src="resources/img/style_img/${si.getSi_img()}" width="100%" height="350" /></a>
             <div class="card-body">
               <p class="card-text"><a href="memStyle?miid=${si.getMi_id()}" style="color:black; text-decoration-line: none;">${si.getMi_id() }</a></p>
               <div class="d-flex justify-content-between align-items-center">
                 	<div width="50%">${si.getSi_content() }</div>
-                <div align="right"><img src="resources\img\style_img\${si.getSi_img()}" width="20px" height="20px" />${si.getSi_good() }</div>
+                <div align="right"><img src="resources/img/style_img/style_good02.png" width="20px" height="20px" />&nbsp;${si.getSi_good() }</div>
               </div>
             </div>
           </div>

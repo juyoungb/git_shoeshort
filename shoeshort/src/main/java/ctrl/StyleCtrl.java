@@ -126,7 +126,7 @@ public class StyleCtrl {
 		String si_content = request.getParameter("si_content");
 		
 		// 스타일 이미지 저장영역(이미지를 지정한 폴더에 저장하고 업로드한 파일 이름을 디비에 저장해서 스타일 뷰에서 보여줌)	// 학원 컴퓨터 폴더는 lastproject / 집 컴터는 workspace
-		String uploadPath = "D://limhyun//last_project//shoeshort//src//main//webapp//resources//img//style_img";
+		String uploadPath = "E:\\git_shoeshort\\shoeshort\\src\\main\\webapp\\resources\\img\\style_img";
 		String files = "";
 		System.out.println(files);
 		// 저장될 경로에 \\를 //로 변경
@@ -221,7 +221,7 @@ public class StyleCtrl {
 		// 수정할 내용들 받아오기
 		
 		// 스타일 이미지 저장영역(이미지를 지정한 폴더에 저장하고 업로드한 파일 이름을 디비에 저장해서 스타일 뷰에서 보여줌)
-		String uploadPath = "D://limhyun//workspace//shoeshort//src//main//webapp//resources//img//style_img";
+		String uploadPath = "E:\\git_shoeshort\\shoeshort\\src\\main\\webapp\\resources\\img\\style_img";
 		String files = "";
 		// 저장될 경로에 \\를 //로 변경
 		for (MultipartFile file : uploadFile) {
