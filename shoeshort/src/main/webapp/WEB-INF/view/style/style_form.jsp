@@ -2,11 +2,10 @@
 <%@ include file="../_inc/inc_head_fr.jsp" %>
 <%
 request.setCharacterEncoding("utf-8");
-StyleInfo styleInfo = new StyleInfo();
-String piid = styleInfo.getPi_id();
+StyleInfo styleInfo = (StyleInfo)request.getAttribute("styleInfo");
 %>
 <style>
-.filebox .upload-name {
+.filebox .uploadFile {
     display: inline-block;
     height: 40px;
     padding: 0 10px;
@@ -39,12 +38,12 @@ String piid = styleInfo.getPi_id();
 $(document).ready(function() {
 	$("#file").on('change',function(){
 		  var fileName = $("#file").val();
-		  $(".upload-name").val(fileName);
+		  $(".uploadFile").val(fileName);
 		});
 });
 </script>
 <form action="StyleFormProc" method="post" enctype="multipart/form-data">
-<input type="hidden" name="piid" value="<%=piid %>" />
+<input type="hidden" name="piid" value="<%=styleInfo.getPi_id() %>" />
 	<div>
 	<table width="50%" height="550px" cellpadding="20" align="center">
 	<tr>
@@ -54,7 +53,7 @@ $(document).ready(function() {
 	<th width="15%">이미지</th>
 	<td width="*">
 	<div class="filebox">
-	<input class="upload-name" value="첨부파일" placeholder="첨부파일" />
+	<input class="uploadFile" value="첨부파일" placeholder="첨부파일" />
 	<label for="file">이미지 선택</label>
 	<input type="file" id="file" name="uploadFile" multiple="multiple" />
 	</div>

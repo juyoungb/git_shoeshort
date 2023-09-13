@@ -127,7 +127,7 @@ public class AdOrderCtrl {
 		String oiid = request.getParameter("oiid");
 		String uid = request.getParameter("uid");
 		
-		OrderInfo orderInfo = adOrderSvc.getOrderInfo(uid,oiid);
+		OrderInfo orderInfo = adOrderSvc.getOrderInfo(uid, oiid);
 		MemberInfo memberInfo = adOrderSvc.getMemberInfo(uid);
 		System.out.println(orderInfo.getOi_id());
 		model.addAttribute("oi", orderInfo);

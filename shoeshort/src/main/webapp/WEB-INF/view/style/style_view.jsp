@@ -108,7 +108,7 @@ h4 { margin-left:400px;}
 <br />
 <table style="width:35%;" align="center" >
 <tr><td align="left" rowspan="2" width="2%">
-	<a href="product/product_view" /><img src="resources/img/product/<%=styleProduct.getPi_img1() %>" width="100" height="100" />
+	<a href="productView?piid=<%=styleProduct.getPi_id() %>" /><img src="resources/img/product/<%=styleProduct.getPi_img1() %>" width="100" height="100" />
 </td><td rowspan="2" width="20%"><%=styleProduct.getPi_name() %><br /><%=styleProduct.getPi_price() %>원</td>
 </tr>
 <tr>

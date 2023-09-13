@@ -155,8 +155,8 @@ public class StyleDao {
 	}
 
 	public StyleInfo getStyleFormProc(StyleInfo styleInfo) {
-	// 스타일 등록 폼 처리(select로 pi_id받아오고 insert로 등록) 메소드
-		String sql = "update t_product_info set pi_stylecnt = pi_stylecnt + 1 where pi_id ="+ styleInfo.getPi_id();
+	// 스타일 등록  처리 메소드
+		String sql = "update t_product_info set pi_stylecnt = pi_stylecnt + 1 where pi_id = '"+ styleInfo.getPi_id() + "' ";
 		
 		int result = jdbc.update(sql);	// t_product_info테이블에 pi_style 값을 -1하는 쿼리 실행
 		
@@ -166,7 +166,7 @@ public class StyleDao {
 		
 		result = jdbc.update(sql);
 		
-		sql = "select si_idx from t_style_info where mi_id = '"+ styleInfo.getMi_id() +"' and pi_id = 'NN10001'";
+		sql = "select si_idx from t_style_info where mi_id = '"+ styleInfo.getMi_id() +"' and pi_id = '"+ styleInfo.getPi_id() +"'";
 		StyleInfo si = jdbc.queryForObject(sql, (ResultSet rs, int rowNum) -> {
 			StyleInfo mi = new StyleInfo();
 			mi.setSi_idx(rs.getInt("si_idx"));
