@@ -83,7 +83,6 @@ if(itemList.size() > 0){
 				</div>
 			</div>
 			</c:forEach>
-			
 		</div>
 		
 	</div>
