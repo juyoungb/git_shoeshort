@@ -37,8 +37,8 @@ function inBtn(){
 			<option value="content" <% if(schtype.equals("content")){ %>selected="selected"<% } %>>내용</option>
 		</select>
 		<input type="text" name="keyword" value="<%=keyword %>">
-		<input type="submit" class="btn btn-outline-secondary" value="검색">
-		<input type="button" class="btn btn-outline-secondary" value="전체 글" onclick="location.href='adFaqList'">
+		<input type="submit" class="btn btn-outline-dark" value="검색">
+		<input type="button" class="btn btn-outline-dark" value="전체 글" onclick="location.href='adFaqList'">
 	</fieldset>
 	</form>
 	</td></tr>
@@ -109,7 +109,7 @@ if (rcnt > 0) { //게시글이 있으면 - 페이징 영역을 보여줌
 %>
 </td>
 <td width="5%" align="rignt">
-	<input type="button" class="btn btn-outline-secondary" value="글 등록" onclick="location.href='adFaqForm'">
+	<input type="button" class="btn btn-dark" value="글 등록" onclick="location.href='adFaqForm'">
 </td>
 </tr>
 </table>

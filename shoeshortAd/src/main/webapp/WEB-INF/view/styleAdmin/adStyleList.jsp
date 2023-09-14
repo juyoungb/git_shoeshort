@@ -30,8 +30,8 @@ String schtype = pageInfo.getSchtype() , keyword = pageInfo.getKeyword(), args =
 			<option value="content" <% if(schtype.equals("content")){ %>selected="selected"<% } %>>내용</option>
 		</select>
 		<input type="text" name="keyword" value="<%=keyword %>">
-		<input type="submit" value="검색">
-		<input type="button" value="전체 글" onclick="location.href='adStyle?cpage=1'">
+		<input type="submit" class="btn btn-outline-dark" value="검색">
+		<input type="button" class="btn btn-outline-dark" value="전체 글" onclick="location.href='adStyle?cpage=1'">
 	</fieldset>
 	</form>
 	</td></tr>

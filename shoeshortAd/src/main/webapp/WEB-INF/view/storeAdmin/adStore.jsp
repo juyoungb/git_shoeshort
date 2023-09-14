@@ -33,8 +33,8 @@ String schtype = pageInfo.getSchtype() , keyword = pageInfo.getKeyword(), args =
 			<option value="name" <% if(schtype.equals("name")){ %>selected="selected"<% } %>>매장명</option>
 		</select>
 		<input type="text" name="keyword" value="<%=keyword %>">
-		<input type="submit" class="btn btn-dark" value="검색">
-		<input type="button" class="btn btn-dark" value="전체 글" onclick="location.href='adStore?cpage=1'">
+		<input type="submit" class="btn btn-outline-dark" value="검색">
+		<input type="button" class="btn btn-outline-dark" value="전체 글" onclick="location.href='adStore?cpage=1'">
 	</fieldset>
 	</form>
 	</td></tr>
@@ -104,7 +104,7 @@ if (rcnt > 0) { //게시글이 있으면 - ㅍㅔ이징 영역을 보여줌
 %>
 </td>
 <td width="3%" align="right">
-	<input type="button" class="btn btn-outline-dark" value="등록" onclick="popUp('storeFormIn','','700','500');">
+	<input type="button" class="btn btn-dark" value="등록" onclick="popUp('storeFormIn','','700','500');">
 </td>
 </tr>
 </table>

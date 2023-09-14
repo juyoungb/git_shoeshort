@@ -37,8 +37,8 @@ a {text-decoration: none; color:black;}
 			<option value="name" <% if(schtype.equals("name")){ %>selected="selected"<% } %>>이름</option>
 		</select>
 		<input type="text" name="keyword" value="<%=keyword %>">
-		<input type="submit" class="btn btn-dark" value="검색">
-		<input type="button" class="btn btn-dark" value="전체" onclick="location.href='pointMem'">
+		<input type="submit" class="btn btn-outline-dark" value="검색">
+		<input type="button" class="btn btn-outline-dark" value="전체" onclick="location.href='pointMem'">
 	</fieldset>
 	</form>
 </td></tr>
