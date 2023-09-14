@@ -56,6 +56,7 @@ public class AdWcupCtrl {
 		ewi.setEw_title(title);				ewi.setEw_rule(Integer.parseInt(rule));
 		
 		if(kind.equals("in")) result = adWcupSvc.WcupIn(ewi);
+		
 		else {		
 			String ewidx = request.getParameter("ewidx");
 			String ewstatus = request.getParameter("ewstatus");
@@ -63,6 +64,7 @@ public class AdWcupCtrl {
 			ewi.setEw_idx(Integer.parseInt(ewidx));
 			 result = adWcupSvc.WcupUp(ewi);	
 		}
+		System.out.println(result);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		if(result != 1) {
@@ -72,7 +74,7 @@ public class AdWcupCtrl {
 			out.println("</script>");
 		}else {
 			out.println("<script>");
-			out.println("alert('"+(kind.equals("in")?"등록":"수정")+"이 실패했습니다.');");
+			out.println("alert('"+(kind.equals("in")?"등록":"수정")+"이 성공했습니다.');");
 			out.println("window.close(); opener.location.reload();");
 			out.println("</script>");
 		}

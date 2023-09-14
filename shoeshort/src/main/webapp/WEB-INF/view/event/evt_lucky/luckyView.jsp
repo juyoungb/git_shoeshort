@@ -68,24 +68,28 @@ function clickBtn(idx) {
 	var min = "${minPrice}";
 	var max = "${maxPrice}";
 	if( price > min  && price < max) {
-		 document.getElementsByName("price").value ="";
-		return alert(min + "보다 크고 " + max +"작아야합니다.");
+		$.ajax({
+			type: "POST",
+	        url: "luckProcIn",
+	        data: {"elidx": idx, "price": price},
+	        success: function(chkRs){
+	            if (chkRs == 0) {
+	               	alert("로그인이 필요합니다.");
+	               	location.href = "login";
+	            } else if(chkRs > 0){
+	               	alert("참여 완료!"); 
+	            } else {
+	           		alert("이미 참여하셨습니다.");
+	           }
+	       }
+	   });
+		
+	}else{
+		// return alert(min + "보다 크고 " + max +"작아야합니다.");	
 	}	
-	$.ajax({
-		type: "POST",
-        url: "luckProcIn",
-        data: {"elidx": idx, "price": price},
-        success: function(chkRs){
-            if (chkRs == 0) {
-               	alert("로그인이 필요합니다.");
-               	location.href = "login";
-            } else if(chkRs > 0){
-               	alert("참여 완료!"); 
-            } else {
-           		alert("이미 참여하셨습니다.");
-           }
-       }
-   });
+	 document.getElementsByName("price").value ="";
+	
+	
    
     //초기화시킴
     price ="";
