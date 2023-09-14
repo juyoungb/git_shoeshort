@@ -20,6 +20,7 @@ var frm = document.frm;
 	} else  {
 		return frm.submit();
 	}
+}
 </script>
 <style>
 td {padding-bottom: 10px;}
