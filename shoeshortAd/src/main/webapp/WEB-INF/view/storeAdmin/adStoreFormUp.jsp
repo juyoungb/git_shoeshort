@@ -18,7 +18,7 @@ var frm = document.frm;
 		alert("입력칸을 확인해주세요.");
 		return false;
 	} else  {
-		submit();
+		return frm.submit();
 	}
 </script>
 <style>
