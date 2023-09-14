@@ -47,7 +47,7 @@ function makeSch() {
 	    }
 	 }   
 	 
-	 alert("sch :" +sch);
+	 
 	 document.frm2.sch.value = sch;   
 	 document.frm2.submit();
 	 alert("등록이 되었습니다.")

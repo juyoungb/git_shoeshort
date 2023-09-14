@@ -466,7 +466,7 @@ for (String st : arrKeyword) {
 </tr>
 <%
 if (productList.size() > 0) {
-	int i = 1;
+	int i = pageInfo.getRcnt() - (pageInfo.getPsize() * (pageInfo.getCpage() - 1));
 	for(ProductInfo pi : productList) {%>
 		<tr onmouseover="this.bgColor='#efefef';" onmouseout="this.bgColor='';">
 		<td><%=i %></td>
@@ -491,7 +491,7 @@ if (productList.size() > 0) {
 	</td>
 	</tr>
 <%
-		i++;
+		i--;
 	}
 } 
 

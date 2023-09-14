@@ -84,16 +84,6 @@ $(function() {
 </td>
 </tr>
 <tr>
-<th>당첨자</th>
-<td>
-	<input type="text" name="mi_id" value="${ul.getMi_id()}"> 
-</td>
-</tr>
-<tr>
-<th>당첨 금액</th>
-<td>
-	<input type="number" name="final_price" value="${ul.getEl_final_price()}">
-</td>
 </tr>
 <tr>
 <th>게시여부</th>

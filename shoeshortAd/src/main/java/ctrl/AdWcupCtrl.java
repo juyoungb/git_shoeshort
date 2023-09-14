@@ -69,12 +69,12 @@ public class AdWcupCtrl {
 		PrintWriter out = response.getWriter();
 		if(result != 1) {
 			out.println("<script>");
-			out.println("alert('"+(kind.equals("in")?"등록":"수정")+"이 실패했습니다.');");
+			out.println("alert('"+(kind.equals("in")?"등록":"수정")+"실패했습니다.');");
 			out.println("window.close(); opener.location.reload();");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
-			out.println("alert('"+(kind.equals("in")?"등록":"수정")+"이 성공했습니다.');");
+			out.println("alert('"+(kind.equals("in")?"등록":"수정")+"되었습니다.');");
 			out.println("window.close(); opener.location.reload();");
 			out.println("</script>");
 		}

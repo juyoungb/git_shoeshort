@@ -81,7 +81,7 @@ public class AdWcupDao {
 			int result = jdbc.update(sql,ewi.getAi_idx(), ewi.getEw_title(),ewi.getEw_csdate(),ewi.getEw_cedate(),
 					ewi.getEw_vsdate().equals("")? null:ewi.getEw_vsdate(),
 					ewi.getEw_vedate().equals("")? null:ewi.getEw_vedate(), ewi.getEw_rule()); //result: 1
-			System.out.println(result);
+			//System.out.println(result);
 			return result;
 		}
 

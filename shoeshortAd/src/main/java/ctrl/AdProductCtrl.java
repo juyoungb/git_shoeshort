@@ -254,7 +254,8 @@ public class AdProductCtrl {
 	@PostMapping("/adProductFile") // 상품등록 form으로 보낼때
 	public String adProductFile( HttpServletRequest request, @RequestPart("uploadFile1") Part file1,
 			@RequestPart("uploadFile2") Part file2, @RequestPart("uploadFile3") Part file3, @RequestPart("uploadFile4") Part file4)   throws Exception  {
-		String uploadFiles ="E:/_project/shoeshortAd/src/main/webapp/resources/img/product";
+		String uploadFiles ="E:/git_shoeshort/shoeshortAd/src/main/webapp/resources/img/product";
+		
 		System.out.println("adProductFile");
 		//String path = "D:/_bjk/shoeshortAd/src/main/webapp/resources/img/lucky_img";
 		String pi_id = request.getParameter("piid").trim().toUpperCase(); //상품명

@@ -87,8 +87,7 @@ public class AdLuckyCtrl {
 		int min_price = Integer.parseInt(request.getParameter("min"));	
 		int max_price = Integer.parseInt(request.getParameter("max"));	
 		
-		String mi_id = request.getParameter("mi_id");
-		int final_price = Integer.parseInt(request.getParameter("final_price"));	
+		
 
 		int result = 0;
 
@@ -101,8 +100,7 @@ public class AdLuckyCtrl {
 		li.setEl_isview(el_isview);	
 		li.setEl_min_price(min_price);
 		li.setEl_max_price(max_price);
-		li.setMi_id(mi_id);
-		li.setEl_final_price(final_price);
+		
 		if(kind.equals("in")) 
 		{
 			result = adLuckySvc.LuckyIn(li); 	// 등록
@@ -113,6 +111,8 @@ public class AdLuckyCtrl {
 			System.out.println("el_idx : " +el_idx);
 			li.setEl_idx(el_idx);
 			result = adLuckySvc.luckyUp(li);	//수정
+
+
 		}
 
 		response.setContentType("text/html; charset=utf-8");

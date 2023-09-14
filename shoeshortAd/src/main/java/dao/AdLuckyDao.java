@@ -85,9 +85,8 @@ public class AdLuckyDao {
 
 	public int luckyUp(LuckyInfo li) {
 		String sql = "update t_evt_lucky_list set el_title = '"+li.getEl_title()+"', "
-				+ " el_sdate = '"+li.getEl_sdate()+"', el_edate = '"+li.getEl_edate()+"' ,el_isview = '"+li.getEl_isview()+"' ,"
-				+ " el_min_price="+li.getEl_min_price()+", el_max_price="+li.getEl_max_price()+" ,"
-				+ "el_final_price = "+li.getEl_final_price()+", mi_id='"+li.getMi_id()+"' "
+				+ " el_sdate = '"+li.getEl_sdate()+"', el_edate = '"+li.getEl_edate()+"' ,el_isview = '"+li.getEl_isview()+"', "
+				+ " el_min_price="+li.getEl_min_price()+", el_max_price="+li.getEl_max_price()+" "
 				+ " WHERE el_idx = '"+li.getEl_idx()+"' ";
 		System.out.println(sql);
 		int result = jdbc.update(sql);

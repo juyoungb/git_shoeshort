@@ -15,7 +15,7 @@ public class AdProductDao {
 		this.jdbc = new JdbcTemplate(dataSource);
 	}
 	public int getProductCount(String where) {		
-		String sql = "select count(distinct(a.pi_id))  rcnt from t_product_info a, t_product_stock b, t_product_ctgr_big c, t_product_brand d"+ where;
+		String sql = "select count(distinct(a.pi_id))  rcnt from t_product_info a, t_product_stock b, t_product_ctgr_big c, t_product_brand d "+ where;
 		System.out.println(sql);
 		int result = jdbc.queryForObject(sql, Integer.class);
 		return result;
@@ -24,7 +24,7 @@ public class AdProductDao {
 	public List<ProductInfo> getProductList(int cpage, int psize, String where) {
 		String sql ="select a.pi_img1, a.pi_id, a.pi_name,d.pb_name, c.pcb_name, a.pi_cost, sum(b.ps_stock) stock, a.pi_date, a.pi_last, a.pi_isview  "
 				+ " from t_product_info a, t_product_stock b, t_product_ctgr_big c, t_product_brand d "
-				+" "+ where + " group by a.pi_id limit " + ((cpage - 1) * psize) + "," + psize ; 
+				+" "+ where + "  group by a.pi_id order by  a.pi_date desc limit " + ((cpage - 1) * psize) + "," + psize ; 
 		System.out.println(sql);
 		List<ProductInfo> productList = jdbc.query(sql, 
 				(ResultSet rs, int rowNum) -> {
