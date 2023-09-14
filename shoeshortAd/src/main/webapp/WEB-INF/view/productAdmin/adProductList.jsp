@@ -343,7 +343,7 @@ function selectAll(click)  {
 </head>
 <body>
 <div align="center">
-<h2>상품 조회</h2>
+<h2 align="left" style="margin-left:11%">상품 조회</h2>
 <form name="frm">
 <input type="hidden" name="sch" value="">
 <input type="hidden" name="schtype" value="">

@@ -88,8 +88,7 @@ function chkDupId(piid) { //상품아이디가 이미 있는지 확인
 </head>
 <body>
 <div style="margin:20px;" width="80%" align="center">
-<h2>상품 등록</h2>
-
+<h2 align="left" style="margin-left:10%">상품 등록</h2>
 <form name="frm2" action="adProductFile" method="post" enctype="multipart/form-data">
 <input type="hidden" name="sch" value=""> 
 <table width="80%" cellpadding="10" cellspacing="0" id="list" class="mx-auto">
