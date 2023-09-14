@@ -78,15 +78,7 @@ function getSelectedChk(){
 		}
 		return idxs.substring(1);
 	}
-function getSelectedChk(){
-	// 체크박스들 중 선택된 체크박스들의 값(value)들을 쉼표로 구분하여 문자열로 리턴하는 함수
-		var chk =document.frm.chk;
-		var idxs ="";	// chk컨트롤 배열에서 선택된 체크박스의 값들을 누적 저장할 변수
-		for(var i= 1; i<chk.length ; i++){
-			if(chk[i].checked)	idxs +=","+chk[i].value;
-		}
-		return idxs.substring(1);
-}
+
 function chkChange(){	
 		var ocidx =getSelectedChk();
 		if(ocidx == "")	alert("변경할 목록을 선택하세요.");
