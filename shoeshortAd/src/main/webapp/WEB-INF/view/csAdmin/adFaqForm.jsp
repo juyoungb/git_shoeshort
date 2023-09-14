@@ -39,7 +39,7 @@ function link(){
 	    <label for="exampleFormControlTextarea1">답변</label>
 	    <textarea class="form-control" id="exampleFormControlTextarea1" name="answer" rows="9"></textarea>	  
 	<div class="btn">
-	<button type="submit" class="btn btn-dark">등록하기</button>
+	<input type="button" onclick="chkForm();"  class="btn btn-dark" value="등록하기" />
 	<button type="button" class="btn btn-dark" onclick="link();">목록으로</button>
 	<button type="reset" class="btn btn-dark">다시입력</button>
 	</div>

@@ -3,16 +3,12 @@
 <script>
 function chkForm(){
 	var frm = document.frm;
-	var ctgr = frm.ctgr.value;
-	var title = frm.title.value;
-	var content = frm.content.value;
-	
-	if (ctgr == "" || title == "" || content == ""){
+	if (frm.ctgr.value == "" || frm.title.value == "" || frm.content.value == ""){
 		alert("입력칸을 확인해주세요.");
-		return false;
-	}
-	if (ctgr != "" && title != "" && content != ""){ 
-		document.frm.submit();
+		return;
+	} else {
+		alert("등록 되었습니다.");
+		return frm.submit();
 	}
 }
 function link(){
@@ -45,7 +41,7 @@ function link(){
 	    <label for="exampleFormControlInput1">내용</label>
 	    <textarea class="form-control" id="exampleFormControlTextarea1" name="content" rows="9"></textarea>  
 	<div class="btn">
-	<button type="submit" class="btn btn-dark">등록하기</button>
+	<input type="button" onclick="chkForm();"  class="btn btn-dark" value="등록하기" />
 	<button type="button" class="btn btn-dark" onclick="link();">목록으로</button>
 	<button type="reset" class="btn btn-dark">다시입력</button>
 	</div>
