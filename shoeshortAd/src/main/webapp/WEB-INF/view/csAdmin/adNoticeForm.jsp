@@ -17,7 +17,7 @@ function link(){
 </script>
 <style>
 .form-group {width:50%; height:80%; align:center; margin-left:25%; margin-top:40px;}
-.btn {margin-left:100px;}
+.btn {margin-left:100px; border:none;}
 </style>
 <link rel="stylesheet" href="resources/css/style.css" />
 <form name="frm" action="adNoticeProcIn" method="post">
