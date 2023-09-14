@@ -44,15 +44,15 @@ text-align: center;
 <td>${i.count }</td><td>${wc.getEw_title() }</td>
 <td>${wc.getEw_status() =='a' ? cdate: edate}</td>
 <td>${wc.getEw_status() == 'a'? '모집중': (wc.getEw_status() == 'b' ? '투표중' : '마감')}</td>
-<td style="padding: 15px; margin: 10px;"><input type="button" style="width:90%" onclick="popUp('adWcupIn?kind=up&ewidx=${wc.getEw_idx()}','','700','440');"  value="수정"/><br>
-<input style="width:90%"type="button" onclick="wcupDel('${wc.getEw_idx()}')" value="삭제"/></td>
+<td style="padding: 15px; margin: 10px;"><input type="button" class="btn btn-outline-dark btn-sm" style="width:90%" onclick="popUp('adWcupIn?kind=up&ewidx=${wc.getEw_idx()}','','700','440');"  value="수정"/><br>
+<input style="width:90%" type="button" class="btn btn-outline-danger btn-sm" onclick="wcupDel('${wc.getEw_idx()}')" value="삭제"/></td>
 </tr>
 </c:forEach>
 </table>
 <span style="line-height:50%"><br></span><!-- <br> 절반 -->
 <table style="border:none;">
-<tr><td style="text-align:left; border:none;">
-&nbsp;&nbsp;<input style="width:8%" type="button" onclick="popUp('adWcupIn?kind=in','','700','440');" value="등록"/></td>
+<tr><td style="text-align:right; border:none;">
+&nbsp;&nbsp;<input style="width:8%" type="button" class="btn btn-dark"onclick="popUp('adWcupIn?kind=in','','700','440');" value="등록"/></td>
 </td>
 </tr>
 </table>

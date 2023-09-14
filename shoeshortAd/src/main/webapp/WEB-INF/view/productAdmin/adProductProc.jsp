@@ -94,7 +94,7 @@ function chkDupId(piid) { //상품아이디가 이미 있는지 확인
 <table width="80%" cellpadding="10" cellspacing="0" id="list" class="mx-auto">
 <tr>
 <th>상품명아이디</th>
-<td>
+<td width="">
 	<input type="text" name="piid" onkeyup="chkDupId(this.value);">
 	<span id="isMessage"style="font-size:0.8em;"> 예)CC10001 &nbsp;&nbsp;&nbsp; NN:나이키, CC: 크록스, DD:닥터마틴</span>
 </td>
@@ -152,7 +152,7 @@ for(String st : arrGender){
 </td>
 </tr>
 </table>
-<div style="margin:20px;" id="app">
+<div  id="app">
 <table width="80%"  align="center">
 <tr>
 <th width="25%">사이즈</th>
@@ -203,9 +203,11 @@ for(String st : arrGender){
 </tr>
 
 <tr style="border: 0;">
-<td colspan="4" align="center"   style="border: 0;">
+<td colspan="4" align="center"   style="border: 0;" >
+<div class="m-3">
 	<input type="button" class="btn btn-outline-dark" value="등록" onclick="makeSch();">
-	<input type="button" class="btn btn-secondary"  value="취소"  onclick="location.href='adProductProc';">
+	<input type="button"  class="btn btn-outline-dark"   value="취소"  onclick="location.href='adProductProc';">
+</div>
 </td>
 </tr>
 

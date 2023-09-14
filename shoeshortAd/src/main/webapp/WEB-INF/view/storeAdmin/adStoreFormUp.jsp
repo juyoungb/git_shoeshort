@@ -46,7 +46,7 @@ td {padding-bottom: 10px;}
 <td align="left"><input type="text" name="name" value="<%=storeInfo.getBsi_name() %>" class="form-control" /></td>
 <tr><td style="font-size:20px;">주소 : </td>
 <td align="left"><input type="text" name="addr" value="<%=storeInfo.getBsi_addr() %>" class="form-control" /></td>
-<tr><td align="right" colspan="3"><input type="button" onclick="chkTxt();" value="수정" class="btn btn-primary d-inline-flex align-items-center" /></td></tr>
+<tr><td align="right" colspan="3"><input type="button" onclick="chkTxt();" value="수정" class="btn btn-dark d-inline-flex align-items-center" /></td></tr>
 </table>
 </form>
 </div>

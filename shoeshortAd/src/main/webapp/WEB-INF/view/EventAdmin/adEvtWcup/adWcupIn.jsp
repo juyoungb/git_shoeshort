@@ -6,6 +6,8 @@
 <html>
 <head>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
 <script>
@@ -109,8 +111,8 @@ $(function() {
 </td></tr>
 </c:if>
 </table><br>
-<input type="submit" style="width:20%" value="${kind == 'in' ? '등록':'수정'}" />&nbsp;&nbsp;&nbsp;
-<input type="button" onclick="window.close();" style="width:20%" value="취소" />
+<input type="submit" class="btn btn-dark" style="width:20%" value="${kind == 'in' ? '등록':'수정'}" />&nbsp;&nbsp;&nbsp;
+<input type="button" class="btn btn-outline-dark" onclick="window.close();" style="width:20%" value="취소" />
 </form>
 </div>
 

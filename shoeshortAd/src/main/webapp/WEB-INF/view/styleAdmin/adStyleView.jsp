@@ -61,7 +61,7 @@ function link() {
 <tr>
 <td align="right" colspan="4">
 	<input type="button" width="20" value="목록" class="btn btn-dark" onclick="link();" />
-	<input type="button" width="20" value="삭제" class="btn btn-dark"  onclick="styleDel();" />
+	<input type="button" width="20" value="삭제" class="btn btn-outline-danger" onclick="styleDel();" />
 </td>
 </tr>
 </table>

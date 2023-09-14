@@ -45,7 +45,7 @@ function chkPoint(){
 <td align="left"><input type="text" id="oldPoint" name="oldPoint" value="<%=memberPoint.getMi_point() %>" class="form-control" /></td><td style="font-size:20px;">P</td></tr>
 <tr><td>적립 포인트 : </td>
 <td align="left"><input type="text" id="point" name="point" value="0" class="form-control" /></td><td style="font-size:20px;">P</td></tr>
-<tr><td align="right" colspan="3"><input type="button" onclick="chkPoint();" value="적립" class="btn btn-primary d-inline-flex align-items-center" /></td></tr>
+<tr><td align="right" colspan="3"><input type="button" onclick="chkPoint();" value="적립" class="btn btn-outline-dark d-inline-flex align-items-center" /></td></tr>
 </table>
 </form>
 </div>

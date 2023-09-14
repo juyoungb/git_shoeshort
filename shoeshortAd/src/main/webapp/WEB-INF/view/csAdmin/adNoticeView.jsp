@@ -49,8 +49,8 @@ th { background-color: #E2DECE;  opacity: 0.8; font-weight: bold; }
 </div>
 <div style="width: 20%; margin-left:40%; margin-top:1%;" align="center">
 <p>
-<input type="button" class="btn btn-outline-secondary" value="수정" onclick="procLink('up');"/>&nbsp;&nbsp;&nbsp;
-<input type="button" class="btn btn-outline-secondary" value="목록" onclick="link();"/>&nbsp;&nbsp;&nbsp;
+<input type="button" class="btn btn-outline-dark" value="수정" onclick="procLink('up');"/>&nbsp;&nbsp;&nbsp;
+<input type="button" class="btn btn-dark" value="목록" onclick="link();"/>&nbsp;&nbsp;&nbsp;
 <input type="button" class="btn btn-outline-danger" value="삭제" onclick="procLink('del');"/>
 </p>
 </div>

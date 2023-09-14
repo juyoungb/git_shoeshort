@@ -93,16 +93,16 @@ function adluckyDel(elidx){
 <td align="center">${i.count}</td>
 <td align="left">${il.getEl_title()}</td>
 <td align="center"><img width="200px" height="100px" style="cursor: pointer" src="resources/img/product/${il.getPi_img1()}"/></td>
-<td>  <br> (${il.getEl_sdate()} ~ ${il.getEl_edate()})</td>
+<td><br> (${il.getEl_sdate()} ~ ${il.getEl_edate()})</td>
 <td align="center">${il.getMi_id() == '' ? '': il.getMi_id()}</td>
 <td align="center">${il.getEl_final_price() }</td>
 <td align="center">${il.getEl_isview() == 'y'? '진행중': (il.getEl_isview() == 'n' ? '미게시' : '종료')}</td>
-<td align="center"><input type="button" class="btn btn-secondary" onclick="popUp('adLuckyIn?kind=up&elidx=${il.getEl_idx()}','','700','440');"  value="수정"/><br>
-<input type="button" class="btn btn-outline-secondary" onclick="adluckyDel('${il.getEl_idx()}')" value="삭제"/></td> 
-</c:forEach>
+<td align="center"><input type="button" class="btn btn-outline-dark" onclick="popUp('adLuckyIn?kind=up&elidx=${il.getEl_idx()}','','700','440');"  value="수정"/><br>
+<input type="button" class="btn btn-outline-danger" onclick="adluckyDel('${il.getEl_idx()}')" value="삭제"/></td> 
 </tr>
+</c:forEach>
 <tr>
-<td style="align:right; border:none;">
+<td  colspan="8" style="text-align:right; border:none;">
 <input class="btn btn-dark" type="button" onclick="popUp('adLuckyIn?kind=in','','700','440');" value="등록"/></td>
 </tr>
  <tbody>

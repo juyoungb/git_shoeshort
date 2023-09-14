@@ -89,31 +89,31 @@ function resetBtn(){
 <input type="text" style="width:15%" name="edate" id="edate" value="<%=edate %>" size="10" class="ipt" />
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
   <input type="checkbox" class="btn-check" id="btncheck1" name="period" value="t" <%if(periods != null && periods.contains("t")) {%>checked="checked" <%} %>onclick="selChk(this)" />
-  <label class="btn btn-outline-primary" for="btncheck1">오늘</label>
+  <label class="btn btn-outline-dark" for="btncheck1">오늘</label>
 
   <input type="checkbox" class="btn-check" id="btncheck2" name="period" value="w" <%if(periods != null && periods.contains("w")) {%>checked="checked" <%} %> onclick="selChk(this)" />
-  <label class="btn btn-outline-primary" for="btncheck2">일주일</label>
+  <label class="btn btn-outline-dark" for="btncheck2">일주일</label>
 
   <input type="checkbox" class="btn-check" id="btncheck3" name="period"  value="m" <%if(periods != null && periods.contains("m")) {%>checked="checked" <%} %> onclick="selChk(this)" />
-  <label class="btn btn-outline-primary" for="btncheck3">1개월</label>
+  <label class="btn btn-outline-dark" for="btncheck3">1개월</label>
   
   <input type="checkbox" class="btn-check" id="btncheck4" name="period" value="all"<%if(periods == null || periods.contains("all") ) {%>checked="checked" <%} %>" onclick="allChk(this)" />
-  <label class="btn btn-outline-primary" for="btncheck4" >전체</label>
+  <label class="btn btn-outline-dark" for="btncheck4" >전체</label>
 </div>
 </td></tr>
 <tr><th>주문 상태</th><td style="text-align:left">&nbsp;
   
   <input type="checkbox" class="btn-check" name="status" value="all" id="btncheck5"<%if(status2 == null || status2.contains("all")) {%>checked="checked" <%} %>  onclick="allChk(this)" />
-  <label class="btn btn-outline-primary" for="btncheck5">전체</label>
+  <label class="btn btn-outline-dark" for="btncheck5">전체</label>
   
   <input type="checkbox" class="btn-check" name="status" value="b"  id="btncheck6"<%if(status2 != null && status2.contains("b")) {%>checked="checked" <%} %> onclick="selChk(this)" />
-  <label class="btn btn-outline-primary" for="btncheck6">배송 준비</label>
+  <label class="btn btn-outline-dark" for="btncheck6">배송 준비</label>
 
   <input type="checkbox" class="btn-check" name="status" value="c"  id="btncheck7"<%if(status2 != null && status2.contains("c")) {%>checked="checked" <%} %> onclick="selChk(this)" />
-  <label class="btn btn-outline-primary" for="btncheck7">배송중</label>
+  <label class="btn btn-outline-dark" for="btncheck7">배송중</label>
   
   <input type="checkbox" class="btn-check" name="status" value="d" id="btncheck8" <%if(status2 != null && status2.contains("d")) {%>checked="checked" <%} %> onclick="selChk(this)" />
-  <label class="btn btn-outline-primary" for="btncheck8">배송완료</label>
+  <label class="btn btn-outline-dark" for="btncheck8">배송완료</label>
   	 		 	
 </td></tr>
 </table>
@@ -121,8 +121,8 @@ function resetBtn(){
 <span style="line-height:50%"><br></span><!-- <br> 절반 -->
 <table style="width:1300px; border:none;">
 <tr><td style="border:none;">
-<input style="width:10%" type="submit" value="검색"/>&nbsp;&nbsp;&nbsp;&nbsp;
-<input style="width:10%" type="button" onclick="resetBtn();" value="초기화"/>
+<input style="width:10%" type="submit" class="btn btn-outline-dark" value="검색"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<input style="width:10%" type="button" class="btn btn-outline-dark" onclick="resetBtn();" value="초기화"/>
 </td>
 </tr>
 </table>
@@ -170,13 +170,14 @@ if (orderList.size() > 0) {
 </table>
 <span style="line-height:20%"><br></span><!-- <br> 절반 -->
 <table style="width:1300px; border:none;">
-<tr><td style="text-align:right;border:none;">&nbsp;
+<tr>
+<td style="text-align:right;border:none;">&nbsp;
 <select name="schOrder">
 <option value="d">배송완료</option><!-- 1 -->
 <option value="c">배송중</option>
 <option value="b">배송준비</option>
 </select>
-<input style="width:8%" type="button" onclick="chkChange()"  value="변경"/>
+<input style="width:60px; height:27px;" type="button" class="btn btn-outline-dark btn-sm" onclick="chkChange()"  value="변경"/>
 </td>
 </tr>
 </table>

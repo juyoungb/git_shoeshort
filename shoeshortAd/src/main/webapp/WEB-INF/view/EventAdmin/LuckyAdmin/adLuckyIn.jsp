@@ -107,7 +107,7 @@ $(function() {
 </tr>
 </table><br>
 <input type="submit" class="btn btn-dark" style="width:20%" value="${kind == 'in' ? '등록':'수정'}" />&nbsp;&nbsp;&nbsp;
-<input type="button" class="btn btn-outline-secondary" onclick="window.close();" style="width:20%" value="취소" />
+<input type="button" class="btn btn-outline-dark" onclick="window.close();" style="width:20%" value="취소" />
 </form>
 </div>
 </body>
